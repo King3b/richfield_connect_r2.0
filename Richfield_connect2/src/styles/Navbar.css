@@ -1,0 +1,28 @@
+nav {
+  background-color: #0669c6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline-block;
+  margin-right: 2rem;
+}
+
+nav a {
+  color: rgb(255, 0, 0);
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 1.3rem;
+  transition: all 0.9s ease;
+}
