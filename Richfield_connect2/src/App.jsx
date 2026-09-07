@@ -6,6 +6,7 @@ import SignUp from "./views/SignUp.jsx";
 import Home from "./views/Home.jsx";
 import About from "./views/About.jsx";
 import Footer from "./components/Footer.jsx";
+import "./styles/Global.css";
 
 import Navbar from "./components/Navbar.jsx";
 

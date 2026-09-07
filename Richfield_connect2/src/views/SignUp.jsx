@@ -1,7 +1,225 @@
+import "../styles/SignUp.css";
 function signUp() {
   return (
     <div>
-      <h1>Sign Up</h1>
+      <section className="signup-layout">
+        <section className="link-boared">
+          <div className="board-card">
+            <h2>Join Richfield Connect</h2>
+            <p>
+              create your account and become a part of a vibrant academic
+              comminity connect collaborate and grow together
+            </p>
+            <div className="board-links">
+              <span className="material-symbols-rounded icon">person</span>
+              <h5>create your profile</h5>
+              <p>share your academic interests and goals</p>
+            </div>
+            <div className="board-links">
+              <span className="material-symbols-rounded icon">
+                dynamic_feed
+              </span>
+              <h5>explore the feed</h5>
+              <p>discover posts and connect with peers</p>
+            </div>
+            <div className="board-links">
+              <span className="material-symbols-rounded icon">
+                library_books
+              </span>
+              <h5>school resources</h5>
+              <p>access academic materials and support services</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="signup">
+          <form id="signupForm">
+            <img src="assets/images/default.jpeg" alt="profile picture" />
+            <h3>sign up</h3>
+            <p>Create your profile to get started!</p>
+            <br />
+            <label for="name">Name</label>
+            <input type="text" id="name" placeholder="Name" required />
+            <br />
+
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" placeholder="Surname" required />
+            <br />
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Email" required />
+            <br />
+            <label for="username">Username</label>
+            <input type="text" id="username" placeholder="@username" required />
+            <div className="username-preview">
+              Suggested username:
+              <span id="generatedUsername">@username</span>
+            </div>
+            <br />
+            <label for="campus">Campus</label>
+            <select name="campus" id="campus" required>
+              <option value="">Select Campus</option>
+              <option value="campus1">Bryanston Campus</option>
+              <option value="campus2">Cape Town Campus</option>
+              <option value="campus3">Centurion Campus</option>
+              <option value="campus4">Durban Campus</option>
+              <option value="campus5">Musgrave Campus</option>
+              <option value="campus6">Newtown Junction Campus</option>
+              <option value="campus7">Polokwane Campus</option>
+              <option value="campus8">Pretoria Campus</option>
+            </select>
+            <br />
+            <label for="year">Year of Study</label>
+            <select name="Year" id="year" required>
+              <option value="">Select Year</option>
+              <option value="year1">HCIT</option>
+              <option value="year2">DIT</option>
+              <option value="year3">DIT 2nd</option>
+              <option value="year3">BScIT</option>
+              <option value="year4">BScIT 2nd</option>
+              <option value="year5">BScIT 3rd</option>
+            </select>
+            <br />
+            <label for="gender">Gender</label>
+            <select name="gender" id="gender">
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+            </select>
+            <br />
+            <label for="student_id">Student ID</label>
+            <input
+              type="number"
+              id="student_id"
+              placeholder="Student ID"
+              required
+              minlength="8"
+              maxlength="8"
+            />
+            <br />
+            <label for="password">Password</label>
+
+            <div className="password-box">
+              <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                required
+              />
+
+              <span
+                id="togglePassword"
+                className="material-symbols-rounded eye"
+              >
+                visibility
+              </span>
+            </div>
+
+            <div className="strength">
+              <div className="strength-bar"></div>
+            </div>
+
+            <p className="strength-text"></p>
+            <br />
+            <label for="confirm_password">Confirm Password</label>
+
+            <div className="password-box">
+              <input
+                type="password"
+                id="confirm_password"
+                placeholder="Confirm Password"
+                required
+              />
+
+              <span className="material-symbols-rounded eye confirm-eye">
+                visibility
+              </span>
+            </div>
+
+            <p className="password-match"></p>
+            <br />
+
+            <button type="submit">Sign Up</button>
+            <hr />
+            <p className="login">
+              Already have an account? <a href="logIn.html">Login here</a>
+            </p>
+          </form>
+          <section className="live-preview">
+            <h3>Live Profile Preview</h3>
+
+            <div className="preview-card">
+              <div className="preview-avatar">
+                <span className="material-symbols-rounded"> person </span>
+              </div>
+
+              <h2 className="preview-name">Your Name</h2>
+
+              <p className="preview-username">@username</p>
+
+              <p className="preview-campus">Campus</p>
+
+              <div className="preview-tags"></div>
+            </div>
+          </section>
+        </section>
+      </section>
+      <section class="reasons">
+        <ul>
+          <li>
+            <div class="core-advantages">
+              <span class="material-symbols-rounded icon">lock</span>
+              <h3>Privacy & Security</h3>
+              <p>Your data and privacy are our top priority.</p>
+            </div>
+          </li>
+
+          <li>
+            <div class="core-advantages">
+              <span class="material-symbols-rounded icon">groups</span>
+              <h3>Community Support</h3>
+              <p>
+                Get the support you need from your fellow students and faculty.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="core-advantages">
+              <span class="material-symbols-rounded icon">hub</span>
+              <h3>Stay Connected</h3>
+              <p>
+                We encourage open communication and collaboration among
+                students, fostering a culture of knowledge sharing and mutual
+                support.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="core-advantages">
+              <span class="material-symbols-rounded icon">school</span>
+              <h3>Academic Focused</h3>
+              <p>
+                Designed to support learning, collaboration, and academic
+                excellence.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div class="core-advantages">
+              <span class="material-symbols-rounded icon">verified</span>
+              <h3>Integrity</h3>
+              <p>
+                We are committed to maintaining the highest standards of
+                integrity and ethical behavior in all our interactions and
+                services.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
     </div>
   );
 }

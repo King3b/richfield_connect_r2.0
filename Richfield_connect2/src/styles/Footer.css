@@ -1,0 +1,39 @@
+/* FOOTER */
+footer {
+  background: #001b44;
+  color: white;
+  padding: 50px 8%;
+}
+footer img {
+  width: 100px;
+  height: 150px;
+  object-fit: contain;
+  float: left;
+}
+
+.f_naves {
+  display: flex;
+  justify-content: center;
+  gap: 80px;
+}
+footer div ul {
+  list-style: none;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+footer a {
+  color: #dbeafe;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+footer a:hover {
+  color: white;
+}
+
+footer p {
+  margin-top: 30px;
+  opacity: 0.8;
+  text-align: center;
+}
