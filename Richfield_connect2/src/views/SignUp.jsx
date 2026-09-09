@@ -1,5 +1,7 @@
 import "../styles/SignUp.css";
 import { useState } from "react";
+import Card from "../main_components/Cards";
+import Preview from "../main_components/Preview";
 
 function SignUp() {
   const [formData, setFormData] = useState({
@@ -30,42 +32,57 @@ function SignUp() {
 
   return (
     <div>
+      <section className="signUp_hero">
+        <h2>Join Richfield Connect</h2>
+
+        <p>
+          Create your account and become a part of a vibrant academic community.
+          Connect, collaborate and grow together.
+        </p>
+
+        <ul>
+          <li>
+            <div>
+              <Card
+                header="Create your profile"
+                icon="person"
+                info="Share your academic interests and goals."
+              />
+            </div>
+          </li>
+          <li>
+            <div>
+              <Card
+                header="Explore the feed"
+                icon="dynamic_feed"
+                info="Discover posts and connect with peers."
+              />
+            </div>
+          </li>
+          <li>
+            <div>
+              <Card
+                header="School resources"
+                icon="library_books"
+                info="Access academic materials and support services."
+              />
+            </div>
+          </li>
+        </ul>
+      </section>
       <section className="signup-layout">
         {/* LEFT SIDE */}
         <section className="link-boared">
-          <div className="board-card">
-            <h2>Join Richfield Connect</h2>
-
-            <p>
-              Create your account and become a part of a vibrant academic
-              community. Connect, collaborate and grow together.
-            </p>
-
-            <div className="board-links">
-              <span className="material-symbols-rounded icon">person</span>
-
-              <h5>Create your profile</h5>
-              <p>Share your academic interests and goals.</p>
-            </div>
-
-            <div className="board-links">
-              <span className="material-symbols-rounded icon">
-                dynamic_feed
-              </span>
-
-              <h5>Explore the feed</h5>
-              <p>Discover posts and connect with peers.</p>
-            </div>
-
-            <div className="board-links">
-              <span className="material-symbols-rounded icon">
-                library_books
-              </span>
-
-              <h5>School resources</h5>
-              <p>Access academic materials and support services.</p>
-            </div>
-          </div>
+          {/* LIVE PREVIEW */}
+          <section className="live-preview">
+            <h3>Live Profile Preview</h3>
+            <Preview
+              name={formData.name}
+              userName={formData.userName}
+              campus={formData.campus}
+              year={formData.year}
+            />
+          </section>
         </section>
 
         {/* SIGN UP */}
@@ -278,29 +295,6 @@ function SignUp() {
               <a href="/login"> Login here</a>
             </p>
           </form>
-
-          {/* LIVE PREVIEW */}
-          <section className="live-preview">
-            <h3>Live Profile Preview</h3>
-
-            <div className="preview-card">
-              <div className="preview-avatar">
-                <span className="material-symbols-rounded">person</span>
-              </div>
-
-              <h2 className="preview-name">{formData.name || "Your Name"}</h2>
-
-              <p className="preview-username">
-                {formData.userName ? `@${formData.userName}` : "@username"}
-              </p>
-
-              <p className="preview-campus">
-                {formData.campus || "Your Campus"}
-              </p>
-
-              <p className="preview-year">{formData.year || "Year of Study"}</p>
-            </div>
-          </section>
         </section>
       </section>
 
@@ -309,64 +303,56 @@ function SignUp() {
         <ul>
           <li>
             <div className="core-advantages">
-              <span className="material-symbols-rounded icon">lock</span>
-
-              <h3>Privacy & Security</h3>
-
-              <p>Your data and privacy are our top priority.</p>
+              <Card
+                header="Privacy & Security"
+                icon="shield_lock"
+                info="Your data and privacy are our top priority."
+              />
             </div>
           </li>
 
           <li>
             <div className="core-advantages">
-              <span className="material-symbols-rounded icon">groups</span>
-
-              <h3>Community Support</h3>
-
-              <p>
-                Get the support you need from your fellow students and faculty.
-              </p>
+              <Card
+                header="Community"
+                icon="groups"
+                info="Get the support you need from your fellow students and faculty."
+              />
             </div>
           </li>
 
           <li>
             <div className="core-advantages">
-              <span className="material-symbols-rounded icon">hub</span>
-
-              <h3>Stay Connected</h3>
-
-              <p>
-                We encourage open communication and collaboration among
+              <Card
+                header="Stay Connected"
+                icon="hub"
+                info="We encourage open communication and collaboration among
                 students, fostering a culture of knowledge sharing and mutual
-                support.
-              </p>
+                support."
+              />
             </div>
           </li>
 
           <li>
             <div className="core-advantages">
-              <span className="material-symbols-rounded icon">school</span>
-
-              <h3>Academic Focused</h3>
-
-              <p>
-                Designed to support learning, collaboration, and academic
-                excellence.
-              </p>
+              <Card
+                header="Academic focused"
+                icon="school"
+                info="Designed to support learning, collaboration, and academic
+                excellence."
+              />
             </div>
           </li>
 
           <li>
             <div className="core-advantages">
-              <span className="material-symbols-rounded icon">verified</span>
-
-              <h3>Integrity</h3>
-
-              <p>
-                We are committed to maintaining the highest standards of
+              <Card
+                header="Integrity"
+                icon="verified"
+                info="We are committed to maintaining the highest standards of
                 integrity and ethical behavior in all our interactions and
-                services.
-              </p>
+                services."
+              />
             </div>
           </li>
         </ul>

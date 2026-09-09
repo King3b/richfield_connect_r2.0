@@ -1,5 +1,6 @@
 import "../styles/About.css";
-
+import Card from "../main_components/Cards";
+//yooo just get the cards their css
 function About() {
   return (
     <div>
@@ -53,75 +54,56 @@ function About() {
         <ul>
           <li>
             <div>
-              <h3>Privacy & Security</h3>
-
-              <span className="material-symbols-rounded core-icon">
-                shield_lock
-              </span>
-
-              <p>Your data and privacy are our top priority.</p>
+              <Card
+                header="Privacy & Security"
+                icon="shield_lock"
+                info="Your data and privacy are our top priority."
+              />
             </div>
           </li>
 
           <li>
             <div>
-              <h3>Community</h3>
-
-              <span className="material-symbols-rounded core-icon">
-                {" "}
-                groups{" "}
-              </span>
-
-              <p>Building a supportive and respectful student community.</p>
+              <Card
+                header="Community"
+                icon="groups"
+                info="Building a supportive and respectful student community."
+              />
             </div>
           </li>
 
           <li>
             <div>
-              <h3>Collaboration</h3>
-
-              <span className="material-symbols-rounded core-icon">
-                handshake
-              </span>
-
-              <p>
-                We encourage open communication and collaboration among
+              <Card
+                header="Collaboration"
+                icon="handshake"
+                info="We encourage open communication and collaboration among
                 students, fostering a culture of knowledge sharing and mutual
-                support.
-              </p>
+                support."
+              />
             </div>
           </li>
 
           <li>
             <div>
-              <h3>Academic focused</h3>
-
-              <span className="material-symbols-rounded core-icon">
-                {" "}
-                school{" "}
-              </span>
-
-              <p>
-                Designed to support learning, collaboration, and academic
-                excellence.
-              </p>
+              <Card
+                header="Academic focused"
+                icon="school"
+                info="Designed to support learning, collaboration, and academic
+                excellence."
+              />
             </div>
           </li>
 
           <li>
             <div>
-              <h3>Integrity</h3>
-
-              <span className="material-symbols-rounded core-icon">
-                {" "}
-                verified{" "}
-              </span>
-
-              <p>
-                We are committed to maintaining the highest standards of
+              <Card
+                header="Integrity"
+                icon="verified"
+                info="We are committed to maintaining the highest standards of
                 integrity and ethical behavior in all our interactions and
-                services.
-              </p>
+                services."
+              />
             </div>
           </li>
         </ul>
