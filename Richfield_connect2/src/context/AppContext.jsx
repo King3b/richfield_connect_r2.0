@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-
+import "../styles/Post.css";
 export const AppContext = createContext();
 
 const initialState = {
@@ -49,6 +49,23 @@ function reducer(state, action) {
       return {
         ...state,
         posts: state.posts.filter((post) => post.id !== action.payload),
+      };
+
+    case "ADD_COMMENT":
+      return {
+        ...state,
+
+        posts: state.posts.map((post) => {
+          if (post.id === action.payload.postId) {
+            return {
+              ...post,
+
+              comments: [...(post.comments || []), action.payload.comment],
+            };
+          }
+
+          return post;
+        }),
       };
 
     default:

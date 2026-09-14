@@ -1,30 +1,12 @@
 import { useContext, useState } from "react";
-import Comments from "./comments";
 import { AppContext } from "../../context/AppContext";
 
 function Post({ post }) {
-  const { dispatch } = useContext(AppContext);
-  const [commentText, setCommentText] = useState("");
-  const [comments, setComments] = useState(post.comments || []);
+  const { state, dispatch } = useContext(AppContext);
 
-  const handleComment = () => {
-    if (commentText.trim() === "") {
-      return;
-    }
+  const [showComments, setShowComments] = useState(false);
+  const [comment, setComment] = useState("");
 
-    const newComment = {
-      id: Date.now(),
-      user: "Blessings",
-      time: "Just now",
-      comment: commentText,
-    };
-
-    setComments([...comments, newComment]);
-
-    setCommentText("");
-  };
-
-  // LIKE POST
   const handleLike = () => {
     dispatch({
       type: "TOGGLE_LIKE",
@@ -32,80 +14,97 @@ function Post({ post }) {
     });
   };
 
-  // DELETE POST
-  const handleDelete = () => {
-    const confirmDelete = window.confirm("Delete post?");
-
-    if (confirmDelete) {
-      dispatch({
-        type: "DELETE_POST",
-        payload: post.id,
-      });
+  const handleComment = () => {
+    if (!comment.trim()) {
+      return;
     }
+
+    const newComment = {
+      id: Date.now(),
+      userId: state.currentUser?.studentID,
+      userName: state.currentUser?.name || "Student",
+      content: comment,
+      time: new Date().toLocaleString(),
+    };
+
+    dispatch({
+      type: "ADD_COMMENT",
+      payload: {
+        postId: post.id,
+        comment: newComment,
+      },
+    });
+
+    setComment("");
   };
 
   return (
-    <div className="post">
+    <article className="post">
       {/* POST HEADER */}
+
       <div className="post-heading">
-        <img src={post.profilepic} alt="profile picture" />
+        <div className="post-avatar">
+          {post.userName?.charAt(0).toUpperCase()}
+        </div>
 
-        <div className="post_title">
+        <div className="post-title">
           <p className="cUser">{post.userName}</p>
-
-          <button className="follow">Follow</button>
 
           <p className="cTime">{post.time}</p>
         </div>
       </div>
 
-      {/* POST CONTENT */}
+      {/* TOPIC */}
+
+      {post.topic && <h3>{post.topic}</h3>}
+
+      {/* CONTENT */}
+
       <p className="cMsg">{post.content}</p>
 
-      {/* POST IMAGE */}
-      {post.postImg && <img src={post.postImg} alt="subject picture" />}
+      {/* IMAGE */}
 
-      {/* REACTION BUTTONS */}
-      <div className="react_buttons">
-        <span className="like-count">❤️ {post.likes}</span>
+      {post.postImg && (
+        <img className="post-image" src={post.postImg} alt="Post" />
+      )}
 
-        <button
-          className={`like-btn ${post.liked ? "liked" : ""}`}
-          onClick={handleLike}
-        >
-          ❤️ {post.liked ? "Liked" : "Like"}
-        </button>
+      {/* BUTTONS */}
 
-        <button className="comment-btn">
-          🗨️ Comment ({post.comments?.length || 0})
-        </button>
+      <div className="react-buttons">
+        <button onClick={handleLike}>❤️ {post.likes}</button>
 
-        <button className="delete-btn" onClick={handleDelete}>
-          🗑️ Delete
+        <button onClick={() => setShowComments(!showComments)}>
+          💬 Comment
         </button>
       </div>
-      <div className="comments_users">
-        {comments.map((comment) => (
-          <Comments
-            key={comment.id}
-            user={comment.user}
-            time={comment.time}
-            comment={comment.comment}
-          />
-        ))}
 
-        {/* COMMENT INPUT */}
-        <div className="user_commenting">
-          <textarea
-            name="comment"
-            id={`comment-${post.id}`}
-            placeholder="Write a comment..."
-          />
+      {/* COMMENTS */}
 
-          <button type="button">Post</button>
+      {showComments && (
+        <div className="comments-section">
+          <div className="comments-list">
+            {post.comments?.map((comment) => (
+              <div className="comment" key={comment.id}>
+                <strong>{comment.userName}</strong>
+
+                <p>{comment.content}</p>
+
+                <small>{comment.time}</small>
+              </div>
+            ))}
+          </div>
+          <div className="comment-input">
+            <textarea
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              placeholder="Write a comment..."
+            />
+
+            <button onClick={handleComment}>Post</button>
+          </div>
         </div>
-      </div>
-    </div>
+      )}
+    </article>
   );
 }
 

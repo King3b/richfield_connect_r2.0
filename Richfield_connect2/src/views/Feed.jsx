@@ -1,35 +1,12 @@
-import Comments from "../components/post_elements/comments";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 import Post from "../components/post_elements/Post";
 import GroupsLink from "../components/groups/groups.jsx";
-import CreatePost from "../components/CreatePost.jsx";
+import CreatePost from "../components/posts/CreatePost.jsx";
 import SideLinks from "../components/side link/sideLinks.jsx";
 import "../styles/Feed.css";
 function Feed() {
-  const posts = [
-    {
-      id: 1,
-      userName: "Blessings",
-      profilepic: "/images/profile.jpg",
-      content: "Learning React 🚀",
-      postImg: "/images/react.jpg",
-      time: "2 hours ago",
-      likes: 10,
-      liked: false,
-      comments: [],
-    },
-
-    {
-      id: 2,
-      userName: "John",
-      profilepic: "/images/john.jpg",
-      content: "React is actually pretty cool!",
-      postImg: "/images/react2.jpg",
-      time: "1 hour ago",
-      likes: 5,
-      liked: false,
-      comments: [],
-    },
-  ];
+  const { state } = useContext(AppContext);
   return (
     <>
       <main>
@@ -39,7 +16,7 @@ function Feed() {
         {/* CENTER */}
         <section className="feed">
           <h2>Feed</h2>
-          {posts.map((post) => (
+          {state.posts.map((post) => (
             <Post key={post.id} post={post} />
           ))}
 
