@@ -1,0 +1,438 @@
+function Resources() {
+  return (
+    <>
+      <main>
+        <aside class="social_links">
+          <ul>
+            <li>
+              <a href="Home.html">🏠 Home</a>
+            </li>
+            <li>
+              <a href="Feed.html">📰 Feed</a>
+            </li>
+            <li>
+              <a href="Chat.html">💬 Chat</a>
+            </li>
+            <li>
+              <a href="Profile.html">👤 Profile</a>
+            </li>
+            <li>
+              <a href="SchoolResources.html">📚 Resources</a>
+            </li>
+            <li>
+              <a href="Edit_profile.html">⚙ Edit Profile</a>
+            </li>
+          </ul>
+        </aside>
+        <section class="school_resources">
+          <h2 id="resources">School Resources</h2>
+          <section class="resource">
+            <h4 id="eLibrary">eLibrary</h4>
+            <p>
+              Access a wide range of academic resources, including books,
+              journals, and online databases.
+            </p>
+            <div class="resource_links">
+              <div class="resource_link1">
+                <a
+                  href="https://learning.richfield.ac.za/mod/page/view.php?id=24572"
+                  target="_blank"
+                >
+                  Richfield eLibrary
+                </a>
+              </div>
+              <div class="resource_link2">
+                <a href="https://scholar.google.com/" target="_blank">
+                  Google Scholar
+                </a>
+              </div>
+              <div class="resource_link3">
+                <a href="https://www.jstor.org/" target="_blank">
+                  JSTOR
+                </a>
+              </div>
+              <div class="resource_link4">
+                <a href="https://doaj.org/" target="_blank">
+                  DOAJ
+                </a>
+              </div>
+              <div class="resource_link5">
+                <a
+                  href="https://www.w3schools.com/jquery/default.asp"
+                  target="_blank"
+                >
+                  W3Schools jQuery
+                </a>
+              </div>
+            </div>
+          </section>
+          <section class="resource">
+            <h4 id="t_center">Tutoring Center</h4>
+            <p>
+              Get help with your coursework from experienced tutors in various
+              subjects.
+            </p>
+            <div class="resource_links">
+              <div class="coarse_link1">
+                <h4>HTML & CSS</h4>
+                <p>
+                  <strong>BRO CODE</strong>
+                </p>
+                <a
+                  href="https://www.youtube.com/watch?v=HGTJBPNC-Gw"
+                  target="_blank"
+                >
+                  Visit Tutoring Center
+                </a>
+              </div>
+              <div class="coarse_link2">
+                <h4>JavaScript</h4>
+                <p>
+                  <strong>BRO CODE</strong>
+                </p>
+                <a
+                  href="https://www.youtube.com/watch?v=Ihy0QziLDf0&list=PLZPZq0r_RZOO1zkgO4bIdfuLpizCeHYKv"
+                  target="_blank"
+                >
+                  Visit Tutoring Center
+                </a>
+              </div>
+              <div class="coarse_link3">
+                <h4>Python</h4>
+                <p>
+                  <strong>BRO CODE</strong>
+                </p>
+                <a
+                  href="https://www.youtube.com/watch?v=Sg4GMVMdOPo&list=PLZPZq0r_RZOOkUQbat8LyQii36cJf2SWT"
+                  target="_blank"
+                >
+                  Visit Tutoring Center
+                </a>
+              </div>
+              <div class="coarse_link4">
+                <h4>Java</h4>
+                <p>
+                  <strong>BRO CODE</strong>
+                </p>
+                <a
+                  href="https://www.youtube.com/watch?v=23HFxAPyJ9U&list=PLZPZq0r_RZOOj_NOZYq_R2PECIMglLemc"
+                  target="_blank"
+                >
+                  Visit Tutoring Center
+                </a>
+              </div>
+            </div>
+          </section>
+          <section class="resource">
+            <h4 id="career_s">Career Services</h4>
+            <p>
+              Explore career opportunities, get resume help, and connect with
+              potential employers.
+            </p>
+            <div class="resource_links">
+              <div class="career_link1">
+                <a
+                  href="https://www.linkedin.com/school/richfield-college/"
+                  target="_blank"
+                >
+                  linkdin
+                </a>
+              </div>
+              <div class="career_link2">
+                <a
+                  href="https://www.indeed.com/career-advice/resumes-cover-letters"
+                  target="_blank"
+                >
+                  indeed
+                </a>
+              </div>
+              <div class="career_link3">
+                <a href="https://www.glassdoor.com/index.htm" target="_blank">
+                  Glassdoor
+                </a>
+              </div>
+              <div class="career_link4">
+                <a
+                  href="https://www.monster.com/career-advice/article/resume-writing-tips"
+                  target="_blank"
+                >
+                  Monster
+                </a>
+              </div>
+            </div>
+          </section>
+        </section>
+        <section class="timetable">
+          <h4 id="timetable">Timetable</h4>
+          <p>
+            View your class schedule, exam dates, and important academic
+            deadlines.
+          </p>
+          <table>
+            <caption>Weekly Class Schedule</caption>
+            <thead>
+              <tr>
+                <th></th>
+                <th>8:30-9:30</th>
+                <th>9:30-10:30</th>
+                <th>10:30-11:30</th>
+                <th>11:30-12:30</th>
+                <th>12:30-13:30</th>
+                <th>13:30-14:30</th>
+                <th>14:30-15:30</th>
+                <th>15:30-16:30</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Mon</th>
+                <td id="N">
+                  Networks 511 <br />
+                  venue:Auditorium <br />
+                  Rohan
+                </td>
+                <td id="P">
+                  PRO 511 <br />
+                  venue:Lab3 <br />
+                  Ziyanda
+                </td>
+                <td id="P">
+                  PR0 511 <br />
+                  venue:Lab3 <br />
+                  Ziyanda
+                </td>
+                <td id="M">
+                  Math 511
+                  <br />
+                  venue:Lab3 <br />
+                  Benvollens
+                </td>
+                <td class="break">L</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Tue</th>
+                <td class="M">
+                  Math 511 <br />
+                  venue:Lab3 <br />
+                  Benvollens
+                </td>
+                <td class="M">
+                  Math 511 <br />
+                  venue:Lab3 <br />
+                  Benvollens
+                </td>
+                <td class="N">
+                  Networks 511 <br />
+                  venue:Auditorium <br />
+                  Jemina
+                </td>
+                <td class="W">
+                  WebTech 511 <br />
+                  venue:Auditorium <br />
+                  Rohan
+                </td>
+                <td class="break">U</td>
+                <td class="I">
+                  INS 511 <br />
+                  venue:Lab3 <br />
+                  Ebaneza
+                </td>
+                <td class="I">
+                  INS 511 <br />
+                  venue:Lab3 <br />
+                  Ebaneza
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Wed</th>
+                <td class="I">
+                  INS 511 <br />
+                  venue:Auditorium <br />
+                  Ebaneza
+                </td>
+                <td class="M">
+                  Math 511 <br />
+                  venue:Lab3 <br />
+                  Benvollens
+                </td>
+                <td></td>
+                <td class="W">
+                  WebTech 511 <br />
+                  venue:Auditorium <br />
+                  Jemina
+                </td>
+                <td class="break">N</td>
+                <td class="P">
+                  PRO 511 <br />
+                  venue:Auditorium <br />
+                  Ziyanda
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Thur</th>
+                <td class="N">
+                  Networks 511 <br />
+                  venue:Auditorium <br />
+                  Rohan
+                </td>
+                <td class="I">
+                  INS 511 <br />
+                  venue:Auditorium <br />
+                  Ebaneza
+                </td>
+                <td class="W">
+                  WebTech 511 <br />
+                  venue:Lab3 <br />
+                  Jemina
+                </td>
+                <td class="W">
+                  WebTech 511 <br />
+                  venue:Lab3 <br />
+                  Jemina
+                </td>
+                <td class="break">C</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Fri</th>
+                <td class="P">
+                  PRO 511 <br />
+                  venue:Auditorium <br />
+                  Ziyanda
+                </td>
+                <td class="N">
+                  Networks 511 <br />
+                  venue:Auditorium <br />
+                  Rohan
+                </td>
+                <td></td>
+                <td></td>
+                <td class="break">H</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="cards">
+          <h3 id="events_tab">Events</h3>
+          <div class="calender">
+            <div class="calender_block">
+              <p>
+                <strong>27 days left</strong>
+              </p>
+              <p>26</p>
+            </div>
+            <div class="calender_block2">
+              <h6>Guest speaker</h6>
+              <div class="timeLocation">
+                <p>14:00</p>
+                <p>OnCampus</p>
+              </div>
+            </div>
+          </div>
+          <div class="calender">
+            <div class="calender_block">
+              <p id="daysLeft">
+                <strong>12 days left</strong>
+              </p>
+              <p id="date">26</p>
+            </div>
+            <div class="calender_block2">
+              <h6>Study Group</h6>
+              <div class="timeLocation">
+                <p>17:00</p>
+                <p>Online</p>
+              </div>
+            </div>
+          </div>
+          <div class="calender">
+            <div class="calender_block">
+              <p>
+                <strong>20 days left</strong>
+              </p>
+              <p>26</p>
+            </div>
+            <div class="calender_block2">
+              <h6>E-sports comp</h6>
+              <div class="timeLocation">
+                <p>16:00</p>
+                <p>OnCampus</p>
+              </div>
+            </div>
+          </div>
+          <div class="calender">
+            <div class="calender_block">
+              <p>
+                <strong>20 days left</strong>
+              </p>
+              <p>26</p>
+            </div>
+            <div class="calender_block2">
+              <h6>Assingment due</h6>
+              <div class="timeLocation">
+                <p>14:00</p>
+                <p>Online</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="guidelines">
+          <h4>Guidelines</h4>
+          <p>
+            Familiarize yourself with the guidelines for using our platform and
+            engaging with the school community.
+          </p>
+
+          <ul>
+            <li>
+              <div class="core-advantages">
+                <span class="material-symbols-rounded">forum</span>
+                <h3>Respectful communication</h3>
+                <p>
+                  We promote respectful and constructive communication among
+                  students, faculty, and staff to foster a positive and
+                  inclusive environment.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div class="core-advantages">
+                <span class="material-symbols-rounded">verified_user</span>
+                <h3>Academic integrity</h3>
+                <p>
+                  We uphold the highest standards of academic integrity,
+                  encouraging honesty and ethical behavior in all academic
+                  pursuits.
+                </p>
+              </div>
+            </li>
+
+            <li>
+              <div class="core-advantages">
+                <span class="material-symbols-rounded">diversity_3</span>
+                <h3>Inclusivity</h3>
+                <p>
+                  We celebrate diversity and strive to create an inclusive
+                  community where everyone feels valued and respected.
+                </p>
+              </div>
+            </li>
+          </ul>
+        </section>
+      </main>
+    </>
+  );
+}
+
+export default Resources;

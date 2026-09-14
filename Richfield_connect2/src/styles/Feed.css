@@ -1,0 +1,151 @@
+/* Main feed layout */
+main {
+  display: grid;
+  grid-template-columns: 220px 1fr 280px;
+  gap: 25px;
+
+  max-width: 1400px;
+  margin: 30px auto;
+  padding: 0 20px;
+  align-items: start;
+}
+
+/* LEFT SIDE - LINKS */
+.social_links {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  position: sticky;
+  top: 20px;
+}
+
+.social_links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.social_links li {
+  margin-bottom: 10px;
+}
+
+.social_links a {
+  display: block;
+  padding: 12px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 10px;
+  transition: 0.2s;
+}
+
+.social_links a:hover {
+  background: #eef4ff;
+  color: #0052cc;
+}
+
+/* CENTER - FEED */
+.feed {
+  min-width: 0;
+}
+
+.feed > h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+/* CREATE POST */
+.create_Post {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  margin-bottom: 25px;
+}
+
+.create_Post h2 {
+  margin-top: 0;
+}
+
+/* RIGHT SIDE - GROUPS */
+.groups {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+  position: sticky;
+  top: 20px;
+}
+
+.groups h2 {
+  margin-top: 0;
+}
+
+/* GROUP SEARCH */
+.group_search {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.group_search input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+}
+
+.group_search input:focus {
+  border-color: #0052cc;
+}
+
+.group_search button {
+  padding: 10px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #0052cc;
+  color: white;
+  cursor: pointer;
+}
+
+.group_search button:hover {
+  background: #003f9e;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+  main {
+    grid-template-columns: 180px 1fr;
+  }
+
+  .groups {
+    display: none;
+  }
+}
+
+/* SMALL PHONE */
+@media (max-width: 600px) {
+  main {
+    display: block;
+    padding: 10px;
+  }
+
+  .social_links {
+    margin-bottom: 20px;
+    position: static;
+  }
+
+  .feed {
+    width: 100%;
+  }
+
+  .groups {
+    display: block;
+    margin-top: 20px;
+    position: static;
+  }
+}

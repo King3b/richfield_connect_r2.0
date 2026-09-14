@@ -26,7 +26,15 @@ function Navbar() {
           </li>
 
           <li>
+            <Link to="/profileEdit">Edit profile</Link>
+          </li>
+
+          <li>
             <Link to="/signup">Sign Up</Link>
+          </li>
+
+          <li>
+            <Link to="/resources">Resources</Link>
           </li>
         </ul>
       </nav>

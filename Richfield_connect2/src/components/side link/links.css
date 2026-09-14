@@ -1,0 +1,34 @@
+/* SIDEBAR */
+.social_links {
+  position: sticky;
+  top: 110px;
+  height: fit-content;
+}
+
+.social_links ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.social_links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 18px;
+  text-decoration: none;
+  color: #dbeafe;
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(96, 165, 250, 0.15);
+  font-weight: 500;
+  transition: all 0.35s ease;
+  white-space: nowrap;
+}
+
+.social_links a:hover {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  transform: translateX(6px);
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.35);
+}

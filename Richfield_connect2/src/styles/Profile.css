@@ -1,0 +1,16 @@
+.empty-profile {
+  color: blue;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+.empty-profile,
+.profile {
+  width: 80%;
+  margin-left: 200px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  padding: 50px;
+}
