@@ -5,3 +5,16 @@
   border-radius: 12px;
   margin-top: 15px;
 }
+.react-buttons button {
+  transition: 0.2s ease;
+}
+
+.react-buttons button:hover {
+  transform: translateY(-2px);
+}
+
+.react-buttons button.liked {
+  background-color: #003087;
+  color: white;
+  font-weight: bold;
+}

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { AppContext } from "../../context/AppContext";
+import "../../styles/Post.css";
 
 function Post({ post }) {
   const { state, dispatch } = useContext(AppContext);
@@ -36,6 +37,21 @@ function Post({ post }) {
     });
 
     setComment("");
+  };
+
+  const handleDelete = () => {
+    const confirmed = window.confirm("Are u sure you want to delete post");
+
+    if (!confirmed) {
+      return;
+    }
+
+    dispatch({
+      type: "DELETE_POST",
+      payload: {
+        postId: post.id,
+      },
+    });
   };
 
   return (
@@ -76,6 +92,7 @@ function Post({ post }) {
         <button onClick={() => setShowComments(!showComments)}>
           💬 Comment
         </button>
+        <button onClick={handleDelete}>🗑️Delete</button>
       </div>
 
       {/* COMMENTS */}

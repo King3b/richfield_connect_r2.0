@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useEffect } from "react";
 import "../styles/Post.css";
 export const AppContext = createContext();
 
@@ -48,7 +48,7 @@ function reducer(state, action) {
     case "DELETE_POST":
       return {
         ...state,
-        posts: state.posts.filter((post) => post.id !== action.payload),
+        posts: state.posts.filter((post) => post.id !== action.payload.postId),
       };
 
     case "ADD_COMMENT":
@@ -68,6 +68,12 @@ function reducer(state, action) {
         }),
       };
 
+    case "LOAD_POSTS":
+      return {
+        ...state,
+        posts: action.payload,
+      };
+
     default:
       return state;
   }
@@ -75,6 +81,34 @@ function reducer(state, action) {
 
 export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("richfieldPosts", JSON.stringify(state.posts));
+  }, [state.posts]);
+
+  useEffect(() => {
+    if (state.currentUser) {
+      localStorage.setItem("richfieldUser", JSON.stringify(state.currentUser));
+    }
+  }, [state.currentUser]);
+
+  useEffect(() => {
+    const savedUser = localStorage.getItem("richfieldUser");
+    const savedPost = localStorage.getItem("richfieldPosts");
+
+    if (savedUser) {
+      dispatch({
+        type: "REGISTER_USER",
+        payload: JSON.parse(savedUser),
+      });
+    }
+    if (savedPost) {
+      dispatch({
+        type: "LOAD_POST",
+        payload: JSON.parse(savedPost),
+      });
+    }
+  }, []);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

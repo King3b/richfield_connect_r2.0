@@ -19,6 +19,7 @@ function ProfileView(props) {
         name="name"
         value={props.name}
         onChange={props.change}
+        onBlur={props.blur}
         placeholder="Name"
         required
       />
@@ -34,6 +35,7 @@ function ProfileView(props) {
         name="surName"
         value={props.surName}
         onChange={props.change}
+        onBlur={props.blur}
         placeholder="Surname"
         required
       />
@@ -49,6 +51,7 @@ function ProfileView(props) {
         name="email"
         value={props.email}
         onChange={props.change}
+        onBlur={props.blur}
         placeholder="Email"
         required
       />
@@ -64,6 +67,7 @@ function ProfileView(props) {
         name="userName"
         value={props.userName}
         onChange={props.change}
+        onBlur={props.blur}
         placeholder="@username"
         required
       />
@@ -83,6 +87,7 @@ function ProfileView(props) {
         id="campus"
         value={props.campus}
         onChange={props.change}
+        onBlur={props.blur}
         required
       >
         <option value="">Select Campus</option>
@@ -106,6 +111,7 @@ function ProfileView(props) {
         id="year"
         value={props.year}
         onChange={props.change}
+        onBlur={props.blur}
         required
       >
         <option value="">Select Year</option>
@@ -127,6 +133,7 @@ function ProfileView(props) {
         id="gender"
         value={props.gender}
         onChange={props.change}
+        onBlur={props.blur}
         required
       >
         <option value="">Select Gender</option>
@@ -147,6 +154,7 @@ function ProfileView(props) {
         placeholder="Student ID"
         value={props.studentID}
         onChange={props.change}
+        onBlur={props.blur}
         minLength="9"
         maxLength="9"
         required
@@ -164,6 +172,7 @@ function ProfileView(props) {
           name="password"
           value={props.password}
           onChange={props.change}
+          onBlur={props.blur}
           placeholder="Password"
           required
         />
@@ -189,10 +198,56 @@ function ProfileView(props) {
           name="confirmPassword"
           value={props.confirmPassword}
           onChange={props.change}
+          onBlur={props.blur}
           placeholder="Confirm Password"
           required
         />
 
+        <div className="password-progress">
+          {" "}
+          <div
+            className={`password-progress-bar strength-${props.passwordStrength}`}
+            style={{ width: `${(props.passwordStrength / 5) * 100}%` }}
+          ></div>{" "}
+        </div>
+
+        {props.password && (
+          <p className="password-strength">
+            {" "}
+            {props.passwordStrength <= 2 && "🔴 Weak password"}{" "}
+            {props.passwordStrength === 3 && "🟠 Medium password"}{" "}
+            {props.passwordStrength === 4 && "🟢 Strong password"}{" "}
+            {props.passwordStrength === 5 && "🟢 Very strong password"}{" "}
+          </p>
+        )}
+        <div className="password-requirements">
+          {" "}
+          <p className={props.password.length >= 8 ? "valid" : ""}>
+            {" "}
+            {props.password.length >= 8 ? "✓" : "○"} At least 8 characters{" "}
+          </p>{" "}
+          <p className={/[A-Z]/.test(props.password) ? "valid" : ""}>
+            {" "}
+            {/[A-Z]/.test(props.password) ? "✓" : "○"} One capital letter{" "}
+          </p>{" "}
+          <p className={/[a-z]/.test(props.password) ? "valid" : ""}>
+            {" "}
+            {/[a-z]/.test(props.password) ? "✓" : "○"} One small letter{" "}
+          </p>{" "}
+          <p className={/[0-9]/.test(props.password) ? "valid" : ""}>
+            {" "}
+            {/[0-9]/.test(props.password) ? "✓" : "○"} One number{" "}
+          </p>{" "}
+          <p className={/[^A-Za-z0-9]/.test(props.password) ? "valid" : ""}>
+            {" "}
+            {/[^A-Za-z0-9]/.test(props.password) ? "✓" : "○"} One special
+            character{" "}
+          </p>{" "}
+        </div>
+
+        {props.errors.password && (
+          <p className="error"> {props.errors.password} </p>
+        )}
         <span className="material-symbols-rounded eye">visibility</span>
       </div>
 
