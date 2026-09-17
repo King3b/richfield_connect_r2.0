@@ -1,3 +1,5 @@
+import "../post_elements/comments.css";
+
 function Comments({ user, time, comment }) {
   return (
     <div className="comments_users">

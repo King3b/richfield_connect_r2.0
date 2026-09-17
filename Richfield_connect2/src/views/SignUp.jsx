@@ -2,6 +2,7 @@ import "../styles/SignUp.css";
 
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { AppContext } from "../context/AppContext";
 
 import Card from "../main_components/Cards";
@@ -12,10 +13,6 @@ import Reasons from "../components/reasons";
 function SignUp() {
   const { dispatch } = useContext(AppContext);
   const navigate = useNavigate();
-
-  // -----------------------------
-  // FORM DATA
-  // -----------------------------
 
   const [formData, setFormData] = useState({
     name: "",
@@ -30,18 +27,40 @@ function SignUp() {
     confirmPassword: "",
   });
 
-  // -----------------------------
-  // VALIDATION ERRORS
-  // -----------------------------
-
   const [errors, setErrors] = useState({});
-
-  // -----------------------------
-  // PASSWORD STRENGTH
-  // -----------------------------
-
   const [passwordStrength, setPasswordStrength] = useState(0);
+  const [profileImage, setProfileImage] = useState("");
 
+  // =========================
+  // PROFILE IMAGE
+  // =========================
+  const handleProfileImage = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image file.");
+      return;
+    }
+
+    if (file.size > 2 * 1024 * 1024) {
+      alert("Please choose an image smaller than 2MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setProfileImage(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  // =========================
+  // PASSWORD STRENGTH
+  // =========================
   const checkPasswordStrength = (password) => {
     let score = 0;
 
@@ -54,10 +73,9 @@ function SignUp() {
     return score;
   };
 
-  // -----------------------------
+  // =========================
   // HANDLE INPUT CHANGES
-  // -----------------------------
-
+  // =========================
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -66,19 +84,16 @@ function SignUp() {
       [name]: value,
     }));
 
-    // Update password strength
     if (name === "password") {
       setPasswordStrength(checkPasswordStrength(value));
     }
   };
 
-  // -----------------------------
-  // VALIDATE FIELD
-  // -----------------------------
-
+  // =========================
+  // VALIDATION
+  // =========================
   const validateField = (name, value) => {
     switch (name) {
-      // NAME
       case "name":
         if (!value.trim()) {
           return "First name is required";
@@ -90,7 +105,6 @@ function SignUp() {
 
         return "";
 
-      // SURNAME
       case "surName":
         if (!value.trim()) {
           return "Surname is required";
@@ -102,7 +116,6 @@ function SignUp() {
 
         return "";
 
-      // USERNAME
       case "userName":
         if (!value.trim()) {
           return "Username is required";
@@ -114,7 +127,6 @@ function SignUp() {
 
         return "";
 
-      // EMAIL
       case "email":
         if (!value.trim()) {
           return "Email is required";
@@ -126,7 +138,6 @@ function SignUp() {
 
         return "";
 
-      // CAMPUS
       case "campus":
         if (!value) {
           return "Please select your campus";
@@ -134,7 +145,6 @@ function SignUp() {
 
         return "";
 
-      // YEAR
       case "year":
         if (!value) {
           return "Please select your year";
@@ -142,7 +152,6 @@ function SignUp() {
 
         return "";
 
-      // GENDER
       case "gender":
         if (!value) {
           return "Please select your gender";
@@ -150,7 +159,6 @@ function SignUp() {
 
         return "";
 
-      // STUDENT ID
       case "studentID":
         if (!value.trim()) {
           return "Student ID is required";
@@ -162,7 +170,6 @@ function SignUp() {
 
         return "";
 
-      // PASSWORD
       case "password":
         if (!value) {
           return "Password is required";
@@ -190,7 +197,6 @@ function SignUp() {
 
         return "";
 
-      // CONFIRM PASSWORD
       case "confirmPassword":
         if (!value) {
           return "Please confirm your password";
@@ -207,10 +213,9 @@ function SignUp() {
     }
   };
 
-  // -----------------------------
-  // ON BLUR VALIDATION
-  // -----------------------------
-
+  // =========================
+  // BLUR VALIDATION
+  // =========================
   const handleBlur = (e) => {
     const { name, value } = e.target;
 
@@ -222,16 +227,14 @@ function SignUp() {
     }));
   };
 
-  // -----------------------------
+  // =========================
   // SUBMIT
-  // -----------------------------
-
+  // =========================
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const newErrors = {};
 
-    // Validate every field
     Object.keys(formData).forEach((field) => {
       const error = validateField(field, formData[field]);
 
@@ -240,45 +243,47 @@ function SignUp() {
       }
     });
 
-    // Save all errors
     setErrors(newErrors);
 
-    // Stop if errors exist
     if (Object.keys(newErrors).length > 0) {
       return;
     }
 
-    // Extra password safety check
     if (passwordStrength < 5) {
       alert("Please create a stronger password.");
       return;
     }
 
-    // Register user
+    // Add profile image to the registered user
+    const userData = {
+      ...formData,
+      profileImage,
+    };
+
     dispatch({
       type: "REGISTER_USER",
-      payload: formData,
+      payload: userData,
     });
 
-    // Go to profile
     navigate("/profile");
   };
 
-  // -----------------------------
-  // PAGE
-  // -----------------------------
-
   return (
-    <div>
-      {/* HERO */}
-
+    <div className="signup-page">
+      {/* =========================
+          HERO
+      ========================= */}
       <section className="signUp_hero">
-        <h2>Join Richfield Connect</h2>
+        <div className="signup-hero-content">
+          <p className="signup-eyebrow">RICHFIELD CONNECT</p>
 
-        <p>
-          Create your account and become a part of a vibrant academic community.
-          Connect, collaborate and grow together.
-        </p>
+          <h2>Join Richfield Connect</h2>
+
+          <p>
+            Create your account and become part of a vibrant academic community.
+            Connect, collaborate and grow together.
+          </p>
+        </div>
 
         <ul>
           <li>
@@ -307,11 +312,11 @@ function SignUp() {
         </ul>
       </section>
 
-      {/* SIGNUP LAYOUT */}
-
+      {/* =========================
+          SIGNUP LAYOUT
+      ========================= */}
       <section className="signup-layout">
         {/* LIVE PREVIEW */}
-
         <section className="link-boared">
           <section className="live-preview">
             <Preview
@@ -320,18 +325,21 @@ function SignUp() {
               userName={formData.userName}
               campus={formData.campus}
               year={formData.year}
+              bio={formData.bio}
+              interests={formData.interests}
+              profileImage={profileImage}
             />
           </section>
         </section>
 
         {/* SIGNUP FORM */}
-
         <section className="signup">
           <ProfileView
             submit={handleSubmit}
-            title="Sign Up form"
+            title="Sign Up Form"
             info="Sign up to connect and join"
             change={handleChange}
+            img={handleProfileImage}
             blur={handleBlur}
             name={formData.name}
             userName={formData.userName}
@@ -349,8 +357,9 @@ function SignUp() {
         </section>
       </section>
 
-      {/* REASONS */}
-
+      {/* =========================
+          REASONS
+      ========================= */}
       <Reasons />
     </div>
   );

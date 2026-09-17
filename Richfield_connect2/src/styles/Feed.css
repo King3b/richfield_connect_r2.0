@@ -1,125 +1,335 @@
-/* Main feed layout */
-main {
-  display: grid;
-  grid-template-columns: 220px 1fr 280px;
-  gap: 25px;
+/* =====================================================
+   MAIN FEED LAYOUT
+===================================================== */
 
+.feedLayout {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 320px;
+
+  /* More space between Feed and Groups */
+  gap: 40px;
+
+  width: 100%;
   max-width: 1400px;
+
   margin: 30px auto;
-  padding: 0 20px;
+
+  padding: 0 32px;
+
+  box-sizing: border-box;
+
   align-items: start;
 }
 
-/* LEFT SIDE - LINKS */
-.social_links {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+/* =====================================================
+   FEED
+===================================================== */
 
-  position: sticky;
-  top: 20px;
-}
-
-.social_links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.social_links li {
-  margin-bottom: 10px;
-}
-
-.social_links a {
-  display: block;
-  padding: 12px;
-  text-decoration: none;
-  color: #333;
-  border-radius: 10px;
-  transition: 0.2s;
-}
-
-.social_links a:hover {
-  background: #eef4ff;
-  color: #0052cc;
-}
-
-/* CENTER - FEED */
 .feed {
+  width: 100%;
   min-width: 0;
 }
 
 .feed > h2 {
-  margin-top: 0;
-  margin-bottom: 20px;
+  margin: 0 0 18px;
+
+  color: #1f2937;
+
+  font-size: 24px;
+  font-weight: 700;
 }
 
-/* CREATE POST */
+/* =====================================================
+   CREATE POST
+===================================================== */
+
 .create_Post {
+  width: 100%;
+
+  margin-bottom: 24px;
+
+  padding: 18px;
+
+  box-sizing: border-box;
+
   background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 
-  margin-bottom: 25px;
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
-.create_Post h2 {
-  margin-top: 0;
+/* Header */
+
+.create-post-header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding-bottom: 15px;
+
+  border-bottom: 1px solid #e5e7eb;
 }
 
-/* RIGHT SIDE - GROUPS */
+.create-post-avatar {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #eef4ff;
+
+  color: #003087;
+}
+
+.create-post-avatar .material-symbols-rounded {
+  font-size: 24px;
+}
+
+.create-post-header h3 {
+  margin: 0 0 3px;
+
+  color: #1f2937;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.create-post-header p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+/*
+   CreatePost component sits underneath the header.
+   Its own CSS controls its internal form.
+*/
+
+.create_Post > *:last-child {
+  margin-top: 15px;
+}
+
+/* =====================================================
+   POSTS
+===================================================== */
+
+.posts-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+
+  width: 100%;
+}
+
+/* =====================================================
+   EMPTY FEED
+===================================================== */
+
+.empty-feed {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 230px;
+
+  padding: 35px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 14px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.empty-feed .material-symbols-rounded {
+  margin-bottom: 10px;
+
+  color: #0563c0;
+
+  font-size: 40px;
+}
+
+.empty-feed h3 {
+  margin: 0 0 7px;
+
+  color: #1f2937;
+
+  font-size: 18px;
+}
+
+.empty-feed p {
+  max-width: 400px;
+
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 14px;
+
+  line-height: 1.5;
+}
+
+/* =====================================================
+   GROUPS SIDEBAR
+===================================================== */
+
 .groups {
-  background: white;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-
   position: sticky;
-  top: 20px;
+
+  top: 100px;
+
+  height: fit-content;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 16px;
+
+  box-shadow: 0 3px 10px rgba(0, 48, 135, 0.07);
 }
 
 .groups h2 {
-  margin-top: 0;
+  margin: 0 0 18px;
+
+  color: #003087;
+
+  font-size: 21px;
 }
 
-/* GROUP SEARCH */
+/* =====================================================
+   GROUP SEARCH
+===================================================== */
+
 .group_search {
   display: flex;
+
   gap: 8px;
+
   margin-bottom: 20px;
 }
 
 .group_search input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  min-width: 0;
+
+  flex: 1;
+
+  padding: 11px 13px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #d6e4ff;
+
+  border-radius: 10px;
+
+  background: #f8faff;
+
+  color: #1f2937;
+
+  font-size: 14px;
+
   outline: none;
+
+  transition: 0.2s ease;
 }
 
 .group_search input:focus {
-  border-color: #0052cc;
+  border-color: #0563c0;
+
+  background: white;
+
+  box-shadow: 0 0 0 3px rgba(5, 99, 192, 0.1);
 }
 
 .group_search button {
-  padding: 10px 14px;
+  padding: 11px 15px;
+
   border: none;
-  border-radius: 8px;
-  background: #0052cc;
+
+  border-radius: 10px;
+
+  background: #003087;
+
   color: white;
+
+  font-weight: 600;
+
   cursor: pointer;
+
+  transition: 0.2s ease;
 }
 
 .group_search button:hover {
-  background: #003f9e;
+  background: #00215f;
+
+  transform: translateY(-2px);
 }
 
-/* MOBILE */
-@media (max-width: 900px) {
-  main {
-    grid-template-columns: 180px 1fr;
+/* =====================================================
+   GROUP LIST
+===================================================== */
+
+.groups-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 1000px) {
+  .feedLayout {
+    grid-template-columns: minmax(0, 1fr) 280px;
+
+    gap: 30px;
+
+    padding: 0 24px;
+  }
+}
+
+/* =====================================================
+   SMALL TABLET
+===================================================== */
+
+@media (max-width: 800px) {
+  .feedLayout {
+    grid-template-columns: 1fr;
+
+    padding: 0 20px;
   }
 
   .groups {
@@ -127,25 +337,73 @@ main {
   }
 }
 
-/* SMALL PHONE */
-@media (max-width: 600px) {
-  main {
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 700px) {
+  .feedLayout {
     display: block;
-    padding: 10px;
-  }
 
-  .social_links {
-    margin-bottom: 20px;
-    position: static;
-  }
-
-  .feed {
     width: 100%;
+
+    margin: 20px auto;
+
+    padding: 0 14px;
+  }
+
+  .feed > h2 {
+    font-size: 21px;
+
+    margin-bottom: 16px;
+  }
+
+  .create_Post {
+    padding: 15px;
+
+    border-radius: 13px;
+  }
+
+  .create-post-header {
+    gap: 10px;
+  }
+
+  .create-post-avatar {
+    width: 38px;
+    height: 38px;
+  }
+
+  .create-post-header h3 {
+    font-size: 14px;
+  }
+
+  .create-post-header p {
+    font-size: 12px;
   }
 
   .groups {
-    display: block;
-    margin-top: 20px;
-    position: static;
+    display: none;
+  }
+
+  .posts-list {
+    gap: 15px;
+  }
+}
+
+/* =====================================================
+   VERY SMALL PHONE
+===================================================== */
+
+@media (max-width: 450px) {
+  .feedLayout {
+    padding: 0 10px;
+  }
+
+  .create_Post {
+    padding: 13px;
+  }
+
+  .empty-feed {
+    padding: 25px 15px;
   }
 }

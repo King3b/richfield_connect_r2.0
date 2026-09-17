@@ -1,9 +1,307 @@
+:root {
+  /*lightmode*/
+  /*header*/
+  --header-bacground: #212121;
+  --header-header: #003087;
+  --header-link: #ffffff;
+  --home-gradient: linear-gradient(135deg, #003087, #0563c0, #2c8aee);
+
+  /* ==============================
+     HEADER / NAVIGATION
+  ============================== */
+
+  --header-background: #212121;
+  --header-title: #076aff;
+  --header-link: #ffffff;
+  --header-link-hover: #3b84f3;
+
+  --header-underline: #0052cc;
+
+  --header-shadow: 0 2px 15px rgba(0, 102, 255, 0.08);
+
+  /* ==============================
+     HEADER / NAVIGATION
+     DARK MODE
+  ============================== */
+
+  --dark-header-background: #101827;
+  --dark-header-title: #58a6ff;
+  --dark-header-link: #f1f5f9;
+  --dark-header-link-hover: #8ec5ff;
+
+  --dark-header-underline: #2c8aee;
+
+  --dark-header-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+
+  /*mains*/
+  --btn-border: rgb(1, 102, 244);
+  --joinbtn: red;
+  --joinbtn-hover: rgba(255, 0, 0, 0.867);
+  --learnMore: blue;
+
+  --header: red;
+  --text-color: #2c8aee;
+
+  /*cards*/
+  --card-header: #fb1702;
+  --card-text: #58a6ff;
+  --Card-icon-shadow-color: 0 10px 25px rgba(0, 157, 255, 0.845);
+  --Card-box-shadow: 0 10px 25px rgba(0, 102, 255, 0.323);
+  /*boxes*/
+  --Box-text-color: #58a6ff;
+  --Box-box-color: #0148b2;
+  --Box-gradient-back: linear-gradient(135deg, #0148b2, #0563c0);
+  --Box-gradient-sigup: linear-gradient(135deg, #03419e, #0080ff);
+  --Box-gradient-color: white;
+
+  /* form*/
+  --form-color: linear-gradient(90deg, #114088, #0095ff);
+  --form-header: rgb(251, 4, 4);
+  --form-text: white;
+  --form-input: white;
+  --form-input-border: rgb(21, 142, 241);
+  --form-input-text: rgb(15, 15, 15);
+  /*darkmode*/
+
+  /* page */
+  --profile-background: #f5f7fb;
+  --profile-text: #1f2937;
+  --profile-muted-text: #64748b;
+  --profile-secondary-text: #555555;
+
+  /* profile header */
+  --profile-header-background: #ffffff;
+  --profile-header-border: #e2e8f0;
+
+  /* banner */
+  --profile-banner: linear-gradient(135deg, #001b4d, #003087, #0563c0, #2c8aee);
+
+  --profile-banner-pattern: rgba(255, 255, 255, 0.08);
+
+  /* profile picture */
+  --profile-picture-background: #003087;
+  --profile-picture-text: #ffffff;
+  --profile-picture-border: #ffffff;
+  --profile-picture-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+  /* buttons */
+  --profile-button-background: #003087;
+  --profile-button-hover: #00215f;
+  --profile-button-text: #ffffff;
+
+  /* navigation */
+  --profile-nav-background: #ffffff;
+  --profile-nav-border: #e2e8f0;
+  --profile-nav-text: #555555;
+  --profile-nav-hover-background: #eef4ff;
+  --profile-nav-hover-text: #003087;
+
+  /* cards */
+  --profile-card-background: #ffffff;
+  --profile-card-border: #e2e8f0;
+  --profile-card-shadow: 0 6px 18px rgba(0, 48, 135, 0.06);
+  --profile-card-hover-shadow: 0 12px 25px rgba(0, 48, 135, 0.1);
+
+  /* headings */
+  --profile-heading: #003087;
+
+  /* information boxes */
+  --profile-info-background: #f8faff;
+  --profile-info-border: #e8eef8;
+
+  /* interests */
+  --profile-interest-background: #eef4ff;
+  --profile-interest-border: #d6e4ff;
+  --profile-interest-text: #003087;
+
+  /* completion */
+  --profile-progress-background: #e5e7eb;
+  --profile-progress-fill: linear-gradient(90deg, #003087, #0563c0, #2c8aee);
+
+  /* empty profile */
+  --profile-empty-text: #666666;
+
+  :root {
+    /* ==============================
+     GROUPS
+  ============================== */
+
+    --group-background: #f8f9fb;
+    --group-background-hover: #ffffff;
+
+    --group-border: #e4e6eb;
+    --group-border-hover: #cfd5df;
+
+    --group-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+    --group-name: #1877f2;
+    --group-description: #65676b;
+
+    /* join button */
+    --group-button-background: #1877f2;
+    --group-button-hover: #166fe5;
+    --group-button-text: #ffffff;
+
+    /* ==============================
+     GROUPS - DARK MODE
+  ============================== */
+
+    --dark-group-background: #172033;
+    --dark-group-background-hover: #1d293b;
+
+    --dark-group-border: #293548;
+    --dark-group-border-hover: #3b4b63;
+
+    --dark-group-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.3);
+
+    --dark-group-name: #58a6ff;
+    --dark-group-description: #aeb9c8;
+
+    --dark-group-button-background: #2563eb;
+    --dark-group-button-hover: #3b82f6;
+    --dark-group-button-text: #ffffff;
+  }
+}
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
   font-family: "Poppins", sans-serif;
-  line-height: 1.6;
+}
+html,
+body,
+#root {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 900px) {
+  header {
+    flex-direction: column;
+    gap: 20px;
+    padding: 15px;
+  }
+
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+  .signup-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .link-boared {
+    position: relative;
+    top: 0;
+  }
+  .Hero {
+    padding: 60px 20px;
+    text-align: center;
+  }
+
+  .Hero h1 {
+    font-size: 2.7rem;
+    line-height: 1.2;
+  }
+
+  .Hero p {
+    font-size: 1rem;
+  }
+
+  .Profile {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .ideas {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .link_tab {
+    width: 140px;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 12px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .Hero {
+    padding: 50px 15px;
+  }
+
+  .Hero h1 {
+    font-size: 2rem;
+  }
+
+  .Hero p {
+    font-size: 0.95rem;
+  }
+
+  .ideas {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+  }
+
+  .link_tab {
+    width: 100%;
+    padding: 18px 10px;
+  }
+
+  .link_tab span {
+    font-size: 40px;
+  }
+
+  .link_tab p {
+    font-size: 14px;
+  }
+
+  .Profile {
+    padding: 15px;
+  }
+  .f_naves {
+    flex-wrap: wrap;
+    text-align: center;
+  }
+
+  footer img {
+    float: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .Hero h1 {
+    font-size: 1.7rem;
+  }
+
+  .ideas {
+    grid-template-columns: 1fr;
+  }
+
+  .link_tab {
+    max-width: 220px;
+    margin: auto;
+  }
 }

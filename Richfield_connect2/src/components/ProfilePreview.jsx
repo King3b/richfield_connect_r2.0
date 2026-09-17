@@ -1,3 +1,5 @@
+import "../styles/ProfilePreview.css";
+
 function ProfileView(props) {
   return (
     <form id="signupForm" onSubmit={props.submit}>
@@ -162,6 +164,16 @@ function ProfileView(props) {
 
       <br />
 
+      <div className="profile-image-upload">
+        <label htmlFor="profileImage">Choose Profile Image</label>
+
+        <input
+          id="profileImage"
+          type="file"
+          accept="image/*"
+          onChange={props.img}
+        />
+      </div>
       {/* PASSWORD */}
       <label htmlFor="password">Password</label>
 
@@ -180,11 +192,48 @@ function ProfileView(props) {
         <span className="material-symbols-rounded eye">visibility</span>
       </div>
 
-      <div className="strength">
-        <div className="strength-bar"></div>
+      <div className="password-progress">
+        <div
+          className={`password-progress-bar strength-${props.passwordStrength}`}
+          style={{
+            width: `${(props.passwordStrength / 5) * 100}%`,
+          }}
+        ></div>
       </div>
 
-      <p className="strength-text"></p>
+      {props.password && (
+        <>
+          <p className="password-strength">
+            {props.passwordStrength <= 2 && "🔴 Weak password"}
+            {props.passwordStrength === 3 && "🟠 Medium password"}
+            {props.passwordStrength === 4 && "🟢 Strong password"}
+            {props.passwordStrength === 5 && "🟢 Very strong password"}
+          </p>
+
+          <div className="password-requirements">
+            <p className={props.password.length >= 8 ? "valid" : ""}>
+              {props.password.length >= 8 ? "✓" : "○"} At least 8 characters
+            </p>
+
+            <p className={/[A-Z]/.test(props.password) ? "valid" : ""}>
+              {/[A-Z]/.test(props.password) ? "✓" : "○"} One capital letter
+            </p>
+
+            <p className={/[a-z]/.test(props.password) ? "valid" : ""}>
+              {/[a-z]/.test(props.password) ? "✓" : "○"} One small letter
+            </p>
+
+            <p className={/[0-9]/.test(props.password) ? "valid" : ""}>
+              {/[0-9]/.test(props.password) ? "✓" : "○"} One number
+            </p>
+
+            <p className={/[^A-Za-z0-9]/.test(props.password) ? "valid" : ""}>
+              {/[^A-Za-z0-9]/.test(props.password) ? "✓" : "○"} One special
+              character
+            </p>
+          </div>
+        </>
+      )}
 
       <br />
 
@@ -202,48 +251,6 @@ function ProfileView(props) {
           placeholder="Confirm Password"
           required
         />
-
-        <div className="password-progress">
-          {" "}
-          <div
-            className={`password-progress-bar strength-${props.passwordStrength}`}
-            style={{ width: `${(props.passwordStrength / 5) * 100}%` }}
-          ></div>{" "}
-        </div>
-
-        {props.password && (
-          <p className="password-strength">
-            {" "}
-            {props.passwordStrength <= 2 && "🔴 Weak password"}{" "}
-            {props.passwordStrength === 3 && "🟠 Medium password"}{" "}
-            {props.passwordStrength === 4 && "🟢 Strong password"}{" "}
-            {props.passwordStrength === 5 && "🟢 Very strong password"}{" "}
-          </p>
-        )}
-        <div className="password-requirements">
-          {" "}
-          <p className={props.password.length >= 8 ? "valid" : ""}>
-            {" "}
-            {props.password.length >= 8 ? "✓" : "○"} At least 8 characters{" "}
-          </p>{" "}
-          <p className={/[A-Z]/.test(props.password) ? "valid" : ""}>
-            {" "}
-            {/[A-Z]/.test(props.password) ? "✓" : "○"} One capital letter{" "}
-          </p>{" "}
-          <p className={/[a-z]/.test(props.password) ? "valid" : ""}>
-            {" "}
-            {/[a-z]/.test(props.password) ? "✓" : "○"} One small letter{" "}
-          </p>{" "}
-          <p className={/[0-9]/.test(props.password) ? "valid" : ""}>
-            {" "}
-            {/[0-9]/.test(props.password) ? "✓" : "○"} One number{" "}
-          </p>{" "}
-          <p className={/[^A-Za-z0-9]/.test(props.password) ? "valid" : ""}>
-            {" "}
-            {/[^A-Za-z0-9]/.test(props.password) ? "✓" : "○"} One special
-            character{" "}
-          </p>{" "}
-        </div>
 
         {props.errors.password && (
           <p className="error"> {props.errors.password} </p>

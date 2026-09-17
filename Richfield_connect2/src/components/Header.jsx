@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/rcLogo.png";
-import "../styles/Navbar.css";
+import "../styles/Header.css";
 
-function Navbar() {
+function Header() {
   return (
     <header>
       <img src={logo} alt="Richfield Connect Logo" className="logo" />
@@ -42,4 +42,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default Header;

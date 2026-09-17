@@ -13,6 +13,8 @@ function EditProfile() {
     name: user?.name || "",
     surName: user?.surName || "",
     userName: user?.userName || "",
+    profilePic: user?.profilePic || "",
+    banner: user?.banner || "",
     bio: user?.bio || "",
     course: user?.course || "",
     year: user?.year || "",
@@ -34,16 +36,78 @@ function EditProfile() {
   const [interestInput, setInterestInput] = useState("");
   const [hobbyInput, setHobbyInput] = useState("");
 
-  // --------------------------------
-  // Handle normal inputs
-  // --------------------------------
+  const [showInterestOther, setShowInterestOther] = useState(false);
+  const [showHobbyOther, setShowHobbyOther] = useState(false);
+
+  /* =========================================
+       PRESET OPTIONS
+    ========================================= */
+
+  const interestOptions = [
+    "Web Development",
+    "Gaming",
+    "Artificial Intelligence",
+    "Cybersecurity",
+  ];
+
+  const hobbyOptions = ["Gaming", "Football", "Music", "Photography"];
+
+  /* =========================================
+       NORMAL INPUTS
+    ========================================= */
 
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [name]: value,
+    }));
+  };
+
+  const handleImageChange = (e, imageType) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    // Only allow images
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image file.");
+      return;
+    }
+
+    // Keep image size reasonable
+    if (file.size > 2 * 1024 * 1024) {
+      alert("Please choose an image smaller than 2MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      setFormData((prev) => ({
+        ...prev,
+        [imageType]: reader.result,
+      }));
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  /* =========================================
+       INTERESTS
+    ========================================= */
+
+  const selectInterest = (interest) => {
+    setFormData((prev) => {
+      const exists = prev.interests.includes(interest);
+
+      return {
+        ...prev,
+        interests: exists
+          ? prev.interests.filter((item) => item !== interest)
+          : [...prev.interests, interest],
+      };
     });
   };
 
@@ -52,53 +116,26 @@ function EditProfile() {
 
     if (!value) return;
 
-    if (formData.interests.includes(value)) {
-      setInterestInput("");
-      return;
-    }
+    setFormData((prev) => {
+      if (prev.interests.includes(value)) {
+        return prev;
+      }
 
-    setFormData({
-      ...formData,
-      interests: [...formData.interests, value],
+      return {
+        ...prev,
+        interests: [...prev.interests, value],
+      };
     });
 
     setInterestInput("");
   };
 
-  const addHobby = () => {
-    const value = hobbyInput.trim();
+  const removeInterest = (interest) => {
+    setFormData((prev) => ({
+      ...prev,
 
-    if (!value) return;
-
-    if (formData.hobbies.includes(value)) {
-      setHobbyInput("");
-      return;
-    }
-
-    setFormData({
-      ...formData,
-      hobbies: [...formData.hobbies, value],
-    });
-
-    setHobbyInput("");
-  };
-
-  const removeInterest = (interestToRemove) => {
-    setFormData({
-      ...formData,
-
-      interests: formData.interests.filter(
-        (interest) => interest !== interestToRemove,
-      ),
-    });
-  };
-
-  const removeHobby = (hobbyToRemove) => {
-    setFormData({
-      ...formData,
-
-      hobbies: formData.hobbies.filter((hobby) => hobby !== hobbyToRemove),
-    });
+      interests: prev.interests.filter((item) => item !== interest),
+    }));
   };
 
   const handleInterestKeyDown = (e) => {
@@ -108,12 +145,62 @@ function EditProfile() {
     }
   };
 
+  /* =========================================
+       HOBBIES
+    ========================================= */
+
+  const selectHobby = (hobby) => {
+    setFormData((prev) => {
+      const exists = prev.hobbies.includes(hobby);
+
+      return {
+        ...prev,
+
+        hobbies: exists
+          ? prev.hobbies.filter((item) => item !== hobby)
+          : [...prev.hobbies, hobby],
+      };
+    });
+  };
+
+  const addHobby = () => {
+    const value = hobbyInput.trim();
+
+    if (!value) return;
+
+    setFormData((prev) => {
+      if (prev.hobbies.includes(value)) {
+        return prev;
+      }
+
+      return {
+        ...prev,
+
+        hobbies: [...prev.hobbies, value],
+      };
+    });
+
+    setHobbyInput("");
+  };
+
+  const removeHobby = (hobby) => {
+    setFormData((prev) => ({
+      ...prev,
+
+      hobbies: prev.hobbies.filter((item) => item !== hobby),
+    }));
+  };
+
   const handleHobbyKeyDown = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       addHobby();
     }
   };
+
+  /* =========================================
+       SAVE PROFILE
+    ========================================= */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -126,22 +213,32 @@ function EditProfile() {
     navigate("/profile");
   };
 
+  /* =========================================
+       NO USER
+    ========================================= */
+
   if (!user) {
     return (
       <main className="empty-profile">
+        <span className="material-symbols-rounded">account_circle</span>
+
         <h1>No Profile</h1>
 
         <p>Please register before editing your profile.</p>
 
-        <button onClick={() => navigate("/signup")}>Go to Sign Up</button>
+        <button type="button" onClick={() => navigate("/signup")}>
+          Go to Sign Up
+        </button>
       </main>
     );
   }
 
+  /* =========================================
+       PAGE
+    ========================================= */
+
   return (
     <main className="edit-profile-page">
-      {/* PAGE HEADER */}
-
       <section className="edit-page-header">
         <div>
           <p className="edit-eyebrow">RICHFIELD CONNECT</p>
@@ -155,12 +252,87 @@ function EditProfile() {
         </div>
       </section>
 
-      <form className="edit-profile-form" onSubmit={handleSubmit}>
-        {/* BASIC INFORMATION */}
+      {/* FORM */}
 
+      <form className="edit-profile-form" onSubmit={handleSubmit}>
         <section className="edit-card">
           <div className="card-heading">
-            <span className="card-icon">👤</span>
+            <div className="card-icon">
+              <span className="material-symbols-rounded">photo_camera</span>
+            </div>
+
+            <div>
+              <h2>Profile Appearance</h2>
+              <p>Choose your profile picture and banner.</p>
+            </div>
+          </div>
+
+          <div className="profile-media-editor">
+            {/* BANNER */}
+            <div className="banner-editor">
+              <div
+                className="banner-preview"
+                style={
+                  formData.banner
+                    ? { backgroundImage: `url(${formData.banner})` }
+                    : {}
+                }
+              >
+                {!formData.banner && (
+                  <div className="banner-placeholder">
+                    <span className="material-symbols-rounded">image</span>
+
+                    <p>No banner selected</p>
+                  </div>
+                )}
+
+                <label className="banner-upload-btn">
+                  <span className="material-symbols-rounded">photo_camera</span>
+                  Change Banner
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleImageChange(e, "banner")}
+                  />
+                </label>
+              </div>
+            </div>
+
+            {/* PROFILE PICTURE */}
+            <div className="profile-picture-editor">
+              <div className="profile-picture-preview">
+                {formData.profilePic ? (
+                  <img src={formData.profilePic} alt="Profile preview" />
+                ) : (
+                  <span className="material-symbols-rounded">person</span>
+                )}
+              </div>
+
+              <div className="profile-picture-content">
+                <h3>Profile Picture</h3>
+
+                <p>
+                  This picture will appear on your profile, posts and comments.
+                </p>
+
+                <label className="picture-upload-btn">
+                  <span className="material-symbols-rounded">upload</span>
+                  Choose Picture
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => handleImageChange(e, "profilePic")}
+                  />
+                </label>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section className="edit-card">
+          <div className="card-heading">
+            <div className="card-icon">
+              <span className="material-symbols-rounded">person</span>
+            </div>
 
             <div>
               <h2>Basic Information</h2>
@@ -250,32 +422,74 @@ function EditProfile() {
           </div>
         </section>
 
-        {/* INTERESTS */}
+        {/* =================================
+                    INTERESTS
+                ================================= */}
 
         <section className="edit-card">
           <div className="card-heading">
-            <span className="card-icon">⭐</span>
+            <div className="card-icon">
+              <span className="material-symbols-rounded">star</span>
+            </div>
 
             <div>
               <h2>Interests</h2>
 
-              <p>Add things you're interested in.</p>
+              <p>Choose your interests or add your own.</p>
             </div>
           </div>
 
-          <div className="tag-input-row">
-            <input
-              type="text"
-              value={interestInput}
-              onChange={(e) => setInterestInput(e.target.value)}
-              onKeyDown={handleInterestKeyDown}
-              placeholder="e.g. Web Development"
-            />
+          <div className="choice-options">
+            {interestOptions.map((interest) => {
+              const selected = formData.interests.includes(interest);
 
-            <button type="button" onClick={addInterest}>
-              + Add
+              return (
+                <button
+                  type="button"
+                  key={interest}
+                  className={selected ? "choice-btn selected" : "choice-btn"}
+                  onClick={() => selectInterest(interest)}
+                >
+                  <span>{interest}</span>
+
+                  {selected && <span className="choice-check">✓</span>}
+                </button>
+              );
+            })}
+
+            <button
+              type="button"
+              className={
+                showInterestOther
+                  ? "choice-btn other selected"
+                  : "choice-btn other"
+              }
+              onClick={() => setShowInterestOther(!showInterestOther)}
+            >
+              <span className="material-symbols-rounded">add</span>
+              Other
             </button>
           </div>
+
+          {/* OTHER INPUT */}
+
+          {showInterestOther && (
+            <div className="tag-input-row">
+              <input
+                type="text"
+                value={interestInput}
+                onChange={(e) => setInterestInput(e.target.value)}
+                onKeyDown={handleInterestKeyDown}
+                placeholder="Type your own interest..."
+              />
+
+              <button type="button" onClick={addInterest}>
+                Add
+              </button>
+            </div>
+          )}
+
+          {/* SELECTED */}
 
           <div className="speech-tags">
             {formData.interests.length > 0 ? (
@@ -287,42 +501,85 @@ function EditProfile() {
                   onClick={() => removeInterest(interest)}
                   title="Click to remove"
                 >
-                  💬 {interest}
-                  <span>×</span>
+                  <span>{interest}</span>
+
+                  <span className="tag-remove">×</span>
                 </button>
               ))
             ) : (
-              <p className="empty-tags">No interests added yet.</p>
+              <p className="empty-tags">No interests selected yet.</p>
             )}
           </div>
         </section>
 
-        {/* HOBBIES */}
+        {/* =================================
+                    HOBBIES
+                ================================= */}
 
         <section className="edit-card">
           <div className="card-heading">
-            <span className="card-icon">🎮</span>
+            <div className="card-icon">
+              <span className="material-symbols-rounded">sports_esports</span>
+            </div>
 
             <div>
               <h2>Hobbies</h2>
 
-              <p>Tell people what you enjoy doing.</p>
+              <p>Choose your hobbies or add your own.</p>
             </div>
           </div>
 
-          <div className="tag-input-row">
-            <input
-              type="text"
-              value={hobbyInput}
-              onChange={(e) => setHobbyInput(e.target.value)}
-              onKeyDown={handleHobbyKeyDown}
-              placeholder="e.g. Gaming"
-            />
+          <div className="choice-options">
+            {hobbyOptions.map((hobby) => {
+              const selected = formData.hobbies.includes(hobby);
 
-            <button type="button" onClick={addHobby}>
-              + Add
+              return (
+                <button
+                  type="button"
+                  key={hobby}
+                  className={selected ? "choice-btn selected" : "choice-btn"}
+                  onClick={() => selectHobby(hobby)}
+                >
+                  <span>{hobby}</span>
+
+                  {selected && <span className="choice-check">✓</span>}
+                </button>
+              );
+            })}
+
+            <button
+              type="button"
+              className={
+                showHobbyOther
+                  ? "choice-btn other selected"
+                  : "choice-btn other"
+              }
+              onClick={() => setShowHobbyOther(!showHobbyOther)}
+            >
+              <span className="material-symbols-rounded">add</span>
+              Other
             </button>
           </div>
+
+          {/* OTHER INPUT */}
+
+          {showHobbyOther && (
+            <div className="tag-input-row">
+              <input
+                type="text"
+                value={hobbyInput}
+                onChange={(e) => setHobbyInput(e.target.value)}
+                onKeyDown={handleHobbyKeyDown}
+                placeholder="Type your own hobby..."
+              />
+
+              <button type="button" onClick={addHobby}>
+                Add
+              </button>
+            </div>
+          )}
+
+          {/* SELECTED */}
 
           <div className="speech-tags">
             {formData.hobbies.length > 0 ? (
@@ -334,21 +591,26 @@ function EditProfile() {
                   onClick={() => removeHobby(hobby)}
                   title="Click to remove"
                 >
-                  💬 {hobby}
-                  <span>×</span>
+                  <span>{hobby}</span>
+
+                  <span className="tag-remove">×</span>
                 </button>
               ))
             ) : (
-              <p className="empty-tags">No hobbies added yet.</p>
+              <p className="empty-tags">No hobbies selected yet.</p>
             )}
           </div>
         </section>
 
-        {/* CONTACT */}
+        {/* =================================
+                    CONTACT
+                ================================= */}
 
         <section className="edit-card">
           <div className="card-heading">
-            <span className="card-icon">✉️</span>
+            <div className="card-icon">
+              <span className="material-symbols-rounded">mail</span>
+            </div>
 
             <div>
               <h2>Contact Information</h2>
@@ -404,7 +666,9 @@ function EditProfile() {
           </div>
         </section>
 
-        {/* ACTIONS */}
+        {/* =================================
+                    ACTIONS
+                ================================= */}
 
         <div className="edit-actions">
           <button
@@ -416,7 +680,8 @@ function EditProfile() {
           </button>
 
           <button type="submit" className="save-btn">
-            ✓ Save Changes
+            <span className="material-symbols-rounded">save</span>
+            Save Changes
           </button>
         </div>
       </form>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
+import SideLinks from "../components/side link/sideLinks";
 import "../styles/Profile.css";
 
 function Profile() {
@@ -30,6 +31,7 @@ function Profile() {
     user.studentID,
     user.bio,
     user.interests?.length > 0,
+    user.hobbies?.length > 0,
   ];
 
   const completedFields = fields.filter(Boolean).length;
@@ -45,7 +47,6 @@ function Profile() {
 
   return (
     <main className="profile-page">
-      {/* PROFILE HEADER */}
       <section className="profile-header">
         <div className="profile-banner">
           <div className="profile-picture">{initials}</div>
@@ -175,6 +176,22 @@ function Profile() {
               ))
             ) : (
               <p>No interests added yet.</p>
+            )}
+          </div>
+        </div>
+
+        <div className="profile-card">
+          <h3>Hobbies</h3>
+
+          <div className="hobbies-tags">
+            {user.hobbies?.length > 0 ? (
+              user.hobbies.map((hobby) => (
+                <span className="hobbies-tag" key={hobby}>
+                  {hobby}
+                </span>
+              ))
+            ) : (
+              <p>No hobbies added yet.</p>
             )}
           </div>
         </div>

@@ -23,6 +23,10 @@ function SideLinks() {
         <li>
           <Link to="/profileEdit">⚙ Edit Profile</Link>
         </li>
+
+        <li>
+          <Link to="/Chat">chat</Link>
+        </li>
       </ul>
     </aside>
   );

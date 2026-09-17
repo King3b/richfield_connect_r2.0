@@ -1,14 +1,15 @@
-import "../styles/SignUp.css";
+import "../styles/login.css";
+
 import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 import { AppContext } from "../context/AppContext";
+
 import Card from "../main_components/Cards";
-import Preview from "../main_components/Preview";
-import ProfileView from "../components/ProfilePreview";
 import Reasons from "../components/reasons";
 
 function LogIn() {
-  const { dispatch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -16,95 +17,136 @@ function LogIn() {
     password: "",
   });
 
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((previousData) => ({
+      ...previousData,
+      [name]: value,
+    }));
+
+    setError("");
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const { studentID, password } = formData;
+
+    // Find registered user
+    const user = state.users?.find(
+      (user) => user.studentID === studentID && user.password === password,
+    );
+
+    if (!user) {
+      setError("Incorrect Student ID or password.");
+      return;
+    }
+
+    // Set the logged-in user
     dispatch({
-      type: "REGISTER_USER",
-      payload: formData,
+      type: "LOGIN_USER",
+      payload: user,
     });
 
     navigate("/profile");
   };
 
   return (
-    <div>
+    <div className="signup-page">
+      {/* HERO */}
       <section className="signUp_hero">
-        <h2>Join Richfield Connect</h2>
-        <p>
-          Create your account and become a part of a vibrant academic community.
-          Connect, collaborate and grow together.
-        </p>
+        <div className="signup-hero-content">
+          <p className="signup-eyebrow">RICHFIELD CONNECT</p>
+
+          <h2>Welcome Back 👋</h2>
+
+          <p>
+            Log in to reconnect with your classmates, explore academic resources
+            and continue growing together.
+          </p>
+        </div>
+
         <ul>
           <li>
-            <div>
-              <Card
-                header="share"
-                icon="share"
-                info="Engage with peers and work together on ideas."
-              />
-            </div>
+            <Card
+              header="Connect"
+              icon="group"
+              info="Reconnect with your fellow students."
+            />
           </li>
+
           <li>
-            <div>
-              <Card
-                header="Connect"
-                icon="group"
-                info="Showcase your academic interests and achievements."
-              />
-            </div>
+            <Card
+              header="Share"
+              icon="share"
+              info="Engage with peers and share ideas."
+            />
           </li>
+
           <li>
-            <div>
-              <Card
-                header="Grow"
-                icon="school"
-                info="Your data is protected and only shared within Richfield."
-              />
-            </div>
+            <Card
+              header="Grow"
+              icon="school"
+              info="Continue your academic journey."
+            />
           </li>
         </ul>
       </section>
-      <form action="">
-        {/* STUDENT ID */}
-        <label htmlFor="student_id">Student ID</label>
-        <input
-          type="text"
-          id="student_id"
-          name="studentID"
-          placeholder="Student ID"
-          value={formData.studentID}
-          onChange={handleChange}
-          minLength="9"
-          maxLength="9"
-          required
-        />
-        {/* PASSWORD */}
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Password"
-          required
-        />
-        <br />
-        <button type="submit">Log in</button> <br />
-        <p className="logIn">
-          Don't have an account? <a href="/signUp"> signup</a>
-        </p>
-      </form>
 
-      <br />
+      {/* LOGIN FORM */}
+      <section className="signup-layout">
+        <section className="signup">
+          <form onSubmit={handleSubmit}>
+            <h2>Log In</h2>
+
+            <p className="form-info">
+              Enter your Richfield Connect account details.
+            </p>
+
+            {/* STUDENT ID */}
+            <label htmlFor="student_id">Student ID</label>
+
+            <input
+              type="text"
+              id="student_id"
+              name="studentID"
+              placeholder="Enter your Student ID"
+              value={formData.studentID}
+              onChange={handleChange}
+              minLength={9}
+              maxLength={9}
+              required
+            />
+
+            {/* PASSWORD */}
+            <label htmlFor="password">Password</label>
+
+            <input
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+
+            {/* ERROR */}
+            {error && <p className="error">{error}</p>}
+
+            {/* LOGIN */}
+            <button type="submit">Log In</button>
+
+            {/* SIGN UP */}
+            <p className="logIn">
+              Don't have an account? <Link to="/signup">Sign up</Link>
+            </p>
+          </form>
+        </section>
+      </section>
 
       {/* REASONS */}
       <Reasons />

@@ -1,0 +1,477 @@
+/* =========================================
+   RESOURCES PAGE
+========================================= */
+
+.resources-page {
+  width: min(1200px, 92%);
+  margin: 40px auto 70px;
+  color: #1f2937;
+}
+
+/* =========================================
+   PAGE HEADER
+========================================= */
+
+.resources-header {
+  margin-bottom: 35px;
+}
+
+.resources-eyebrow {
+  margin: 0 0 7px;
+
+  color: #0563c0;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.resources-header h1 {
+  margin: 0;
+
+  color: #003087;
+
+  font-size: 32px;
+  line-height: 1.2;
+}
+
+.resources-header > p:last-child {
+  max-width: 700px;
+
+  margin: 10px 0 0;
+
+  color: #64748b;
+
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.resource-section-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 20px;
+}
+
+.resource-section-heading > .material-symbols-rounded {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eef4ff;
+  color: #003087;
+
+  font-size: 23px;
+}
+
+.resource-section-heading h2 {
+  margin: 0;
+
+  color: #003087;
+
+  font-size: 22px;
+}
+
+.resource-section-heading p {
+  margin: 4px 0 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+/* =========================================
+   RESOURCE LAYOUT
+========================================= */
+
+.school_resources {
+  display: flex;
+  flex-direction: column;
+
+  gap: 22px;
+}
+
+/* =========================================
+   RESOURCE CARD
+========================================= */
+
+.resource {
+  padding: 26px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 18px rgba(0, 48, 135, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.resource:hover {
+  transform: translateY(-2px);
+
+  box-shadow: 0 10px 25px rgba(0, 48, 135, 0.1);
+}
+
+/* =========================================
+   RESOURCE HEADING
+========================================= */
+
+.resource-heading {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 14px;
+
+  margin-bottom: 22px;
+}
+
+.resource-icon {
+  width: 44px;
+  height: 44px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #eef4ff;
+  color: #003087;
+}
+
+.resource-icon .material-symbols-rounded {
+  font-size: 22px;
+}
+
+.resource-heading h3 {
+  margin: 0 0 5px;
+
+  color: #003087;
+
+  font-size: 19px;
+}
+
+.resource-heading p {
+  max-width: 700px;
+
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   RESOURCE LINKS
+========================================= */
+
+.resource_links {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.resource_links a {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+
+  padding: 14px;
+
+  background: #f8faff;
+
+  border: 1px solid #e8eef8;
+  border-radius: 12px;
+
+  color: #003087;
+
+  text-decoration: none;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  transition: 0.2s ease;
+}
+
+.resource_links a:hover {
+  background: #eef4ff;
+
+  border-color: #d6e4ff;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 5px 14px rgba(0, 48, 135, 0.08);
+}
+
+.resource_links a > .material-symbols-rounded:first-child {
+  font-size: 20px;
+}
+
+.resource-arrow {
+  margin-left: auto;
+
+  color: #64748b;
+
+  font-size: 18px;
+}
+
+/* =========================================
+   TUTORING
+========================================= */
+
+.tutoring-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  gap: 14px;
+}
+
+.tutoring-card {
+  padding: 20px;
+
+  background: #f8faff;
+
+  border: 1px solid #e8eef8;
+  border-radius: 14px;
+
+  transition: 0.2s ease;
+}
+
+.tutoring-card:hover {
+  transform: translateY(-3px);
+
+  border-color: #d6e4ff;
+
+  box-shadow: 0 8px 18px rgba(0, 48, 135, 0.08);
+}
+
+.tutoring-card-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 14px;
+
+  border-radius: 10px;
+
+  background: #003087;
+  color: white;
+}
+
+.tutoring-card-icon .material-symbols-rounded {
+  font-size: 21px;
+}
+
+.tutoring-card h4 {
+  margin: 0 0 7px;
+
+  color: #003087;
+
+  font-size: 16px;
+}
+
+.tutoring-card p {
+  margin: 0 0 16px;
+
+  color: #64748b;
+
+  font-size: 12px;
+}
+
+.tutoring-card a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #0563c0;
+
+  text-decoration: none;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.tutoring-card a:hover {
+  color: #003087;
+}
+
+.tutoring-card a .material-symbols-rounded {
+  font-size: 16px;
+}
+
+/* =========================================
+   GUIDELINES
+========================================= */
+
+.guidelines {
+  margin-top: 40px;
+}
+
+.guidelines-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+.core-advantages {
+  padding: 25px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+
+  box-shadow: 0 6px 18px rgba(0, 48, 135, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.core-advantages:hover {
+  transform: translateY(-3px);
+
+  box-shadow: 0 12px 25px rgba(0, 48, 135, 0.1);
+}
+
+.guideline-icon {
+  width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 15px;
+
+  border-radius: 12px;
+
+  background: #eef4ff;
+  color: #003087;
+}
+
+.guideline-icon .material-symbols-rounded {
+  font-size: 23px;
+}
+
+.core-advantages h3 {
+  margin: 0 0 9px;
+
+  color: #003087;
+
+  font-size: 17px;
+}
+
+.core-advantages p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 950px) {
+  .resources-page {
+    width: 94%;
+  }
+
+  .tutoring-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .guidelines-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .resources-page {
+    width: 94%;
+    margin: 25px auto 50px;
+  }
+
+  .resources-header h1 {
+    font-size: 27px;
+  }
+
+  .resource {
+    padding: 20px;
+    border-radius: 15px;
+  }
+
+  .resource_links {
+    grid-template-columns: 1fr;
+  }
+
+  .tutoring-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .guidelines-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 450px) {
+  .resources-page {
+    width: 96%;
+  }
+
+  .resource {
+    padding: 17px;
+  }
+
+  .resource-section-heading {
+    gap: 10px;
+  }
+
+  .resource-section-heading h2 {
+    font-size: 19px;
+  }
+
+  .resource-heading h3 {
+    font-size: 17px;
+  }
+}

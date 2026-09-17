@@ -1,11 +1,19 @@
+import "../main_components/Cards.css";
+
 function Card(props) {
   return (
     <>
-      <h3>{props.header}</h3>
+      <section className="core-values">
+        <div>
+          <h3>{props.header}</h3>
 
-      <span className="material-symbols-rounded core-icon">{props.icon}</span>
+          <span className="material-symbols-rounded core-icon">
+            {props.icon}
+          </span>
 
-      <p>{props.info}</p>
+          <p>{props.info}</p>
+        </div>
+      </section>
     </>
   );
 }

@@ -1,0 +1,422 @@
+/* =========================================
+   LOGIN PAGE
+========================================= */
+
+.signup-page {
+  width: min(1200px, 92%);
+  margin: 40px auto 70px;
+  color: #1f2937;
+}
+
+/* =========================================
+   LOGIN HERO
+========================================= */
+
+.signUp_hero {
+  position: relative;
+  overflow: hidden;
+
+  padding: 45px 40px;
+  margin-bottom: 35px;
+
+  background: linear-gradient(135deg, #001b4d, #003087, #0563c0, #2c8aee);
+
+  border-radius: 22px;
+  color: white;
+
+  box-shadow: 0 10px 30px rgba(0, 48, 135, 0.15);
+}
+
+/* Diamond background */
+
+.signUp_hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(255, 255, 255, 0.08) 55%,
+    transparent 55%
+  );
+
+  background-size: 70px 70px;
+
+  pointer-events: none;
+}
+
+/* Hero content */
+
+.signup-hero-content {
+  position: relative;
+  z-index: 1;
+
+  max-width: 700px;
+}
+
+.signup-eyebrow {
+  margin: 0 0 8px;
+
+  color: #bfdbfe;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+}
+
+.signup-hero-content h2 {
+  margin: 0 0 12px;
+
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.signup-hero-content > p:last-child {
+  margin: 0;
+
+  color: #e0ecff;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* =========================================
+   HERO CARDS
+========================================= */
+
+.signUp_hero ul {
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 18px;
+
+  margin: 35px 0 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.signUp_hero li {
+  min-width: 0;
+}
+
+/* =========================================
+   LOGIN LAYOUT
+========================================= */
+
+.signup-layout {
+  display: flex;
+  justify-content: center;
+
+  width: 100%;
+}
+
+/* =========================================
+   LOGIN CARD
+========================================= */
+
+.signup {
+  width: min(100%, 520px);
+}
+
+.signup form {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 32px;
+
+  background: white;
+
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+
+  box-shadow: 0 8px 25px rgba(0, 48, 135, 0.08);
+}
+
+/* Form heading */
+
+.signup form h2 {
+  margin: 0 0 8px;
+
+  color: #003087;
+
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.form-info {
+  margin: 0 0 25px;
+
+  color: #64748b;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* =========================================
+   LABELS
+========================================= */
+
+.signup form label {
+  display: block;
+
+  margin: 0 0 7px;
+
+  color: #374151;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* =========================================
+   INPUTS
+========================================= */
+
+.signup form input {
+  width: 100%;
+  box-sizing: border-box;
+
+  padding: 13px 14px;
+  margin-bottom: 20px;
+
+  background: #f8faff;
+
+  border: 1px solid #d6e4ff;
+  border-radius: 10px;
+
+  color: #1f2937;
+
+  font-size: 14px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.signup form input::placeholder {
+  color: #94a3b8;
+}
+
+.signup form input:hover {
+  border-color: #b9d0f5;
+}
+
+.signup form input:focus {
+  background: white;
+
+  border-color: #0563c0;
+
+  box-shadow: 0 0 0 3px rgba(5, 99, 192, 0.1);
+}
+
+/* =========================================
+   ERROR
+========================================= */
+
+.signup form .error {
+  margin: -5px 0 18px;
+
+  padding: 10px 12px;
+
+  background: #fef2f2;
+
+  border: 1px solid #fecaca;
+  border-radius: 9px;
+
+  color: #dc2626;
+
+  font-size: 13px;
+}
+
+/* =========================================
+   LOGIN BUTTON
+========================================= */
+
+.signup form button {
+  width: 100%;
+
+  padding: 13px 18px;
+
+  margin-top: 3px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #003087;
+
+  color: white;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.signup form button:hover {
+  background: #00215f;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 7px 16px rgba(0, 48, 135, 0.2);
+}
+
+.signup form button:active {
+  transform: translateY(0);
+}
+
+/* =========================================
+   SIGN UP LINK
+========================================= */
+
+.logIn {
+  margin: 20px 0 0;
+
+  text-align: center;
+
+  color: #64748b;
+
+  font-size: 13px;
+}
+
+.logIn a {
+  color: #0563c0;
+
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+.logIn a:hover {
+  color: #003087;
+
+  text-decoration: underline;
+}
+
+/* =========================================
+   REASONS SECTION
+========================================= */
+
+.signup-page > br {
+  display: none;
+}
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+  .signup-page {
+    width: 94%;
+    margin: 30px auto 50px;
+  }
+
+  .signUp_hero {
+    padding: 35px 30px;
+  }
+
+  .signup-hero-content h2 {
+    font-size: 29px;
+  }
+
+  .signUp_hero ul {
+    gap: 14px;
+  }
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .signup-page {
+    width: 94%;
+    margin: 20px auto 40px;
+  }
+
+  .signUp_hero {
+    padding: 30px 20px;
+
+    border-radius: 18px;
+  }
+
+  .signup-eyebrow {
+    font-size: 11px;
+  }
+
+  .signup-hero-content h2 {
+    font-size: 25px;
+  }
+
+  .signup-hero-content > p:last-child {
+    font-size: 13px;
+  }
+
+  .signUp_hero ul {
+    grid-template-columns: 1fr;
+
+    gap: 12px;
+
+    margin-top: 25px;
+  }
+
+  .signup form {
+    padding: 24px 20px;
+
+    border-radius: 17px;
+  }
+
+  .signup form h2 {
+    font-size: 23px;
+  }
+}
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 450px) {
+  .signup-page {
+    width: 96%;
+  }
+
+  .signUp_hero {
+    padding: 25px 16px;
+  }
+
+  .signup-hero-content h2 {
+    font-size: 22px;
+  }
+
+  .signup-hero-content > p:last-child {
+    font-size: 12px;
+  }
+
+  .signup form {
+    padding: 20px 16px;
+  }
+
+  .signup form input {
+    padding: 12px;
+  }
+
+  .signup form button {
+    padding: 12px;
+  }
+}

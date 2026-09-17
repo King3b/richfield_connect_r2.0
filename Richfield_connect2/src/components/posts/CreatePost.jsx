@@ -72,7 +72,7 @@ function CreatePost() {
   };
 
   return (
-    <form id="post-form" onSubmit={handleSubmit}>
+    <form className="post-form" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Post topic"
@@ -88,12 +88,13 @@ function CreatePost() {
         onChange={(e) => setContent(e.target.value)}
       />
 
-      <input
-        className="uplaod_image"
-        type="file"
-        accept="image/*"
-        onChange={handleImageChange}
-      />
+      <label className="upload-button">
+        <span className="material-symbols-rounded">image</span>
+
+        <span>Add Photo</span>
+
+        <input type="file" accept="image/*" onChange={handleImageChange} />
+      </label>
 
       {image && <p>📷 {image.name}</p>}
 

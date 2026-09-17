@@ -10,16 +10,16 @@ import Resources from "./views/Resources.jsx";
 import Home from "./views/Home.jsx";
 import About from "./views/About.jsx";
 import Footer from "./components/Footer.jsx";
-
+import Chat from "./views/Chat.jsx";
 import "./styles/Global.css";
 
-import Navbar from "./components/Navbar.jsx";
+import Header from "./components/Header.jsx";
 
 function App() {
   return (
     <AppProvider>
       <Router>
-        <Navbar />
+        <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -29,6 +29,7 @@ function App() {
           <Route path="/login" element={<LogIn />} />
           <Route path="/profileEdit" element={<EditProfile />} />
           <Route path="/resources" element={<Resources />} />
+          <Route path="/chat" element={<Chat />} />
         </Routes>
         <Footer />
       </Router>
