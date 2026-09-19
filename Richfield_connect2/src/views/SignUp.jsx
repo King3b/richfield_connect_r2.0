@@ -10,7 +10,7 @@ import ProfileView from "../components/ProfilePreview";
 import Reasons from "../components/reasons";
 
 function SignUp() {
-  const { dispatch } = useContext(AppContext);
+  const { state, dispatch } = useContext(AppContext);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -26,24 +26,32 @@ function SignUp() {
     confirmPassword: "",
   });
 
+  const [profileImage, setProfileImage] = useState("");
+
   const [errors, setErrors] = useState({});
+
   const [passwordStrength, setPasswordStrength] = useState(0);
 
-  // =========================
-  // PROFILE IMAGE
-  // =========================
   const handleProfileImage = (e) => {
     const file = e.target.files[0];
 
-    if (!file) return;
+    if (!file) {
+      return;
+    }
 
     if (!file.type.startsWith("image/")) {
-      alert("Please select an image file.");
+      setErrors((previousErrors) => ({
+        ...previousErrors,
+        profileImage: "Please select an image file.",
+      }));
       return;
     }
 
     if (file.size > 2 * 1024 * 1024) {
-      alert("Please choose an image smaller than 2MB.");
+      setErrors((previousErrors) => ({
+        ...previousErrors,
+        profileImage: "Please choose an image smaller than 2MB.",
+      }));
       return;
     }
 
@@ -51,14 +59,16 @@ function SignUp() {
 
     reader.onload = () => {
       setProfileImage(reader.result);
+
+      setErrors((previousErrors) => ({
+        ...previousErrors,
+        profileImage: "",
+      }));
     };
 
     reader.readAsDataURL(file);
   };
 
-  // =========================
-  // PASSWORD STRENGTH
-  // =========================
   const checkPasswordStrength = (password) => {
     let score = 0;
 
@@ -71,9 +81,6 @@ function SignUp() {
     return score;
   };
 
-  // =========================
-  // HANDLE INPUT CHANGES
-  // =========================
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -85,11 +92,15 @@ function SignUp() {
     if (name === "password") {
       setPasswordStrength(checkPasswordStrength(value));
     }
+
+    if (errors[name]) {
+      setErrors((previousErrors) => ({
+        ...previousErrors,
+        [name]: "",
+      }));
+    }
   };
 
-  // =========================
-  // VALIDATION
-  // =========================
   const validateField = (name, value) => {
     switch (name) {
       case "name":
@@ -162,8 +173,8 @@ function SignUp() {
           return "Student ID is required";
         }
 
-        if (value.trim().length < 9) {
-          return "Please enter a valid Student ID";
+        if (value.trim().length !== 9) {
+          return "Student ID must contain 9 characters";
         }
 
         return "";
@@ -211,9 +222,6 @@ function SignUp() {
     }
   };
 
-  // =========================
-  // BLUR VALIDATION
-  // =========================
   const handleBlur = (e) => {
     const { name, value } = e.target;
 
@@ -225,9 +233,6 @@ function SignUp() {
     }));
   };
 
-  // =========================
-  // SUBMIT
-  // =========================
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -241,6 +246,32 @@ function SignUp() {
       }
     });
 
+    const studentExists = state.users.some(
+      (user) => user.studentID === formData.studentID.trim(),
+    );
+
+    if (studentExists) {
+      newErrors.studentID = "An account with this Student ID already exists.";
+    }
+
+    const usernameExists = state.users.some(
+      (user) =>
+        user.userName.toLowerCase() === formData.userName.trim().toLowerCase(),
+    );
+
+    if (usernameExists) {
+      newErrors.userName = "This username is already taken.";
+    }
+
+    const emailExists = state.users.some(
+      (user) =>
+        user.email.toLowerCase() === formData.email.trim().toLowerCase(),
+    );
+
+    if (emailExists) {
+      newErrors.email = "An account with this email already exists.";
+    }
+
     setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
@@ -248,14 +279,51 @@ function SignUp() {
     }
 
     if (passwordStrength < 5) {
-      alert("Please create a stronger password.");
+      setErrors({
+        password: "Please create a stronger password.",
+      });
+
       return;
     }
 
-    // Add profile image to the registered user
     const userData = {
-      ...formData,
+      id: Date.now(),
+
+      name: formData.name.trim(),
+
+      userName: formData.userName.trim(),
+
+      surName: formData.surName.trim(),
+
+      email: formData.email.trim(),
+
+      campus: formData.campus,
+
+      year: formData.year,
+
+      gender: formData.gender,
+
+      studentID: formData.studentID.trim(),
+
+      password: formData.password,
+
+      profileImage: profileImage,
+
+      backgroundImage: "",
+
+      bio: "",
+
+      interests: [],
+
+      hobbies: [],
+
+      skills: [],
+
+      goals: [],
+
+      achievements: [],
     };
+
     dispatch({
       type: "REGISTER_USER",
       payload: userData,
@@ -266,9 +334,6 @@ function SignUp() {
 
   return (
     <div className="signup-page">
-      {/* =========================
-          HERO
-      ========================= */}
       <section className="signUp_hero">
         <div className="signup-hero-content">
           <p className="signup-eyebrow">RICHFIELD CONNECT</p>
@@ -282,11 +347,7 @@ function SignUp() {
         </div>
       </section>
 
-      {/* =========================
-          SIGNUP LAYOUT
-      ========================= */}
       <section className="signup-layout">
-        {/* LIVE PREVIEW */}
         <section className="link-boared">
           <section className="live-preview">
             <Preview
@@ -301,7 +362,6 @@ function SignUp() {
           </section>
         </section>
 
-        {/* SIGNUP FORM */}
         <section className="signup">
           <ProfileView
             submit={handleSubmit}
@@ -322,13 +382,11 @@ function SignUp() {
             confirmPassword={formData.confirmPassword}
             passwordStrength={passwordStrength}
             errors={errors}
+            profileImage={profileImage}
           />
         </section>
       </section>
 
-      {/* =========================
-          REASONS
-      ========================= */}
       <Reasons />
     </div>
   );

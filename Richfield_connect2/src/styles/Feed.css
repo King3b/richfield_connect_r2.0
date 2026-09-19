@@ -36,6 +36,94 @@
   font-weight: 700;
 }
 
+.feed-login-required {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: var(--feed-background);
+  color: var(--feed-text);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.feed-login-card {
+  width: min(100%, 480px);
+  padding: 45px 35px;
+  text-align: center;
+  background: var(--feed-login-background);
+  border: 1px solid var(--feed-login-border);
+  border-radius: var(--feed-radius);
+  box-shadow: var(--feed-login-shadow);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.25s ease;
+}
+
+.feed-login-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--feed-groups-shadow);
+}
+
+.feed-login-card > .material-symbols-rounded {
+  width: 70px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: var(--feed-login-icon-background);
+  color: var(--feed-login-icon-color);
+  font-size: 34px;
+}
+
+.feed-login-card h2 {
+  margin: 0 0 12px;
+  color: var(--feed-heading);
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.feed-login-card p {
+  max-width: 380px;
+  margin: 0 auto 25px;
+  color: var(--feed-login-muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.feed-login-card button {
+  border: none;
+  padding: 12px 25px;
+  border-radius: 10px;
+  background: var(--feed-login-button);
+  color: var(--feed-button-text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--feed-login-shadow);
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.feed-login-card button:hover {
+  background: var(--feed-login-button-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--feed-groups-shadow);
+}
+
+.feed-login-card button:active {
+  transform: scale(0.97);
+}
+
 /* =========================================
    CREATE POST
 ========================================= */

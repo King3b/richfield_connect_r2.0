@@ -1,5 +1,5 @@
 import { createContext, useReducer, useEffect } from "react";
-import "../styles/Post.css";
+
 export const AppContext = createContext();
 
 const initialState = {
@@ -11,17 +11,40 @@ const initialState = {
 
 function reducer(state, action) {
   switch (action.type) {
+    case "LOAD_USERS":
+      return {
+        ...state,
+        users: action.payload,
+      };
+
     case "REGISTER_USER":
       return {
         ...state,
-        currentUser: action.payload,
         users: [...state.users, action.payload],
+        currentUser: action.payload,
       };
 
     case "UPDATE_USER":
       return {
         ...state,
-        currentUser: { ...state.currentUser, ...action.payload },
+        currentUser: {
+          ...state.currentUser,
+          ...action.payload,
+        },
+        users: state.users.map((user) =>
+          user.studentID === state.currentUser?.studentID
+            ? {
+                ...user,
+                ...action.payload,
+              }
+            : user,
+        ),
+      };
+
+    case "LOGIN_USER":
+      return {
+        ...state,
+        currentUser: action.payload,
       };
 
     case "LOGOUT_USER":
@@ -61,18 +84,16 @@ function reducer(state, action) {
     case "DELETE_POST":
       return {
         ...state,
-        posts: state.posts.filter((post) => post.id !== action.payload.postId),
+        posts: state.posts.filter((post) => post.id !== action.payload),
       };
 
     case "ADD_COMMENT":
       return {
         ...state,
-
         posts: state.posts.map((post) => {
           if (post.id === action.payload.postId) {
             return {
               ...post,
-
               comments: [...(post.comments || []), action.payload.comment],
             };
           }
@@ -96,32 +117,62 @@ export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    localStorage.setItem("richfieldPosts", JSON.stringify(state.posts));
-  }, [state.posts]);
+    const savedUsers = localStorage.getItem("richfieldUsers");
+    const savedUser = localStorage.getItem("richfieldCurrentUser");
+    const savedPosts = localStorage.getItem("richfieldPosts");
+
+    if (savedUsers) {
+      try {
+        dispatch({
+          type: "LOAD_USERS",
+          payload: JSON.parse(savedUsers),
+        });
+      } catch (error) {
+        console.error("Could not load users:", error);
+      }
+    }
+
+    if (savedUser) {
+      try {
+        dispatch({
+          type: "LOGIN_USER",
+          payload: JSON.parse(savedUser),
+        });
+      } catch (error) {
+        console.error("Could not load current user:", error);
+      }
+    }
+
+    if (savedPosts) {
+      try {
+        dispatch({
+          type: "LOAD_POSTS",
+          payload: JSON.parse(savedPosts),
+        });
+      } catch (error) {
+        console.error("Could not load posts:", error);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("richfieldUsers", JSON.stringify(state.users));
+  }, [state.users]);
 
   useEffect(() => {
     if (state.currentUser) {
-      localStorage.setItem("richfieldUser", JSON.stringify(state.currentUser));
+      localStorage.setItem(
+        "richfieldCurrentUser",
+        JSON.stringify(state.currentUser),
+      );
+    } else {
+      localStorage.removeItem("richfieldCurrentUser");
     }
   }, [state.currentUser]);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("richfieldUser");
-    const savedPost = localStorage.getItem("richfieldPosts");
-
-    if (savedUser) {
-      dispatch({
-        type: "REGISTER_USER",
-        payload: JSON.parse(savedUser),
-      });
-    }
-    if (savedPost) {
-      dispatch({
-        type: "LOAD_POST",
-        payload: JSON.parse(savedPost),
-      });
-    }
-  }, []);
+    localStorage.setItem("richfieldPosts", JSON.stringify(state.posts));
+  }, [state.posts]);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

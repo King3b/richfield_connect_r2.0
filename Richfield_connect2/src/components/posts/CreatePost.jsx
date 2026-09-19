@@ -1,5 +1,7 @@
 import { useContext, useState } from "react";
+
 import { AppContext } from "../../context/AppContext";
+
 import "../posts/CreatePost.css";
 
 function CreatePost() {
@@ -13,6 +15,11 @@ function CreatePost() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!state.currentUser) {
+      setError("Please log in before creating a post.");
+      return;
+    }
+
     if (!topic.trim()) {
       setError("Please enter a post topic.");
       return;
@@ -24,18 +31,30 @@ function CreatePost() {
     }
 
     const createPost = (imageData = "") => {
+      const currentUser = state.currentUser;
+
       const newPost = {
         id: Date.now(),
-        userId: state.currentUser?.studentID,
-        userName: state.currentUser?.name || "Student",
-        profilepic: "",
-        content: content,
+
+        userId: currentUser.studentID,
+
+        userName: `${currentUser.name} ${currentUser.surName || ""}`.trim(),
+
+        profileImage: currentUser.profileImage || "",
+
+        content: content.trim(),
+
         postImg: imageData,
+
         time: new Date().toLocaleString(),
+
         likes: 0,
+
         liked: false,
+
         comments: [],
-        topic: topic,
+
+        topic: topic.trim(),
       };
 
       dispatch({
@@ -49,7 +68,6 @@ function CreatePost() {
       setError("");
     };
 
-    // If there is an image, convert it to a data URL
     if (image) {
       const reader = new FileReader();
 
@@ -66,9 +84,22 @@ function CreatePost() {
   const handleImageChange = (e) => {
     const selectedImage = e.target.files[0];
 
-    if (selectedImage) {
-      setImage(selectedImage);
+    if (!selectedImage) {
+      return;
     }
+
+    if (!selectedImage.type.startsWith("image/")) {
+      setError("Please select a valid image.");
+      return;
+    }
+
+    if (selectedImage.size > 2 * 1024 * 1024) {
+      setError("Please choose an image smaller than 2MB.");
+      return;
+    }
+
+    setImage(selectedImage);
+    setError("");
   };
 
   return (
@@ -77,7 +108,10 @@ function CreatePost() {
         type="text"
         placeholder="Post topic"
         value={topic}
-        onChange={(e) => setTopic(e.target.value)}
+        onChange={(e) => {
+          setTopic(e.target.value);
+          setError("");
+        }}
       />
 
       <textarea
@@ -85,7 +119,10 @@ function CreatePost() {
         id="post_content"
         placeholder="What's on your mind?"
         value={content}
-        onChange={(e) => setContent(e.target.value)}
+        onChange={(e) => {
+          setContent(e.target.value);
+          setError("");
+        }}
       />
 
       <label className="upload-button">

@@ -33,11 +33,17 @@ function LogIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { studentID, password } = formData;
+    const studentID = formData.studentID.trim();
+    const password = formData.password;
 
-    // Find registered user
+    if (!studentID || !password) {
+      setError("Please enter your Student ID and password.");
+      return;
+    }
+
     const user = state.users?.find(
-      (user) => user.studentID === studentID && user.password === password,
+      (account) =>
+        account.studentID === studentID && account.password === password,
     );
 
     if (!user) {
@@ -45,7 +51,6 @@ function LogIn() {
       return;
     }
 
-    // Set the logged-in user
     dispatch({
       type: "LOGIN_USER",
       payload: user,
@@ -56,7 +61,6 @@ function LogIn() {
 
   return (
     <div className="logIn-page">
-      {/* HERO */}
       <section className="logIn_hero">
         <div className="logIn-hero-content">
           <p className="logIn-eyebrow">RICHFIELD CONNECT</p>
@@ -69,16 +73,20 @@ function LogIn() {
           </p>
         </div>
       </section>
+
       <section className="logIn-layout">
         <section className="logIn-info">
           <div className="logIn-info-header">
             <p className="info-eyebrow">RICHFIELD CONNECT</p>
+
             <h2>Why Log In?</h2>
+
             <p>
               Stay connected with your classmates, discover resources, and keep
               up with your academic journey.
             </p>
           </div>
+
           <ul>
             <li>
               <Card
@@ -87,6 +95,7 @@ function LogIn() {
                 info="Reconnect with your fellow students."
               />
             </li>
+
             <li>
               <Card
                 header="Share"
@@ -94,6 +103,7 @@ function LogIn() {
                 info="Engage with peers and share ideas."
               />
             </li>
+
             <li>
               <Card
                 header="Grow"
@@ -104,8 +114,6 @@ function LogIn() {
           </ul>
         </section>
 
-        {/* LOGIN FORM */}
-
         <section className="logIn">
           <form onSubmit={handleSubmit}>
             <h2>Log In</h2>
@@ -114,7 +122,6 @@ function LogIn() {
               Enter your Richfield Connect account details.
             </p>
 
-            {/* STUDENT ID */}
             <label htmlFor="student_id">Student ID</label>
 
             <input
@@ -129,7 +136,6 @@ function LogIn() {
               required
             />
 
-            {/* PASSWORD */}
             <label htmlFor="password">Password</label>
 
             <input
@@ -142,13 +148,10 @@ function LogIn() {
               required
             />
 
-            {/* ERROR */}
             {error && <p className="error">{error}</p>}
 
-            {/* LOGIN */}
             <button type="submit">Log In</button>
 
-            {/* SIGN UP */}
             <p className="logIn-link">
               Don't have an account? <Link to="/signup">Sign up</Link>
             </p>
@@ -156,7 +159,6 @@ function LogIn() {
         </section>
       </section>
 
-      {/* REASONS */}
       <Reasons />
     </div>
   );

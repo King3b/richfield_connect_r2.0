@@ -3,9 +3,6 @@ import { useContext } from "react";
 
 import { AppProvider, AppContext } from "./context/AppContext.jsx";
 
-import ProtectedRoute from "./components/ProtectedRoute.jsx";
-import PublicOnlyRoute from "./components/PublicOnlyRoute.jsx";
-
 import Feed from "./views/Feed.jsx";
 import Profile from "./views/Profile.jsx";
 import SignUp from "./views/SignUp.jsx";
@@ -38,74 +35,25 @@ function AppContent() {
             <Route path="/about" element={<About />} />
 
             {/* Feed */}
-            <Route
-              path="/feed"
-              element={
-                <ProtectedRoute>
-                  <Feed />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/feed" element={<Feed />} />
 
             {/* Profile */}
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <Profile />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/profile" element={<Profile />} />
 
             {/* Sign Up */}
-            <Route
-              path="/signup"
-              element={
-                <PublicOnlyRoute>
-                  <SignUp />
-                </PublicOnlyRoute>
-              }
-            />
+            <Route path="/signup" element={<SignUp />} />
 
             {/* Login */}
-            <Route
-              path="/login"
-              element={
-                <PublicOnlyRoute>
-                  <LogIn />
-                </PublicOnlyRoute>
-              }
-            />
+            <Route path="/login" element={<LogIn />} />
 
             {/* Edit Profile */}
-            <Route
-              path="/editprofile"
-              element={
-                <ProtectedRoute>
-                  <EditProfile />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/editprofile" element={<EditProfile />} />
 
             {/* Resources */}
-            <Route
-              path="/resources"
-              element={
-                <ProtectedRoute>
-                  <Resources />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/resources" element={<Resources />} />
 
             {/* AI Help */}
-            <Route
-              path="/ai-help"
-              element={
-                <ProtectedRoute>
-                  <AIHelp />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/ai-help" element={<AIHelp />} />
           </Routes>
         </main>
 

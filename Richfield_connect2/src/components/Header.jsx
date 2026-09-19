@@ -1,17 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
+
 import logo from "../assets/rcLogo.png";
+
 import { AppContext } from "../context/AppContext";
 
 import "../styles/Header.css";
 
 function Header() {
   const { state, dispatch } = useContext(AppContext);
-  const [darkMode, setDarkMode] = useState(false);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -20,8 +19,15 @@ function Header() {
       type: "LOGOUT_USER",
     });
 
+    setProfileMenuOpen(false);
+
     navigate("/login");
   };
+
+  const toggleProfileMenu = () => {
+    setProfileMenuOpen((previous) => !previous);
+  };
+
   return (
     <header>
       <img src={logo} alt="Richfield Connect Logo" className="logo" />
@@ -30,10 +36,15 @@ function Header() {
 
       <nav>
         <ul>
-          {/* PUBLIC LINKS */}
+          {/* DARK MODE */}
           <button
+            type="button"
             className={`theme-toggle ${state.darkMode ? "dark" : ""}`}
-            onClick={() => dispatch({ type: "TOGGLE_DARK_MODE" })}
+            onClick={() =>
+              dispatch({
+                type: "TOGGLE_DARK_MODE",
+              })
+            }
             aria-label="Toggle dark mode"
           >
             <span className="theme-icon sun">☀️</span>
@@ -43,6 +54,8 @@ function Header() {
             <span className="toggle-circle"></span>
           </button>
 
+          {/* ALWAYS VISIBLE */}
+
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -51,49 +64,75 @@ function Header() {
             <Link to="/about">About</Link>
           </li>
 
-          {/* LOGGED OUT */}
+          <>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+            </li>
 
-          {!state.currentUser && (
-            <>
-              <li>
-                <Link to="/signup">Sign Up</Link>
-              </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+          </>
 
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-            </>
-          )}
+          <li className="profile-dropdown">
+            <button
+              type="button"
+              className="profile-dropdown-button"
+              onClick={toggleProfileMenu}
+              aria-expanded={profileMenuOpen}
+            >
+              <span className="material-symbols-rounded">account_circle</span>
 
-          {/* LOGGED IN */}
+              <span>Profile</span>
 
-          {state.currentUser && (
-            <>
-              <li>
-                <Link to="/feed">Feed</Link>
-              </li>
+              <span className="material-symbols-rounded dropdown-arrow">
+                {profileMenuOpen ? "keyboard_arrow_up" : "keyboard_arrow_down"}
+              </span>
+            </button>
 
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
+            {profileMenuOpen && (
+              <div className="profile-dropdown-menu">
+                <Link to="/profile" onClick={() => setProfileMenuOpen(false)}>
+                  <span className="material-symbols-rounded">person</span>
+                  Profile
+                </Link>
 
-              <li>
-                <Link to="/editprofile">Edit Profile</Link>
-              </li>
+                <Link to="/feed" onClick={() => setProfileMenuOpen(false)}>
+                  <span className="material-symbols-rounded">dynamic_feed</span>
+                  Feed
+                </Link>
 
-              <li>
-                <Link to="/ai-help">AI Help</Link>
-              </li>
+                <Link
+                  to="/editprofile"
+                  onClick={() => setProfileMenuOpen(false)}
+                >
+                  <span className="material-symbols-rounded">edit</span>
+                  Edit Profile
+                </Link>
 
-              <li>
-                <Link to="/resources">Resources</Link>
-              </li>
+                <Link to="/ai-help" onClick={() => setProfileMenuOpen(false)}>
+                  <span className="material-symbols-rounded">smart_toy</span>
+                  AI Help
+                </Link>
 
-              <li>
-                <button onClick={handleLogout}>Logout</button>
-              </li>
-            </>
-          )}
+                <Link to="/resources" onClick={() => setProfileMenuOpen(false)}>
+                  <span className="material-symbols-rounded">menu_book</span>
+                  Resources
+                </Link>
+
+                <div className="profile-dropdown-divider"></div>
+
+                <button
+                  type="button"
+                  className="profile-dropdown-logout"
+                  onClick={handleLogout}
+                >
+                  <span className="material-symbols-rounded">logout</span>
+                  Logout
+                </button>
+              </div>
+            )}
+          </li>
         </ul>
       </nav>
     </header>

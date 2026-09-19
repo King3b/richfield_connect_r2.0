@@ -15,6 +15,14 @@
   --home-headings: #04509d;
   --home-gradient: linear-gradient(135deg, #001b4d, #003087, #0563c0, #2c8aee);
   --home-button-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  --header-dropdown-background: #ffffff;
+  --header-dropdown-border: #e2e8f0;
+  --header-dropdown-text: #1f2937;
+  --header-dropdown-hover: #eef4ff;
+  --header-dropdown-accent: #003087;
+  --header-dropdown-danger: #dc2626;
+  --header-dropdown-danger-background: #fef2f2;
+  --header-dropdown-shadow: 0 10px 30px rgba(0, 48, 135, 0.12);
 
   /* ---------- Header ---------- */
   --header-background: #212121;
@@ -217,6 +225,15 @@
   --feed-empty-shadow: 0 4px 14px rgba(0, 48, 135, 0.06);
   --feed-glow: 0 0 20px rgba(37, 99, 235, 0.08);
   --feed-radius: 16px;
+  --feed-login-background: #ffffff;
+  --feed-login-border: #e2e8f0;
+  --feed-login-text: #1f2937;
+  --feed-login-muted: #64748b;
+  --feed-login-icon-background: #eef4ff;
+  --feed-login-icon-color: #003087;
+  --feed-login-button: #003087;
+  --feed-login-button-hover: #0563c0;
+  --feed-login-shadow: 0 10px 30px rgba(0, 48, 135, 0.08);
 
   /* ---------- About ---------- */
   --about-background: #f8faff;
@@ -321,6 +338,14 @@
   --home-gradient: linear-gradient(135deg, #071b3d, #0d346b, #1454a3);
   --home-button-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   --home-glow: 0 0 30px rgba(59, 130, 246, 0.15);
+  --header-dropdown-background: #172033;
+  --header-dropdown-border: #293548;
+  --header-dropdown-text: #f1f5f9;
+  --header-dropdown-hover: #223452;
+  --header-dropdown-accent: #58a6ff;
+  --header-dropdown-danger: #f87171;
+  --header-dropdown-danger-background: #3a2025;
+  --header-dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
   /* ---------- Header ---------- */
   --header-background: #0f1724;
@@ -517,6 +542,15 @@
   --feed-empty-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
   --feed-glow: 0 0 25px rgba(59, 130, 246, 0.14);
   --feed-radius: 16px;
+  --feed-login-background: #172033;
+  --feed-login-border: #293548;
+  --feed-login-text: #f1f5f9;
+  --feed-login-muted: #9aa8ba;
+  --feed-login-icon-background: #172b49;
+  --feed-login-icon-color: #58a6ff;
+  --feed-login-button: #2563eb;
+  --feed-login-button-hover: #3b82f6;
+  --feed-login-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 
   /* ---------- About ---------- */
   --about-background: #0b1220;
@@ -1522,6 +1556,21 @@ body {
 
   .Profile {
     padding: 15px;
+  }
+  .feed-login-required {
+    padding: 30px 15px;
+  }
+
+  .feed-login-card {
+    padding: 35px 25px;
+  }
+
+  .feed-login-card h2 {
+    font-size: 24px;
+  }
+
+  .feed-login-card p {
+    font-size: 14px;
   }
 
   .f_naves {
