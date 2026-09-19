@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 
 import { AppContext } from "../context/AppContext";
 
-import Card from "../main_components/Cards";
 import Preview from "../main_components/Preview";
 import ProfileView from "../components/ProfilePreview";
 import Reasons from "../components/reasons";
@@ -29,7 +28,6 @@ function SignUp() {
 
   const [errors, setErrors] = useState({});
   const [passwordStrength, setPasswordStrength] = useState(0);
-  const [profileImage, setProfileImage] = useState("");
 
   // =========================
   // PROFILE IMAGE
@@ -257,9 +255,7 @@ function SignUp() {
     // Add profile image to the registered user
     const userData = {
       ...formData,
-      profileImage,
     };
-
     dispatch({
       type: "REGISTER_USER",
       payload: userData,
@@ -284,32 +280,6 @@ function SignUp() {
             Connect, collaborate and grow together.
           </p>
         </div>
-
-        <ul>
-          <li>
-            <Card
-              header="Create your profile"
-              icon="person"
-              info="Share your academic interests and goals."
-            />
-          </li>
-
-          <li>
-            <Card
-              header="Explore the feed"
-              icon="dynamic_feed"
-              info="Discover posts and connect with peers."
-            />
-          </li>
-
-          <li>
-            <Card
-              header="School resources"
-              icon="library_books"
-              info="Access academic materials and support services."
-            />
-          </li>
-        </ul>
       </section>
 
       {/* =========================
@@ -327,7 +297,6 @@ function SignUp() {
               year={formData.year}
               bio={formData.bio}
               interests={formData.interests}
-              profileImage={profileImage}
             />
           </section>
         </section>

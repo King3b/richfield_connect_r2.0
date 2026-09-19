@@ -1,61 +1,62 @@
-/* CORE VALUES */
-.core-values {
-  margin-bottom: 60px;
-  color: var(--text-color);
+.card-values {
+  background: var(--about-values-background);
 }
 
-.core-values h2 {
-  text-align: center;
-  color: var(--header);
-  margin-bottom: 35px;
-  font-size: 2rem;
+.card-values h2 {
+  color: var(--about-values-heading);
 }
 
-.core-values ul {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 25px;
-  list-style: none;
+.card-values li div {
+  background: var(--about-values-card);
+
+  color: var(--about-values-card-text);
+
+  border: 1px solid var(--about-values-border);
+
+  border-radius: var(--about-values-radius);
+
+  box-shadow: var(--about-values-shadow);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
 }
 
-.core-values li div {
-  padding: 30px;
-  border-radius: 25px;
-  text-align: center;
-  box-shadow: var(--Card-box-shadow);
-  transition: 0.3s;
-  height: 370px;
-}
-
-.core-values li div:hover {
+.card-values li div:hover {
   transform: translateY(-6px);
+
+  border-color: var(--about-values-accent);
+
+  box-shadow: var(--about-values-hover-shadow), var(--about-values-glow);
 }
 
-.core-values h3 {
-  color: var(--card-header);
-  margin-bottom: 15px;
+.card-values h3 {
+  color: var(--about-values-heading);
 }
 
-.core-values img {
-  width: 80px;
-  height: 80px;
-  background: #5e9bfd;
-  border-radius: 50%;
-  margin: 15px 0;
+.card-values p {
+  color: var(--about-values-muted);
 }
-.core-icon {
-  font-size: 70px;
-  color: #0052cc;
-  background: #eaf2ff;
-  padding: 18px;
-  border-radius: 50%;
-  margin: 15px 0;
 
-  transition: 0.3s;
+.card-icon {
+  background: var(--about-values-icon-background);
+
+  color: var(--about-values-icon-color);
+
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
 }
-.core-values li div:hover .core-icon {
+
+.card-values li div:hover .card-icon {
   transform: scale(1.1);
-  color: white;
-  background: linear-gradient(135deg, #0052cc, #1e90ff);
-  box-shadow: var(--Card-icon-shadow-color);
+
+  color: var(--about-values-icon-hover);
+
+  background: var(--about-values-icon-hover-background);
+
+  box-shadow: var(--about-values-icon-glow);
 }

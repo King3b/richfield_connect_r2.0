@@ -31,7 +31,6 @@
   content: "";
   position: absolute;
   inset: 0;
-
   background: linear-gradient(
     45deg,
     transparent 45%,
@@ -39,9 +38,7 @@
     rgba(255, 255, 255, 0.07) 55%,
     transparent 55%
   );
-
   background-size: 70px 70px;
-
   pointer-events: none;
 }
 
@@ -65,7 +62,7 @@
   font-size: 34px;
 }
 
-.signup-hero-content > p:last-child {
+.signup-hero-content {
   max-width: 650px;
   margin: auto;
   color: #e0ecff;
@@ -74,70 +71,15 @@
 }
 
 /* =========================================
-   HERO CARDS
-========================================= */
-
-.signUp_hero ul {
-  position: relative;
-  z-index: 1;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 18px;
-
-  list-style: none;
-
-  margin: 35px 0 0;
-  padding: 0;
-}
-
-.signUp_hero li {
-  min-width: 0;
-}
-
-.signUp_hero li > div {
-  height: 100%;
-  box-sizing: border-box;
-
-  padding: 25px;
-
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 18px;
-
-  background: rgba(255, 255, 255, 0.1);
-
-  color: white;
-
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
-}
-
-.signUp_hero li > div:hover {
-  transform: translateY(-4px);
-
-  background: rgba(255, 255, 255, 0.15);
-
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
-}
-
-/* =========================================
    SIGNUP LAYOUT
 ========================================= */
 
 .signup-layout {
   display: grid;
-
   grid-template-columns:
     minmax(0, 1fr)
     minmax(0, 1.2fr);
-
   gap: 40px;
-
   align-items: start;
 }
 
@@ -147,45 +89,32 @@
 
 .signup {
   width: 100%;
-
   display: flex;
   flex-direction: column;
-
   gap: 25px;
 }
 
 .signup form {
   box-sizing: border-box;
-
   width: 100%;
-
   padding: 35px;
-
   background: white;
-
   border: 1px solid #e2e8f0;
   border-radius: 22px;
-
   box-shadow: 0 8px 25px rgba(0, 48, 135, 0.08);
 }
 
 .signup form h3 {
   margin: 0 0 8px;
-
   text-align: center;
-
   color: #003087;
-
   font-size: 25px;
 }
 
 .signup form p {
   margin: 0 0 20px;
-
   text-align: center;
-
   color: #64748b;
-
   font-size: 14px;
 }
 
@@ -195,12 +124,9 @@
 
 .signup form label {
   display: block;
-
   margin-top: 15px;
   margin-bottom: 8px;
-
   color: #1f2937;
-
   font-size: 13px;
   font-weight: 600;
 }
@@ -213,22 +139,14 @@
 .signup form select,
 .signup form textarea {
   box-sizing: border-box;
-
   width: 100%;
-
   padding: 13px 14px;
-
   border: 1px solid #d6e4ff;
   border-radius: 11px;
-
   background: #f8faff;
-
   color: #1f2937;
-
   font-size: 14px;
-
   outline: none;
-
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease,
@@ -239,9 +157,7 @@
 .signup form select:focus,
 .signup form textarea:focus {
   border-color: #0563c0;
-
   background: white;
-
   box-shadow: 0 0 0 3px rgba(5, 99, 192, 0.1);
 }
 
@@ -251,9 +167,7 @@
 
 .error {
   margin-top: 5px;
-
   color: #dc2626;
-
   font-size: 12px;
 }
 
@@ -263,7 +177,6 @@
 
 .password-box {
   position: relative;
-
   width: 100%;
 }
 
@@ -273,16 +186,11 @@
 
 .eye {
   position: absolute;
-
   right: 15px;
   top: 50%;
-
   transform: translateY(-50%);
-
   color: #0563c0;
-
   cursor: pointer;
-
   user-select: none;
 }
 
@@ -293,33 +201,23 @@
 .strength {
   width: 100%;
   height: 8px;
-
   margin-top: 10px;
-
   overflow: hidden;
-
   background: #e5e7eb;
-
   border-radius: 20px;
 }
 
 .strength-bar {
   height: 100%;
-
   width: 0%;
-
   border-radius: 20px;
-
   background: linear-gradient(90deg, #003087, #0563c0, #2c8aee);
-
   transition: width 0.3s ease;
 }
 
 .strength-text {
   margin-top: 7px;
-
   color: #64748b;
-
   font-size: 12px;
 }
 
@@ -329,55 +227,9 @@
 
 .username-preview {
   margin-top: 8px;
-
   color: #0563c0;
-
   font-size: 13px;
   font-weight: 600;
-}
-
-/* =========================================
-   TAGS
-========================================= */
-
-.interest-tags {
-  display: flex;
-
-  flex-wrap: wrap;
-
-  gap: 9px;
-
-  margin-top: 12px;
-}
-
-.tag {
-  padding: 8px 13px;
-
-  border: 1px solid #d6e4ff;
-  border-radius: 20px;
-
-  background: #eef4ff;
-
-  color: #003087;
-
-  cursor: pointer;
-
-  font-size: 12px;
-  font-weight: 600;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    transform 0.2s ease;
-}
-
-.tag:hover,
-.tag.selected {
-  background: #003087;
-
-  color: white;
-
-  transform: translateY(-2px);
 }
 
 /* =========================================
@@ -386,21 +238,14 @@
 
 .signup form button {
   width: 100%;
-
   padding: 13px 20px;
-
   margin-top: 20px;
-
   border: none;
   border-radius: 11px;
-
   background: #003087;
-
   color: white;
-
   font-size: 14px;
   font-weight: 600;
-
   cursor: pointer;
 
   transition:
@@ -411,9 +256,7 @@
 
 .signup form button:hover {
   background: #00215f;
-
   transform: translateY(-2px);
-
   box-shadow: 0 7px 18px rgba(0, 48, 135, 0.2);
 }
 
@@ -423,88 +266,4 @@
 
 .reasons {
   margin-top: 60px;
-}
-
-/* =========================================
-   TABLET
-========================================= */
-
-@media (max-width: 950px) {
-  .signup-page {
-    width: 94%;
-  }
-
-  .signup-layout {
-    grid-template-columns: 1fr;
-  }
-
-  .live-preview {
-    position: static;
-  }
-
-  .signUp_hero ul {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 700px) {
-  .signup-page {
-    width: 94%;
-    margin: 25px auto 50px;
-  }
-
-  .signUp_hero {
-    padding: 30px 20px;
-    border-radius: 18px;
-  }
-
-  .signUp_hero h2 {
-    font-size: 27px;
-  }
-
-  .signUp_hero ul {
-    grid-template-columns: 1fr;
-
-    margin-top: 25px;
-  }
-
-  .signup-layout {
-    gap: 25px;
-  }
-
-  .signup form {
-    padding: 25px 20px;
-
-    border-radius: 18px;
-  }
-}
-
-/* =========================================
-   SMALL MOBILE
-========================================= */
-
-@media (max-width: 450px) {
-  .signup-page {
-    width: 96%;
-  }
-
-  .signUp_hero {
-    padding: 25px 15px;
-  }
-
-  .signUp_hero h2 {
-    font-size: 23px;
-  }
-
-  .signup form {
-    padding: 20px 15px;
-  }
-
-  .signup form h3 {
-    font-size: 21px;
-  }
 }

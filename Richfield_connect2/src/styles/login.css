@@ -2,7 +2,7 @@
    LOGIN PAGE
 ========================================= */
 
-.signup-page {
+.logIn-page {
   width: min(1200px, 92%);
   margin: 40px auto 70px;
   color: #1f2937;
@@ -12,24 +12,28 @@
    LOGIN HERO
 ========================================= */
 
-.signUp_hero {
+.logIn_hero {
   position: relative;
   overflow: hidden;
 
-  padding: 45px 40px;
   margin-bottom: 35px;
-
-  background: linear-gradient(135deg, #001b4d, #003087, #0563c0, #2c8aee);
+  padding: 45px 35px;
 
   border-radius: 22px;
+
+  text-align: center;
   color: white;
+
+  background: linear-gradient(135deg, #001b4d, #003087, #0563c0, #2c8aee);
 
   box-shadow: 0 10px 30px rgba(0, 48, 135, 0.15);
 }
 
-/* Diamond background */
+/* =========================================
+   DIAMOND BACKGROUND
+========================================= */
 
-.signUp_hero::before {
+.logIn_hero::before {
   content: "";
 
   position: absolute;
@@ -38,8 +42,8 @@
   background: linear-gradient(
     45deg,
     transparent 45%,
-    rgba(255, 255, 255, 0.08) 45%,
-    rgba(255, 255, 255, 0.08) 55%,
+    rgba(255, 255, 255, 0.07) 45%,
+    rgba(255, 255, 255, 0.07) 55%,
     transparent 55%
   );
 
@@ -48,128 +52,192 @@
   pointer-events: none;
 }
 
-/* Hero content */
+/* =========================================
+   HERO CONTENT
+========================================= */
 
-.signup-hero-content {
+.logIn-hero-content {
   position: relative;
   z-index: 1;
 
-  max-width: 700px;
+  max-width: 650px;
+  margin: auto;
 }
 
-.signup-eyebrow {
+.logIn-eyebrow {
   margin: 0 0 8px;
 
-  color: #bfdbfe;
-
   font-size: 12px;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: 1.5px;
 
-  letter-spacing: 2px;
+  color: #dbeafe;
 }
 
-.signup-hero-content h2 {
+.logIn-hero-content h2 {
   margin: 0 0 12px;
 
   font-size: 34px;
   font-weight: 700;
 }
 
-.signup-hero-content > p:last-child {
+.logIn-hero-content > p:last-child {
   margin: 0;
 
   color: #e0ecff;
 
+  line-height: 1.6;
   font-size: 15px;
-  line-height: 1.7;
-}
-
-/* =========================================
-   HERO CARDS
-========================================= */
-
-.signUp_hero ul {
-  position: relative;
-  z-index: 1;
-
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-
-  gap: 18px;
-
-  margin: 35px 0 0;
-  padding: 0;
-
-  list-style: none;
-}
-
-.signUp_hero li {
-  min-width: 0;
 }
 
 /* =========================================
    LOGIN LAYOUT
 ========================================= */
 
-.signup-layout {
-  display: flex;
-  justify-content: center;
+.logIn-layout {
+  display: grid;
 
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(0, 1.2fr);
+
+  gap: 40px;
+
+  align-items: start;
+}
+
+/* =========================================
+   INFO SECTION
+========================================= */
+
+.logIn-info {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 32px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #001b4d, #003087, #0563c0);
+  box-shadow: 0 10px 30px rgba(0, 48, 135, 0.18);
+  color: white;
+} /* ========================================= DECORATIVE BACKGROUND ========================================= */
+.logIn-info::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    transparent 45%,
+    rgba(255, 255, 255, 0.06) 45%,
+    rgba(255, 255, 255, 0.06) 55%,
+    transparent 55%
+  );
+  background-size: 65px 65px;
+  pointer-events: none;
+} /* ========================================= INFO HEADER ========================================= */
+.logIn-info-header {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 28px;
+  text-align: center;
+}
+.info-eyebrow {
+  margin: 0 0 6px;
+  color: #bfdbfe;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+.logIn-info-header h2 {
+  margin: 0 0 10px;
+  font-size: 28px;
+  font-weight: 700;
+}
+.logIn-info-header > p:last-child {
+  max-width: 450px;
+  margin: 0 auto;
+  color: #dbeafe;
+  font-size: 14px;
+  line-height: 1.6;
+} /* ========================================= INFO CARDS ========================================= */
+.logIn-info ul {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* =========================================
+   LOGIN FORM SECTION
+========================================= */
+
+.logIn {
   width: 100%;
 }
 
 /* =========================================
-   LOGIN CARD
+   FORM
 ========================================= */
 
-.signup {
-  width: min(100%, 520px);
-}
-
-.signup form {
-  width: 100%;
+.logIn form {
   box-sizing: border-box;
 
-  padding: 32px;
+  width: 100%;
+
+  padding: 35px;
 
   background: white;
 
   border: 1px solid #e2e8f0;
-  border-radius: 20px;
+  border-radius: 22px;
 
   box-shadow: 0 8px 25px rgba(0, 48, 135, 0.08);
 }
 
-/* Form heading */
+/* =========================================
+   FORM HEADING
+========================================= */
 
-.signup form h2 {
+.logIn form h2 {
   margin: 0 0 8px;
+
+  text-align: center;
 
   color: #003087;
 
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 700;
 }
 
-.form-info {
-  margin: 0 0 25px;
+/* =========================================
+   FORM DESCRIPTION
+========================================= */
+
+.logIn form .form-info {
+  margin: 0 0 20px;
+
+  text-align: center;
 
   color: #64748b;
 
   font-size: 14px;
-  line-height: 1.5;
 }
 
 /* =========================================
    LABELS
 ========================================= */
 
-.signup form label {
+.logIn form label {
   display: block;
 
-  margin: 0 0 7px;
+  margin-top: 15px;
+  margin-bottom: 8px;
 
-  color: #374151;
+  color: #1f2937;
 
   font-size: 13px;
   font-weight: 600;
@@ -179,18 +247,19 @@
    INPUTS
 ========================================= */
 
-.signup form input {
-  width: 100%;
+.logIn form input,
+.logIn form select,
+.logIn form textarea {
   box-sizing: border-box;
 
-  padding: 13px 14px;
-  margin-bottom: 20px;
+  width: 100%;
 
-  background: #f8faff;
+  padding: 13px 14px;
 
   border: 1px solid #d6e4ff;
-  border-radius: 10px;
+  border-radius: 11px;
 
+  background: #f8faff;
   color: #1f2937;
 
   font-size: 14px;
@@ -203,18 +272,16 @@
     background 0.2s ease;
 }
 
-.signup form input::placeholder {
-  color: #94a3b8;
-}
+/* =========================================
+   INPUT FOCUS
+========================================= */
 
-.signup form input:hover {
-  border-color: #b9d0f5;
-}
-
-.signup form input:focus {
-  background: white;
-
+.logIn form input:focus,
+.logIn form select:focus,
+.logIn form textarea:focus {
   border-color: #0563c0;
+
+  background: white;
 
   box-shadow: 0 0 0 3px rgba(5, 99, 192, 0.1);
 }
@@ -223,17 +290,15 @@
    ERROR
 ========================================= */
 
-.signup form .error {
-  margin: -5px 0 18px;
+.logIn-page .error {
+  margin: 12px 0 0;
 
-  padding: 10px 12px;
+  padding: 10px;
 
-  background: #fef2f2;
+  border-radius: 8px;
 
-  border: 1px solid #fecaca;
-  border-radius: 9px;
-
-  color: #dc2626;
+  background: #fee2e2;
+  color: #b91c1c;
 
   font-size: 13px;
 }
@@ -242,58 +307,49 @@
    LOGIN BUTTON
 ========================================= */
 
-.signup form button {
+.logIn form button {
   width: 100%;
 
-  padding: 13px 18px;
+  margin-top: 22px;
 
-  margin-top: 3px;
+  padding: 14px;
 
   border: none;
   border-radius: 10px;
 
-  background: #003087;
+  background: linear-gradient(135deg, #003087, #0563c0);
 
   color: white;
 
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 700;
 
   cursor: pointer;
 
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transition: 0.2s ease;
 }
 
-.signup form button:hover {
-  background: #00215f;
-
+.logIn form button:hover {
   transform: translateY(-2px);
 
-  box-shadow: 0 7px 16px rgba(0, 48, 135, 0.2);
-}
-
-.signup form button:active {
-  transform: translateY(0);
+  box-shadow: 0 7px 18px rgba(0, 48, 135, 0.2);
 }
 
 /* =========================================
-   SIGN UP LINK
+   SIGN UP TEXT
 ========================================= */
 
-.logIn {
-  margin: 20px 0 0;
+.logIn form .logIn-link {
+  margin: 18px 0 0;
 
   text-align: center;
 
   color: #64748b;
 
-  font-size: 13px;
+  font-size: 14px;
 }
 
-.logIn a {
+.logIn form .logIn-link a {
   color: #0563c0;
 
   font-weight: 600;
@@ -303,120 +359,8 @@
   transition: color 0.2s ease;
 }
 
-.logIn a:hover {
+.logIn form .logIn-link a:hover {
   color: #003087;
 
   text-decoration: underline;
-}
-
-/* =========================================
-   REASONS SECTION
-========================================= */
-
-.signup-page > br {
-  display: none;
-}
-
-/* =========================================
-   TABLET
-========================================= */
-
-@media (max-width: 900px) {
-  .signup-page {
-    width: 94%;
-    margin: 30px auto 50px;
-  }
-
-  .signUp_hero {
-    padding: 35px 30px;
-  }
-
-  .signup-hero-content h2 {
-    font-size: 29px;
-  }
-
-  .signUp_hero ul {
-    gap: 14px;
-  }
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media (max-width: 700px) {
-  .signup-page {
-    width: 94%;
-    margin: 20px auto 40px;
-  }
-
-  .signUp_hero {
-    padding: 30px 20px;
-
-    border-radius: 18px;
-  }
-
-  .signup-eyebrow {
-    font-size: 11px;
-  }
-
-  .signup-hero-content h2 {
-    font-size: 25px;
-  }
-
-  .signup-hero-content > p:last-child {
-    font-size: 13px;
-  }
-
-  .signUp_hero ul {
-    grid-template-columns: 1fr;
-
-    gap: 12px;
-
-    margin-top: 25px;
-  }
-
-  .signup form {
-    padding: 24px 20px;
-
-    border-radius: 17px;
-  }
-
-  .signup form h2 {
-    font-size: 23px;
-  }
-}
-
-/* =========================================
-   SMALL PHONES
-========================================= */
-
-@media (max-width: 450px) {
-  .signup-page {
-    width: 96%;
-  }
-
-  .signUp_hero {
-    padding: 25px 16px;
-  }
-
-  .signup-hero-content h2 {
-    font-size: 22px;
-  }
-
-  .signup-hero-content > p:last-child {
-    font-size: 12px;
-  }
-
-  .signup form {
-    padding: 20px 16px;
-  }
-
-  .signup form input {
-    padding: 12px;
-  }
-
-  .signup form button {
-    padding: 12px;
-  }
 }

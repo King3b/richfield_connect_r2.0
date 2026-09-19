@@ -1,6 +1,6 @@
 import "../styles/About.css";
 import { Link } from "react-router-dom";
-import Card from "../main_components/Cards";
+import Values from "../components/values";
 
 function About() {
   return (
@@ -20,7 +20,6 @@ function About() {
           </p>
         </div>
       </section>
-
       {/* ================= VISION & MISSION ================= */}
       <section className="about2">
         <article className="vision">
@@ -50,9 +49,8 @@ function About() {
           </p>
         </article>
       </section>
-
       {/* ================= GUIDELINES ================= */}
-      <section className="about3">
+      <section className="about4">
         <span className="section-label">COMMUNITY GUIDELINES</span>
 
         <h2>Guidelines</h2>
@@ -70,58 +68,10 @@ function About() {
           <li>Maintain academic integrity.</li>
         </ul>
       </section>
-
       {/* ================= CORE VALUES ================= */}
+
       <section className="core-values" id="Core_values">
-        <div className="about-section-heading">
-          <span className="section-label">WHAT WE STAND FOR</span>
-
-          <h2>Core Values</h2>
-
-          <p>The principles that shape the Richfield Connect community.</p>
-        </div>
-
-        <ul className="about-card-grid">
-          <li>
-            <Card
-              header="Privacy & Security"
-              icon="shield_lock"
-              info="Your data and privacy are our top priority."
-            />
-          </li>
-
-          <li>
-            <Card
-              header="Community"
-              icon="groups"
-              info="Building a supportive and respectful student community."
-            />
-          </li>
-
-          <li>
-            <Card
-              header="Collaboration"
-              icon="handshake"
-              info="We encourage open communication and collaboration among students, fostering knowledge sharing and mutual support."
-            />
-          </li>
-
-          <li>
-            <Card
-              header="Academic Focus"
-              icon="school"
-              info="Designed to support learning, collaboration, and academic excellence."
-            />
-          </li>
-
-          <li>
-            <Card
-              header="Integrity"
-              icon="verified"
-              info="We are committed to maintaining high standards of integrity and ethical behaviour in our interactions and services."
-            />
-          </li>
-        </ul>
+        <Values />
       </section>
 
       {/* ================= CTA ================= */}
@@ -139,7 +89,6 @@ function About() {
           Join today
         </Link>
       </section>
-
       {/* ================= PRIVACY + CONTACT ================= */}
       <section className="about4-sect">
         <article id="privacy_policy">
@@ -169,7 +118,6 @@ function About() {
           </p>
         </article>
       </section>
-
       {/* ================= HELP CENTER ================= */}
       <section id="help_center">
         <span className="section-label">SUPPORT</span>

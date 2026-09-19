@@ -71,7 +71,6 @@ function ProfileView(props) {
         onChange={props.change}
         onBlur={props.blur}
         placeholder="@username"
-        required
       />
 
       <div className="username-preview">
@@ -164,16 +163,6 @@ function ProfileView(props) {
 
       <br />
 
-      <div className="profile-image-upload">
-        <label htmlFor="profileImage">Choose Profile Image</label>
-
-        <input
-          id="profileImage"
-          type="file"
-          accept="image/*"
-          onChange={props.img}
-        />
-      </div>
       {/* PASSWORD */}
       <label htmlFor="password">Password</label>
 

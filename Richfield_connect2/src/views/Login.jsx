@@ -55,11 +55,11 @@ function LogIn() {
   };
 
   return (
-    <div className="signup-page">
+    <div className="logIn-page">
       {/* HERO */}
-      <section className="signUp_hero">
-        <div className="signup-hero-content">
-          <p className="signup-eyebrow">RICHFIELD CONNECT</p>
+      <section className="logIn_hero">
+        <div className="logIn-hero-content">
+          <p className="logIn-eyebrow">RICHFIELD CONNECT</p>
 
           <h2>Welcome Back 👋</h2>
 
@@ -68,37 +68,45 @@ function LogIn() {
             and continue growing together.
           </p>
         </div>
-
-        <ul>
-          <li>
-            <Card
-              header="Connect"
-              icon="group"
-              info="Reconnect with your fellow students."
-            />
-          </li>
-
-          <li>
-            <Card
-              header="Share"
-              icon="share"
-              info="Engage with peers and share ideas."
-            />
-          </li>
-
-          <li>
-            <Card
-              header="Grow"
-              icon="school"
-              info="Continue your academic journey."
-            />
-          </li>
-        </ul>
       </section>
+      <section className="logIn-layout">
+        <section className="logIn-info">
+          <div className="logIn-info-header">
+            <p className="info-eyebrow">RICHFIELD CONNECT</p>
+            <h2>Why Log In?</h2>
+            <p>
+              Stay connected with your classmates, discover resources, and keep
+              up with your academic journey.
+            </p>
+          </div>
+          <ul>
+            <li>
+              <Card
+                header="Connect"
+                icon="group"
+                info="Reconnect with your fellow students."
+              />
+            </li>
+            <li>
+              <Card
+                header="Share"
+                icon="share"
+                info="Engage with peers and share ideas."
+              />
+            </li>
+            <li>
+              <Card
+                header="Grow"
+                icon="school"
+                info="Continue your academic journey."
+              />
+            </li>
+          </ul>
+        </section>
 
-      {/* LOGIN FORM */}
-      <section className="signup-layout">
-        <section className="signup">
+        {/* LOGIN FORM */}
+
+        <section className="logIn">
           <form onSubmit={handleSubmit}>
             <h2>Log In</h2>
 
@@ -141,7 +149,7 @@ function LogIn() {
             <button type="submit">Log In</button>
 
             {/* SIGN UP */}
-            <p className="logIn">
+            <p className="logIn-link">
               Don't have an account? <Link to="/signup">Sign up</Link>
             </p>
           </form>

@@ -125,6 +125,20 @@ function Resources() {
                   open_in_new
                 </span>
               </a>
+
+              <a
+                href="https://www.w3schools.com/react/default.asp"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className="material-symbols-rounded">code</span>
+
+                <span>React</span>
+
+                <span className="material-symbols-rounded resource-arrow">
+                  open_in_new
+                </span>
+              </a>
             </div>
           </section>
 
@@ -233,6 +247,26 @@ function Resources() {
 
                 <a
                   href="https://www.youtube.com/watch?v=23HFxAPyJ9U&list=PLZPZq0r_RZOOj_NOZYq_R2PECIMglLemc"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Start Learning
+                  <span className="material-symbols-rounded">open_in_new</span>
+                </a>
+              </article>
+              <article className="tutoring-card">
+                <div className="tutoring-card-icon">
+                  <span className="material-symbols-rounded">html</span>
+                </div>
+
+                <h4>React</h4>
+
+                <p>
+                  <strong>Bro Code</strong>
+                </p>
+
+                <a
+                  href="https://www.youtube.com/watch?v=hn80mWvP-9g&list=PLZPZq0r_RZOMQArzyI32mVndGBZ3D99XQ"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

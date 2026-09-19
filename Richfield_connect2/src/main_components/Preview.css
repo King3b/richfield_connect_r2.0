@@ -1,7 +1,3 @@
-/* =========================================
-   PREVIEW CARD
-========================================= */
-
 .preview-card {
   width: 100%;
   max-width: 430px;
@@ -9,19 +5,24 @@
 
   padding: 22px;
 
-  background: white;
+  background: var(--preview-background);
+  border: 1px solid var(--preview-border);
+  border-radius: var(--preview-radius);
 
-  border: 1px solid #e2e8f0;
-  border-radius: 20px;
+  box-shadow: var(--preview-shadow), var(--preview-glow);
 
-  box-shadow: 0 8px 25px rgba(0, 48, 135, 0.08);
+  color: var(--preview-text);
 
-  color: #1f2937;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    color 0.3s ease;
 }
 
-/* =========================================
+/* =========================================================
    TITLE
-========================================= */
+========================================================= */
 
 .preview-title {
   display: flex;
@@ -34,7 +35,7 @@
 .preview-title h2 {
   margin: 0;
 
-  color: #003087;
+  color: var(--preview-title);
 
   font-size: 20px;
   font-weight: 700;
@@ -43,30 +44,28 @@
 .preview-title span {
   padding: 5px 10px;
 
-  border: 1px solid #d6e4ff;
+  border: 1px solid var(--preview-title-badge-border);
   border-radius: 20px;
 
-  background: #eef4ff;
-
-  color: #003087;
+  background: var(--preview-title-badge-background);
+  color: var(--preview-title-badge-text);
 
   font-size: 12px;
   font-weight: 600;
 }
 
-/* =========================================
+/* =========================================================
    PROFILE HEADER
-========================================= */
+========================================================= */
 
 .preview-profile {
   display: flex;
   align-items: center;
-
   gap: 15px;
 
   padding-bottom: 20px;
 
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--preview-profile-border);
 }
 
 .preview-avatar {
@@ -81,14 +80,18 @@
 
   overflow: hidden;
 
-  border: 4px solid white;
+  border: 4px solid var(--preview-avatar-border);
   border-radius: 50%;
 
-  background: #eef4ff;
+  background: var(--preview-avatar-background);
+  color: var(--preview-avatar-color);
 
-  color: #003087;
+  box-shadow: var(--preview-avatar-shadow);
 
-  box-shadow: 0 5px 15px rgba(0, 48, 135, 0.12);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .preview-avatar img {
@@ -102,9 +105,9 @@
   font-size: 36px;
 }
 
-/* =========================================
+/* =========================================================
    USER INFORMATION
-========================================= */
+========================================================= */
 
 .preview-user-info {
   min-width: 0;
@@ -113,45 +116,45 @@
 .preview-user-info h2 {
   margin: 0;
 
-  color: #1f2937;
+  color: var(--preview-user-heading);
 
   font-size: 18px;
-
   word-break: break-word;
 }
 
 .preview-user-info p {
   margin: 4px 0 8px;
 
-  color: #64748b;
+  color: var(--preview-user-text);
 
   font-size: 13px;
 }
 
+/* =========================================================
+   CAMPUS / YEAR
+========================================================= */
+
 .campus-year {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 7px;
 }
 
 .campus-year span {
   padding: 5px 9px;
 
-  border: 1px solid #e8eef8;
+  border: 1px solid var(--preview-campus-border);
   border-radius: 8px;
 
-  background: #f8faff;
-
-  color: #64748b;
+  background: var(--preview-campus-background);
+  color: var(--preview-campus-text);
 
   font-size: 11px;
 }
 
-/* =========================================
+/* =========================================================
    SECTIONS
-========================================= */
+========================================================= */
 
 .preview-section {
   margin-top: 18px;
@@ -160,7 +163,7 @@
 .preview-section h3 {
   margin: 0 0 8px;
 
-  color: #003087;
+  color: var(--preview-section-heading);
 
   font-size: 14px;
 }
@@ -168,94 +171,108 @@
 .preview-bio {
   margin: 0;
 
-  color: #64748b;
+  color: var(--preview-section-text);
 
   font-size: 13px;
-
   line-height: 1.6;
 }
 
-/* =========================================
+/* =========================================================
    INTEREST TAGS
-========================================= */
+========================================================= */
 
 .preview-tags {
   display: flex;
-
   flex-wrap: wrap;
-
   gap: 7px;
 }
 
 .preview-tags span {
   padding: 7px 11px;
 
-  border: 1px solid #d6e4ff;
+  border: 1px solid var(--preview-tag-border);
   border-radius: 20px;
 
-  background: #eef4ff;
-
-  color: #003087;
+  background: var(--preview-tag-background);
+  color: var(--preview-tag-text);
 
   font-size: 11px;
   font-weight: 600;
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    color 0.3s ease;
 }
 
-/* =========================================
+.preview-tags span:hover {
+  border-color: var(--preview-accent);
+  box-shadow: var(--preview-glow);
+}
+
+/* =========================================================
    STATS
-========================================= */
+========================================================= */
 
 .preview-stats {
   display: flex;
-
   justify-content: space-around;
 
   margin: 20px 0;
-
   padding: 15px 0;
 
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
+  border-top: 1px solid var(--preview-stats-border);
+
+  border-bottom: 1px solid var(--preview-stats-border);
 }
 
 .preview-stats div {
   display: flex;
   flex-direction: column;
-
   gap: 3px;
 
   text-align: center;
 }
 
 .preview-stats strong {
-  color: #003087;
+  color: var(--preview-stats-number);
 
   font-size: 17px;
 }
 
 .preview-stats span {
-  color: #64748b;
+  color: var(--preview-stats-label);
 
   font-size: 11px;
 }
 
-/* =========================================
+/* =========================================================
    MINI POST
-========================================= */
+========================================================= */
 
 .preview-post {
   padding: 15px;
 
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--preview-post-border);
   border-radius: 14px;
 
-  background: #f8faff;
+  background: var(--preview-post-background);
+
+  box-shadow: var(--preview-post-shadow);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
+
+/* =========================================================
+   MINI POST USER
+========================================================= */
 
 .preview-post-user {
   display: flex;
   align-items: center;
-
   gap: 10px;
 }
 
@@ -273,9 +290,8 @@
 
   border-radius: 50%;
 
-  background: #eef4ff;
-
-  color: #003087;
+  background: var(--preview-small-avatar-background);
+  color: var(--preview-small-avatar-color);
 }
 
 .small-avatar img {
@@ -289,10 +305,14 @@
   font-size: 20px;
 }
 
+/* =========================================================
+   MINI POST USER TEXT
+========================================================= */
+
 .preview-post-user strong {
   display: block;
 
-  color: #1f2937;
+  color: var(--preview-post-user);
 
   font-size: 13px;
 }
@@ -302,38 +322,44 @@
 
   margin-top: 2px;
 
-  color: #64748b;
+  color: var(--preview-post-muted);
 
   font-size: 11px;
 }
+
+/* =========================================================
+   MINI POST CONTENT
+========================================================= */
 
 .preview-post > p {
   margin: 12px 0;
 
-  color: #374151;
+  color: var(--preview-post-text);
 
   font-size: 13px;
-
   line-height: 1.5;
 }
 
+/* =========================================================
+   MINI POST ACTIONS
+========================================================= */
+
 .preview-post-actions {
   display: flex;
-
   justify-content: space-between;
 
   padding-top: 10px;
 
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--preview-post-divider);
 
-  color: #64748b;
+  color: var(--preview-post-muted);
 
   font-size: 11px;
 }
 
-/* =========================================
+/* =========================================================
    TABLET
-========================================= */
+========================================================= */
 
 @media (max-width: 950px) {
   .preview-card {
@@ -341,14 +367,13 @@
   }
 }
 
-/* =========================================
+/* =========================================================
    MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 700px) {
   .preview-card {
     padding: 18px;
-
     border-radius: 18px;
   }
 
@@ -366,9 +391,9 @@
   }
 }
 
-/* =========================================
+/* =========================================================
    SMALL MOBILE
-========================================= */
+========================================================= */
 
 @media (max-width: 450px) {
   .preview-card {

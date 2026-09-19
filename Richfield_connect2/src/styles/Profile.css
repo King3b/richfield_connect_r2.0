@@ -1,7 +1,8 @@
 .profile-page {
   width: min(1200px, 92%);
   margin: 40px auto;
-  color: #1f2937;
+  color: var(--page-color);
+  background-color: var(--page-background-color);
 }
 
 .empty-profile {
@@ -15,7 +16,7 @@
 }
 
 .empty-profile h1 {
-  color: #003087;
+  color: var(--profile-header);
   margin-bottom: 10px;
 }
 
@@ -40,7 +41,7 @@
 
 .profile-header {
   background: white;
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--profile-border);
   border-radius: 22px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 48, 135, 0.1);
@@ -49,9 +50,7 @@
 .profile-banner {
   height: 220px;
   position: relative;
-
   background: linear-gradient(135deg, #001b4d, #003087, #0563c0, #2c8aee);
-
   display: flex;
   align-items: flex-end;
   padding: 25px;
@@ -216,7 +215,7 @@
 
   background: white;
 
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--profile-border);
   border-radius: 14px;
 
   box-shadow: 0 5px 15px rgba(0, 48, 135, 0.05);
@@ -267,13 +266,13 @@
 .profile-card {
   background: white;
 
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--profile-border);
   border-radius: 18px;
 
   padding: 25px;
   margin-bottom: 18px;
 
-  box-shadow: 0 6px 18px rgba(0, 48, 135, 0.06);
+  box-shadow: var(--profile-shadow);
 
   transition:
     transform 0.2s ease,
@@ -282,7 +281,7 @@
 
 .profile-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 25px rgba(0, 48, 135, 0.1);
+  box-shadow: var(--profile-shadow-hover);
 }
 
 .profile-card h3 {
@@ -448,14 +447,14 @@
 
   text-align: center;
 
-  box-shadow: 0 6px 18px rgba(0, 48, 135, 0.06);
+  box-shadow: var(--profile-shadow);
 
   transition: 0.2s ease;
 }
 
 .activity-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 25px rgba(0, 48, 135, 0.1);
+  box-shadow: var(--profile-shadow-hover);
 }
 
 .activity-card h3 {
@@ -527,143 +526,4 @@
   border-radius: 20px;
 
   transition: width 0.5s ease;
-}
-
-/* ==============================
-   TABLET
-================================ */
-
-@media (max-width: 1023px) {
-  .profile-page {
-    width: 94%;
-    margin: 30px auto;
-  }
-
-  .connections-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .activity-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .profile-banner {
-    height: 190px;
-  }
-}
-
-/* ==============================
-   MOBILE
-================================ */
-
-@media (max-width: 767px) {
-  .profile-page {
-    width: 94%;
-    margin: 20px auto;
-  }
-
-  .profile-banner {
-    height: 150px;
-    padding: 15px;
-  }
-
-  .profile-picture {
-    width: 105px;
-    height: 105px;
-    font-size: 30px;
-  }
-
-  .profile-info {
-    padding: 18px;
-  }
-
-  .profile-info h1 {
-    font-size: 24px;
-  }
-
-  .bio-info {
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .profile-stats {
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .profile-stats div {
-    text-align: center;
-  }
-
-  .section-nav {
-    overflow-x: auto;
-  }
-
-  .section-nav a {
-    min-width: 100px;
-  }
-
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .connections-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .activity-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .profile-card {
-    padding: 18px;
-  }
-
-  .profile-completion {
-    padding: 18px;
-  }
-}
-
-/* ==============================
-   SMALL PHONES
-================================ */
-
-@media (max-width: 480px) {
-  .profile-page {
-    width: 96%;
-  }
-
-  .profile-banner {
-    height: 125px;
-  }
-
-  .profile-picture {
-    width: 90px;
-    height: 90px;
-    border-width: 4px;
-  }
-
-  .profile-info h1 {
-    font-size: 21px;
-  }
-
-  .profile-info h3 {
-    font-size: 13px;
-  }
-
-  .profile-stats {
-    gap: 5px;
-  }
-
-  .profile-stats strong {
-    font-size: 17px;
-  }
-
-  .profile-stats span {
-    font-size: 11px;
-  }
-
-  .completion-text h3 {
-    font-size: 15px;
-  }
 }

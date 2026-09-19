@@ -1,12 +1,12 @@
 import "./reasons.css";
-function Reasons() {
+function Values() {
   return (
     <section className="signup-reasons">
       <div className="signup-reasons-heading">
         <span className="material-symbols-rounded">info</span>{" "}
         <div>
-          <h2>Reasons to Sign Up</h2>
-          <p>Discover what Richfield Connect has to offer.</p>{" "}
+          <h2>Core Value</h2>
+          <p>The principles that shape the Richfield Connect community.</p>{" "}
         </div>
       </div>
       <div className="signup-reasons-grid">
@@ -20,30 +20,24 @@ function Reasons() {
           </div>{" "}
         </div>
         <div className="signup-reason-box">
-          {" "}
           <div className="signup-reason-icon">
-            {" "}
             <span className="material-symbols-rounded"> groups </span>{" "}
           </div>{" "}
           <div className="signup-reason-content">
             {" "}
             <h3>Community</h3>{" "}
-            <p>
-              {" "}
-              Get the support you need from your fellow students and
-              faculty.{" "}
-            </p>{" "}
+            <p>Building a supportive and respectful student community</p>{" "}
           </div>{" "}
         </div>
         <div className="signup-reason-box">
           <div className="signup-reason-icon">
-            <span className="material-symbols-rounded"> hub </span>{" "}
+            <span className="material-symbols-rounded"> handshake </span>{" "}
           </div>
           <div className="signup-reason-content">
-            <h3>Stay Connected</h3>
+            <h3>Collaboration</h3>
             <p>
               We encourage open communication and collaboration among students,
-              fostering knowledge sharing and mutual support.{" "}
+              fostering knowledge sharing and mutual support.
             </p>
           </div>
         </div>
@@ -67,7 +61,7 @@ function Reasons() {
             <h3>Integrity</h3>
             <p>
               We are committed to maintaining high standards of integrity and
-              ethical behavior.
+              ethical behaviour in our interactions and services..
             </p>
           </div>
         </div>
@@ -76,4 +70,4 @@ function Reasons() {
   );
 }
 
-export default Reasons;
+export default Values;

@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
-import SideLinks from "../components/side link/sideLinks";
 import "../styles/Profile.css";
 
 function Profile() {
@@ -48,8 +47,23 @@ function Profile() {
   return (
     <main className="profile-page">
       <section className="profile-header">
-        <div className="profile-banner">
-          <div className="profile-picture">{initials}</div>
+        <div
+          className="profile-banner"
+          style={
+            user.backgroundImage
+              ? {
+                  backgroundImage: `url(${user.backgroundImage})`,
+                }
+              : {}
+          }
+        >
+          <div className="profile-picture">
+            {user.profileImage ? (
+              <img src={user.profileImage} alt={`${user.name}'s profile`} />
+            ) : (
+              initials
+            )}
+          </div>
         </div>
 
         <div className="profile-info">
@@ -59,7 +73,7 @@ function Profile() {
 
           <div className="profile-actions">
             {" "}
-            <Link to="/profileEdit" className="edit-profile-btn">
+            <Link to="/editprofile" className="edit-profile-btn">
               {" "}
               ✏️ Edit Profile{" "}
             </Link>{" "}

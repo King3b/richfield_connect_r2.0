@@ -343,14 +343,10 @@
 
 .core-advantages {
   padding: 25px;
-
   background: white;
-
   border: 1px solid #e2e8f0;
   border-radius: 18px;
-
   box-shadow: 0 6px 18px rgba(0, 48, 135, 0.06);
-
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease;
@@ -358,7 +354,6 @@
 
 .core-advantages:hover {
   transform: translateY(-3px);
-
   box-shadow: 0 12px 25px rgba(0, 48, 135, 0.1);
 }
 
@@ -369,11 +364,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
   margin-bottom: 15px;
-
   border-radius: 12px;
-
   background: #eef4ff;
   color: #003087;
 }

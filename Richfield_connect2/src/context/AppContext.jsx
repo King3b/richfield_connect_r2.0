@@ -6,6 +6,7 @@ const initialState = {
   currentUser: null,
   users: [],
   posts: [],
+  darkMode: false,
 };
 
 function reducer(state, action) {
@@ -21,6 +22,18 @@ function reducer(state, action) {
       return {
         ...state,
         currentUser: { ...state.currentUser, ...action.payload },
+      };
+
+    case "LOGOUT_USER":
+      return {
+        ...state,
+        currentUser: null,
+      };
+
+    case "TOGGLE_DARK_MODE":
+      return {
+        ...state,
+        darkMode: !state.darkMode,
       };
 
     case "ADD_POST":

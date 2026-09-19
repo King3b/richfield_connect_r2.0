@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import "../styles/EditProfile.css";
@@ -8,30 +8,54 @@ function EditProfile() {
   const navigate = useNavigate();
 
   const user = state.currentUser;
+  const [formData, setFormData] = useState({
+    name: "",
+    surName: "",
+    userName: "",
+    profileImage: "",
+    backgroundImage: "",
+    bio: "",
+    course: "",
+    year: "",
+    location: "",
+    campus: "",
+    gender: "",
+    email: "",
+    phone: "",
+    github: "",
+    linkedin: "",
+    interests: [],
+    hobbies: [],
+    skills: [],
+    goals: [],
+    achievements: [],
+  });
+  useEffect(() => {
+    if (!user) return;
 
-  const [formData, setFormData] = useState(() => ({
-    name: user?.name || "",
-    surName: user?.surName || "",
-    userName: user?.userName || "",
-    profilePic: user?.profilePic || "",
-    banner: user?.banner || "",
-    bio: user?.bio || "",
-    course: user?.course || "",
-    year: user?.year || "",
-    location: user?.location || "",
-    campus: user?.campus || "",
-    gender: user?.gender || "",
-    email: user?.email || "",
-    phone: user?.phone || "",
-    github: user?.github || "",
-    linkedin: user?.linkedin || "",
-
-    interests: user?.interests || [],
-    hobbies: user?.hobbies || [],
-    skills: user?.skills || [],
-    goals: user?.goals || [],
-    achievements: user?.achievements || [],
-  }));
+    setFormData({
+      name: user.name || "",
+      surName: user.surName || "",
+      userName: user.userName || "",
+      profileImage: user.profileImage || "",
+      backgroundImage: user.backgroundImage || "",
+      bio: user.bio || "",
+      course: user.course || "",
+      year: user.year || "",
+      location: user.location || "",
+      campus: user.campus || "",
+      gender: user.gender || "",
+      email: user.email || "",
+      phone: user.phone || "",
+      github: user.github || "",
+      linkedin: user.linkedin || "",
+      interests: user.interests || [],
+      hobbies: user.hobbies || [],
+      skills: user.skills || [],
+      goals: user.goals || [],
+      achievements: user.achievements || [],
+    });
+  }, [user]);
 
   const [interestInput, setInterestInput] = useState("");
   const [hobbyInput, setHobbyInput] = useState("");
@@ -273,12 +297,12 @@ function EditProfile() {
               <div
                 className="banner-preview"
                 style={
-                  formData.banner
-                    ? { backgroundImage: `url(${formData.banner})` }
+                  formData.backgroundImage
+                    ? { backgroundImage: `url(${formData.backgroundImage})` }
                     : {}
                 }
               >
-                {!formData.banner && (
+                {!formData.backgroundImage && (
                   <div className="banner-placeholder">
                     <span className="material-symbols-rounded">image</span>
 
@@ -292,7 +316,7 @@ function EditProfile() {
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => handleImageChange(e, "banner")}
+                    onChange={(e) => handleImageChange(e, "backgroundImage")}
                   />
                 </label>
               </div>
@@ -301,8 +325,8 @@ function EditProfile() {
             {/* PROFILE PICTURE */}
             <div className="profile-picture-editor">
               <div className="profile-picture-preview">
-                {formData.profilePic ? (
-                  <img src={formData.profilePic} alt="Profile preview" />
+                {formData.profileImage ? (
+                  <img src={formData.profileImage} alt="Profile preview" />
                 ) : (
                   <span className="material-symbols-rounded">person</span>
                 )}
@@ -321,7 +345,7 @@ function EditProfile() {
                   <input
                     type="file"
                     accept="image/*"
-                    onChange={(e) => handleImageChange(e, "profilePic")}
+                    onChange={(e) => handleImageChange(e, "profileImage")}
                   />
                 </label>
               </div>

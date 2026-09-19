@@ -3,13 +3,13 @@ import "../main_components/Cards.css";
 function Card(props) {
   return (
     <>
-      <section className="core-values">
+      <section className="card-values">
         <div>
-          <h3>{props.header}</h3>
+          <div className="card-icon">
+            <span className="material-symbols-rounded ">{props.icon}</span>
+          </div>
 
-          <span className="material-symbols-rounded core-icon">
-            {props.icon}
-          </span>
+          <h3>{props.header}</h3>
 
           <p>{props.info}</p>
         </div>

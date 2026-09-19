@@ -1,30 +1,26 @@
-/* =====================================================
+/* =========================================
    MAIN FEED LAYOUT
-===================================================== */
+========================================= */
 
 .feedLayout {
   display: grid;
-
   grid-template-columns: minmax(0, 1fr) 320px;
 
-  /* More space between Feed and Groups */
   gap: 40px;
 
   width: 100%;
   max-width: 1400px;
 
   margin: 30px auto;
-
   padding: 0 32px;
 
   box-sizing: border-box;
-
   align-items: start;
 }
 
-/* =====================================================
+/* =========================================
    FEED
-===================================================== */
+========================================= */
 
 .feed {
   width: 100%;
@@ -34,46 +30,54 @@
 .feed > h2 {
   margin: 0 0 18px;
 
-  color: #1f2937;
+  color: var(--feed-heading);
 
   font-size: 24px;
   font-weight: 700;
 }
 
-/* =====================================================
+/* =========================================
    CREATE POST
-===================================================== */
+========================================= */
 
 .create_Post {
   width: 100%;
 
   margin-bottom: 24px;
-
   padding: 18px;
 
   box-sizing: border-box;
 
-  background: white;
+  background: var(--feed-create-background);
 
-  border: 1px solid #e2e8f0;
-
+  border: 1px solid var(--feed-create-border);
   border-radius: 14px;
 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--feed-create-shadow);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.create_Post:hover {
+  border-color: rgba(88, 166, 255, 0.3);
+
+  box-shadow: var(--feed-create-shadow), var(--feed-glow);
 }
 
 /* Header */
 
 .create-post-header {
   display: flex;
-
   align-items: center;
 
   gap: 12px;
 
   padding-bottom: 15px;
 
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--feed-create-divider);
 }
 
 .create-post-avatar {
@@ -81,7 +85,6 @@
   height: 42px;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -89,9 +92,17 @@
 
   border-radius: 50%;
 
-  background: #eef4ff;
+  background: var(--feed-avatar-background);
+  color: var(--feed-avatar-color);
 
-  color: #003087;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.dark-mode .create-post-avatar {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.1);
 }
 
 .create-post-avatar .material-symbols-rounded {
@@ -101,7 +112,7 @@
 .create-post-header h3 {
   margin: 0 0 3px;
 
-  color: #1f2937;
+  color: var(--feed-text);
 
   font-size: 15px;
   font-weight: 700;
@@ -110,27 +121,21 @@
 .create-post-header p {
   margin: 0;
 
-  color: #64748b;
+  color: var(--feed-muted);
 
   font-size: 13px;
 }
-
-/*
-   CreatePost component sits underneath the header.
-   Its own CSS controls its internal form.
-*/
 
 .create_Post > *:last-child {
   margin-top: 15px;
 }
 
-/* =====================================================
+/* =========================================
    POSTS
-===================================================== */
+========================================= */
 
 .posts-list {
   display: flex;
-
   flex-direction: column;
 
   gap: 18px;
@@ -138,13 +143,12 @@
   width: 100%;
 }
 
-/* =====================================================
+/* =========================================
    EMPTY FEED
-===================================================== */
+========================================= */
 
 .empty-feed {
   display: flex;
-
   flex-direction: column;
 
   align-items: center;
@@ -158,19 +162,29 @@
 
   text-align: center;
 
-  background: white;
+  background: var(--feed-empty-background);
 
-  border: 1px solid #e2e8f0;
-
+  border: 1px solid var(--feed-empty-border);
   border-radius: 14px;
 
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--feed-empty-shadow);
+
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.empty-feed:hover {
+  border-color: rgba(88, 166, 255, 0.3);
+
+  box-shadow: var(--feed-empty-shadow), var(--feed-glow);
 }
 
 .empty-feed .material-symbols-rounded {
   margin-bottom: 10px;
 
-  color: #0563c0;
+  color: var(--feed-empty-icon);
 
   font-size: 40px;
 }
@@ -178,7 +192,7 @@
 .empty-feed h3 {
   margin: 0 0 7px;
 
-  color: #1f2937;
+  color: var(--feed-text);
 
   font-size: 18px;
 }
@@ -188,20 +202,18 @@
 
   margin: 0;
 
-  color: #64748b;
+  color: var(--feed-muted);
 
   font-size: 14px;
-
   line-height: 1.5;
 }
 
-/* =====================================================
+/* =========================================
    GROUPS SIDEBAR
-===================================================== */
+========================================= */
 
 .groups {
   position: sticky;
-
   top: 100px;
 
   height: fit-content;
@@ -210,26 +222,36 @@
 
   box-sizing: border-box;
 
-  background: white;
+  background: var(--feed-groups-background);
 
-  border: 1px solid #e2e8f0;
+  border: 1px solid var(--feed-groups-border);
+  border-radius: var(--feed-radius);
 
-  border-radius: 16px;
+  box-shadow: var(--feed-groups-shadow);
 
-  box-shadow: 0 3px 10px rgba(0, 48, 135, 0.07);
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.groups:hover {
+  border-color: rgba(88, 166, 255, 0.3);
+
+  box-shadow: var(--feed-groups-shadow), var(--feed-glow);
 }
 
 .groups h2 {
   margin: 0 0 18px;
 
-  color: #003087;
+  color: var(--feed-groups-heading);
 
   font-size: 21px;
 }
 
-/* =====================================================
+/* =========================================
    GROUP SEARCH
-===================================================== */
+========================================= */
 
 .group_search {
   display: flex;
@@ -241,169 +263,70 @@
 
 .group_search input {
   min-width: 0;
-
   flex: 1;
 
   padding: 11px 13px;
 
   box-sizing: border-box;
 
-  border: 1px solid #d6e4ff;
-
+  border: 1px solid var(--feed-search-border);
   border-radius: 10px;
 
-  background: #f8faff;
-
-  color: #1f2937;
+  background: var(--feed-search-background);
+  color: var(--feed-search-text);
 
   font-size: 14px;
 
   outline: none;
 
-  transition: 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .group_search input:focus {
-  border-color: #0563c0;
+  border-color: var(--feed-search-focus);
 
-  background: white;
-
-  box-shadow: 0 0 0 3px rgba(5, 99, 192, 0.1);
+  box-shadow:
+    0 0 0 3px rgba(59, 130, 246, 0.1),
+    0 0 15px rgba(59, 130, 246, 0.08);
 }
 
 .group_search button {
   padding: 11px 15px;
 
   border: none;
-
   border-radius: 10px;
 
-  background: #003087;
-
-  color: white;
+  background: var(--feed-button);
+  color: var(--feed-button-text);
 
   font-weight: 600;
 
   cursor: pointer;
 
-  transition: 0.2s ease;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .group_search button:hover {
-  background: #00215f;
+  background: var(--feed-button-hover);
 
   transform: translateY(-2px);
+
+  box-shadow: 0 0 18px rgba(59, 130, 246, 0.25);
 }
 
-/* =====================================================
+/* =========================================
    GROUP LIST
-===================================================== */
+========================================= */
 
 .groups-list {
   display: flex;
-
   flex-direction: column;
 
   gap: 14px;
-}
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 1000px) {
-  .feedLayout {
-    grid-template-columns: minmax(0, 1fr) 280px;
-
-    gap: 30px;
-
-    padding: 0 24px;
-  }
-}
-
-/* =====================================================
-   SMALL TABLET
-===================================================== */
-
-@media (max-width: 800px) {
-  .feedLayout {
-    grid-template-columns: 1fr;
-
-    padding: 0 20px;
-  }
-
-  .groups {
-    display: none;
-  }
-}
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 700px) {
-  .feedLayout {
-    display: block;
-
-    width: 100%;
-
-    margin: 20px auto;
-
-    padding: 0 14px;
-  }
-
-  .feed > h2 {
-    font-size: 21px;
-
-    margin-bottom: 16px;
-  }
-
-  .create_Post {
-    padding: 15px;
-
-    border-radius: 13px;
-  }
-
-  .create-post-header {
-    gap: 10px;
-  }
-
-  .create-post-avatar {
-    width: 38px;
-    height: 38px;
-  }
-
-  .create-post-header h3 {
-    font-size: 14px;
-  }
-
-  .create-post-header p {
-    font-size: 12px;
-  }
-
-  .groups {
-    display: none;
-  }
-
-  .posts-list {
-    gap: 15px;
-  }
-}
-
-/* =====================================================
-   VERY SMALL PHONE
-===================================================== */
-
-@media (max-width: 450px) {
-  .feedLayout {
-    padding: 0 10px;
-  }
-
-  .create_Post {
-    padding: 13px;
-  }
-
-  .empty-feed {
-    padding: 25px 15px;
-  }
 }
