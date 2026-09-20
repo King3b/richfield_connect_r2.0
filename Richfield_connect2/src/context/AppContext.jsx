@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useEffect, useReducer } from "react";
 
 export const AppContext = createContext();
 
@@ -17,11 +17,29 @@ function reducer(state, action) {
         users: action.payload,
       };
 
+    case "LOAD_POSTS":
+      return {
+        ...state,
+        posts: action.payload,
+      };
+
     case "REGISTER_USER":
       return {
         ...state,
         users: [...state.users, action.payload],
         currentUser: action.payload,
+      };
+
+    case "LOGIN_USER":
+      return {
+        ...state,
+        currentUser: action.payload,
+      };
+
+    case "LOGOUT_USER":
+      return {
+        ...state,
+        currentUser: null,
       };
 
     case "UPDATE_USER":
@@ -39,24 +57,6 @@ function reducer(state, action) {
               }
             : user,
         ),
-      };
-
-    case "LOGIN_USER":
-      return {
-        ...state,
-        currentUser: action.payload,
-      };
-
-    case "LOGOUT_USER":
-      return {
-        ...state,
-        currentUser: null,
-      };
-
-    case "TOGGLE_DARK_MODE":
-      return {
-        ...state,
-        darkMode: !state.darkMode,
       };
 
     case "ADD_POST":
@@ -102,10 +102,10 @@ function reducer(state, action) {
         }),
       };
 
-    case "LOAD_POSTS":
+    case "TOGGLE_DARK_MODE":
       return {
         ...state,
-        posts: action.payload,
+        darkMode: !state.darkMode,
       };
 
     default:
@@ -118,7 +118,9 @@ export function AppProvider({ children }) {
 
   useEffect(() => {
     const savedUsers = localStorage.getItem("richfieldUsers");
-    const savedUser = localStorage.getItem("richfieldCurrentUser");
+
+    const savedCurrentUser = localStorage.getItem("richfieldCurrentUser");
+
     const savedPosts = localStorage.getItem("richfieldPosts");
 
     if (savedUsers) {
@@ -132,11 +134,11 @@ export function AppProvider({ children }) {
       }
     }
 
-    if (savedUser) {
+    if (savedCurrentUser) {
       try {
         dispatch({
           type: "LOGIN_USER",
-          payload: JSON.parse(savedUser),
+          payload: JSON.parse(savedCurrentUser),
         });
       } catch (error) {
         console.error("Could not load current user:", error);
@@ -175,7 +177,12 @@ export function AppProvider({ children }) {
   }, [state.posts]);
 
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
+    <AppContext.Provider
+      value={{
+        state,
+        dispatch,
+      }}
+    >
       {children}
     </AppContext.Provider>
   );

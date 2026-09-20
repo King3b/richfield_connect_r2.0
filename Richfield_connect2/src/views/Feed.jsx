@@ -33,9 +33,25 @@ function Feed() {
 
   return (
     <main className="feedLayout">
+      <aside className="groups">
+        <h2>Groups</h2>
+
+        <div className="group_search">
+          <input type="text" placeholder="Search groups" />
+
+          <button type="button">Search</button>
+        </div>
+
+        <div className="groups-list">
+          <GroupsLink
+            link="#maths"
+            groupName="Maths"
+            desc="Group for the maths warriors"
+          />
+        </div>
+      </aside>
       <section className="feed">
         <h2>Feed</h2>
-
         <section className="posts-list">
           {state.posts?.length > 0 ? (
             state.posts.map((post) => <Post key={post.id} post={post} />)
@@ -52,7 +68,6 @@ function Feed() {
             </div>
           )}
         </section>
-
         <section className="create_Post">
           <div className="create-post-header">
             <div className="create-post-avatar">
@@ -73,24 +88,6 @@ function Feed() {
           <CreatePost />
         </section>
       </section>
-
-      <aside className="groups">
-        <h2>Groups</h2>
-
-        <div className="group_search">
-          <input type="text" placeholder="Search groups" />
-
-          <button type="button">Search</button>
-        </div>
-
-        <div className="groups-list">
-          <GroupsLink
-            link="#maths"
-            groupName="Maths"
-            desc="Group for the maths warriors"
-          />
-        </div>
-      </aside>
     </main>
   );
 }

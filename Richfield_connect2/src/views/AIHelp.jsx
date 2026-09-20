@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import "../styles/AIHelp.css";
 
 function AIHelp() {
@@ -15,9 +16,9 @@ function AIHelp() {
   const [showGifs, setShowGifs] = useState(false);
   const [showStickers, setShowStickers] = useState(false);
 
-  /* =========================================
-     QUICK HELP OPTIONS
-  ========================================= */
+  const pick = (replies) => {
+    return replies[Math.floor(Math.random() * replies.length)];
+  };
 
   const quickOptions = [
     {
@@ -42,10 +43,6 @@ function AIHelp() {
     },
   ];
 
-  /* =========================================
-     GIFS
-  ========================================= */
-
   const gifs = [
     {
       name: "👋 Wave",
@@ -69,40 +66,14 @@ function AIHelp() {
     },
   ];
 
-  /* =========================================
-     STICKERS
-  ========================================= */
-
   const stickers = [
-    {
-      emoji: "👍",
-      mood: "positive",
-    },
-    {
-      emoji: "😂",
-      mood: "funny",
-    },
-    {
-      emoji: "❤️",
-      mood: "love",
-    },
-    {
-      emoji: "😢",
-      mood: "sad",
-    },
-    {
-      emoji: "🔥",
-      mood: "excited",
-    },
-    {
-      emoji: "🤔",
-      mood: "confused",
-    },
+    { emoji: "👍", mood: "positive" },
+    { emoji: "😂", mood: "funny" },
+    { emoji: "❤️", mood: "love" },
+    { emoji: "😢", mood: "sad" },
+    { emoji: "🔥", mood: "excited" },
+    { emoji: "🤔", mood: "confused" },
   ];
-
-  /* =========================================
-     AI TEXT REPLIES
-  ========================================= */
 
   const getAIReply = (text) => {
     const lowerText = text.toLowerCase();
@@ -112,23 +83,44 @@ function AIHelp() {
       lowerText.includes("hi") ||
       lowerText.includes("hey")
     ) {
-      return "Hey! 👋 What are we learning today?";
+      return pick([
+        "Heyyy! 👋 What are we cooking today?",
+        "Yooo! 😄 Ready to learn something?",
+        "Hey! 👋 I'm here and ready to help. What's up?",
+        "What's good! 🤖📚 What are we working on today?",
+      ]);
     }
 
     if (lowerText.includes("javascript")) {
-      return "JavaScript is a programming language used to make webpages interactive. For example, React uses JavaScript to create interactive components. 💻";
+      return pick([
+        "JavaScript makes webpages interactive. 💻 Think buttons, forms, menus and dynamic content. Want me to show you a simple example?",
+        "JavaScript is where webpages start getting interesting! ⚡ It lets you add logic and interaction to your HTML and CSS.",
+        "JS time! 🟨 JavaScript lets your website actually respond to what the user does. Want a beginner example?",
+      ]);
     }
 
     if (lowerText.includes("react")) {
-      return "React is a JavaScript library used to build user interfaces using reusable components. Think of a component as a reusable piece of your website. ⚛️";
+      return pick([
+        "React lets you build websites using reusable components. ⚛️ Think of each component as a LEGO piece for your UI.",
+        "React time! ⚛️ Components, props and state are the big three to understand first. Want me to break them down?",
+        "React is basically about building your UI from reusable pieces. 🧩 Once components click, the rest becomes much easier.",
+      ]);
     }
 
     if (lowerText.includes("html")) {
-      return "HTML provides the structure of a webpage. Things like headings, paragraphs, buttons and forms are created with HTML. 🌐";
+      return pick([
+        "HTML gives your webpage its structure. 🌐 Headings, paragraphs, buttons, forms and images all start here.",
+        "HTML is basically the skeleton of your webpage. 🦴 CSS makes it look good and JavaScript makes it interactive.",
+        "Let's talk HTML! 🌐 If you understand elements, attributes and nesting, you're already building a solid foundation.",
+      ]);
     }
 
     if (lowerText.includes("css")) {
-      return "CSS controls how your webpage looks. You can use it for colours, spacing, layouts, animations and responsive design. 🎨";
+      return pick([
+        "CSS is responsible for the look of your website. 🎨 Colours, spacing, layouts, animations and responsive design all live here.",
+        "CSS time! 🎨 Think of HTML as the structure and CSS as the outfit. 😎",
+        "Want your website looking clean? CSS is the answer. 🔥 We can work on Flexbox, Grid, responsive design or animations.",
+      ]);
     }
 
     if (
@@ -136,102 +128,234 @@ function AIHelp() {
       lowerText.includes("exam") ||
       lowerText.includes("test")
     ) {
-      return "Absolutely! 📚 Tell me the chapter or topic and I'll help you break it down step by step.";
+      return pick([
+        "Absolutely! 📚 Tell me the topic and we'll break it down into small pieces.",
+        "Study mode activated! 🧠🔥 Give me the chapter or topic and let's tackle it together.",
+        "We've got this! 💪📚 Send me the topic you're studying and I'll make it easier to understand.",
+        "Exam coming up? 😭 No stress. Give me the topic and I'll help you work through it step by step.",
+      ]);
     }
 
     if (
       lowerText.includes("code") ||
       lowerText.includes("coding") ||
-      lowerText.includes("bug")
+      lowerText.includes("bug") ||
+      lowerText.includes("error")
     ) {
-      return "Send me the code you're struggling with 💻 and I'll help you understand what each part is doing.";
+      return pick([
+        "Send me the code! 💻🔍 We'll figure out what's going wrong.",
+        "Bug detected! 🐛😂 Paste the code here and let's hunt it down.",
+        "Let's debug this thing. 🔧💻 Show me the code and I'll explain what's happening.",
+        "No panic! 😎 Bugs are part of coding. Send me the code and we'll work through it.",
+      ]);
     }
 
     if (lowerText.includes("quiz")) {
-      return "Let's go! 🧠 I'll give you questions one at a time. Tell me when you're ready!";
+      return pick([
+        "YOOOO 🧠🔥 Quiz mode activated! I'll give you one question at a time.",
+        "Let's test that brain! 😈📚 Ready for question number one?",
+        "Quiz time! 🎯 I'll start easy and we can increase the difficulty.",
+        "Alright, professor 😎🧠 Let's see what you know!",
+      ]);
     }
 
     if (lowerText.includes("thanks") || lowerText.includes("thank you")) {
-      return "You're welcome! 😄 Keep cooking!";
+      return pick([
+        "You're welcome! 😄 Keep cooking! 🔥",
+        "Anytime! 🤝 Keep building!",
+        "No problem! 😎 That's what I'm here for.",
+        "You got it! 💙 Now go make that code behave 😂",
+      ]);
     }
 
-    return "I can help with studying, Web Technology, React, JavaScript, HTML, CSS and coding. 📚💻";
-  };
+    if (
+      lowerText.includes("confused") ||
+      lowerText.includes("don't understand") ||
+      lowerText.includes("dont understand")
+    ) {
+      return pick([
+        "No worries! 🧠💙 Let's slow it down and make it simple.",
+        "That's completely fine! 😄 Tell me which part is confusing and we'll break it down.",
+        "We've all been there 😂 Send me the part you don't understand and I'll explain it step by step.",
+      ]);
+    }
 
-  /* =========================================
-     GIF REACTIONS
-  ========================================= */
+    if (
+      lowerText.includes("hard") ||
+      lowerText.includes("difficult") ||
+      lowerText.includes("struggling")
+    ) {
+      return pick([
+        "Yeah, some topics can hit hard 😭. Let's break it into smaller pieces.",
+        "Don't stress! 💪 Difficult doesn't mean impossible. Let's tackle one part at a time.",
+        "I got you! 🤝 Show me what you're struggling with and we'll simplify it.",
+      ]);
+    }
+
+    if (
+      lowerText.includes("good") ||
+      lowerText.includes("great") ||
+      lowerText.includes("awesome")
+    ) {
+      return pick([
+        "Ayyy! 🔥 I like that energy!",
+        "Let's gooo! 😎 Keep that momentum!",
+        "That's what I like to hear! 🚀",
+        "W! 🏆 Keep going!",
+      ]);
+    }
+
+    return pick([
+      "Hmm 🤔 I'm listening. Tell me a little more and I'll try to help.",
+      "Interesting! 👀 Give me some more details.",
+      "I'm with you! 🤖 Tell me what you're working on.",
+      "Let's figure it out together. 💻🧠 What exactly do you need help with?",
+      "I might need a little more context 😅. Tell me what you're trying to do.",
+    ]);
+  };
 
   const getGifReaction = (mood) => {
     if (mood === "happy") {
-      return {
-        text: "You're bringing good vibes! 😄",
-        gif: gifs[3].url,
-      };
+      return pick([
+        {
+          text: "You're bringing good vibes! 😄🔥",
+          gif: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExeHR0emFvb2R4ZGRiYzRleDg4ZzQ4cDBuaTgyMDUzNmY2bTJ6NXpmdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7aD18gkTDHDJZu12/giphy.gif",
+        },
+        {
+          text: "Ayyy! 😎 I see those good vibes!",
+          gif: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExazdueDhxeWxsZjlwYjAzeGFlYmN6cWplM2V3a2prYzZoOXkycTV6cCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/8npVoLpVpaeCp5siDr/giphy.gif",
+        },
+        {
+          text: "Okayyy! 😂 SpongeBob approves!",
+          gif: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmk4bTR2dGVydXp1MGtrNHlkMDdkMjM5ajNuOXRwM2Vyd2RiaHRzMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3o7absbD7PbTFQa0c8/giphy.gif",
+        },
+      ]);
     }
 
     if (mood === "funny") {
-      return {
-        text: "😂 Okay, that was actually funny!",
-        gif: gifs[1].url,
-      };
+      return pick([
+        {
+          text: "😂 Okay, that was actually funny!",
+          gif: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHhjdHd0d2IxZDFtenZsNmxlazdvNWltYXJ6bmN3dnE4eGl0YjhvNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/VFBSi1R1q8K0TfLd0v/giphy.gif",
+        },
+        {
+          text: "BROOO 😂 You got me!",
+          gif: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2h5dWlkZWd4MG55ZzVmMXBpY3YweGZlaHg5YWtxbDhyNmR1cDJlbiZlcD12MV9naWZzX3NlYXJjaCZjdD1n/AFYfA31DZoiug31eky/giphy.gif",
+        },
+        {
+          text: "Nahhh 😭😂 That's actually hilarious!",
+          gif: "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExamc0bnhxbzZnaHM4Nm0wYXZscGYycHZwM213YW4yc2NqNnA3cGxtMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2rAIp46q7RjRE5mjHN/giphy.gif",
+        },
+      ]);
     }
 
     if (mood === "positive") {
-      return {
-        text: "👍 I like that energy!",
-        gif: gifs[2].url,
-      };
+      return pick([
+        {
+          text: "👍 I like that energy!",
+          gif: "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnR6YWltb3ZtZXA2YTZmdTRyNDlpdHhjcW92OXVieDNkY3V1eXNlbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Od0QRnzwRBYmDU3eEO/giphy.gif",
+        },
+        {
+          text: "That's what I'm talking about! 🔥",
+          gif: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2xkdzVqZWt0cTk3YWxoN3djN3k3MHhyMWF5aGp4MW16YmV3aHowcyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/jtJRgZuqZRYYEU5ZVS/giphy.gif",
+        },
+        {
+          text: "Big W! 🏆 Keep it going!",
+          gif: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExY3Y1dmwyMDc1am1ibmJubGliY2hkbHFqa3BrbWtxdWJ6NXJ6dGU5aiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Z3TNui6d50hlzXpxnp/giphy.gif",
+        },
+      ]);
     }
 
     if (mood === "excited") {
-      return {
-        text: "YOOOO! 🔥 Let's go!",
-        gif: gifs[3].url,
-      };
+      return pick([
+        {
+          text: "YOOOO! 🔥 Let's go!",
+          gif: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExeDE5bDVldDY5eWVyNGoyb3dpdmc3a21vMzVhM2IxNTRveng1aGZlayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JnZdM8OOYA3mk7HyFn/giphy.gif",
+        },
+        {
+          text: "WE'RE COOKING! 🚀🔥",
+          gif: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjd6ZWhybGh1M2tmOG1hbWJjZGU2eWFybzZmZXBhamhhamZvMW5sbyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UO5elnTqo4vSg/giphy.gif",
+        },
+        {
+          text: "AYYY! 😤🔥 I like the energy!",
+          gif: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmdsZmUwdXd0Z21hM3RrMDd3ZWpsbGQ1OHNzYXAyMGF5ZnR1dzF2NCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XwAOa90ASfcGkIfGVU/giphy.gif",
+        },
+      ]);
     }
 
-    return {
-      text: "Nice GIF! 😂",
-      gif: gifs[1].url,
-    };
+    return pick([
+      {
+        text: "Nice GIF! 😂",
+        gif: "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExamQ1bDJ4MjRuZDB6Mms1aXN1cWU2bWl4N2tpZTgwMnNjY2lqcm9qbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/QsU3vYYHB69R3bvBMK/giphy.gif",
+      },
+      {
+        text: "😂 Okay, I see you!",
+        gif: "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExbHZhYWhxaTA2cTR5eWF6cHBuODQ5bnk0eHNzdWpydXFnMjduN3V3OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/egvJaBsUkhs9xzCMjr/giphy.gif",
+      },
+      {
+        text: "That GIF says everything! 😭",
+        gif: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNXRwdWc3M3p1b2V0ZHk2bWZuZG5oOWZkeW9oa2JucnJxbTZ2aHJmYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/m2Q7FEc0bEr4I/giphy.gif",
+      },
+    ]);
   };
-
-  /* =========================================
-     STICKER REACTIONS
-  ========================================= */
 
   const getStickerReaction = (mood) => {
     if (mood === "positive") {
-      return "👍 Nice! Let's keep going!";
+      return pick([
+        "👍 Nice! Let's keep going!",
+        "🔥 That's the energy we need!",
+        "😎 Big W! Keep it up!",
+        "💪 You're doing great! Don't stop now!",
+      ]);
     }
 
     if (mood === "funny") {
-      return "😂 You got me!";
+      return pick([
+        "😂 You got me!",
+        "😭😂 Nahhh, that was good!",
+        "🤣 Okay, I wasn't ready for that!",
+        "😂 Brooo, you're actually funny!",
+      ]);
     }
 
     if (mood === "love") {
-      return "❤️ Appreciate the good vibes!";
+      return pick([
+        "❤️ Appreciate the good vibes!",
+        "❤️ Awww, right back at you!",
+        "🥹 That's wholesome!",
+        "💙 Good vibes only around here!",
+      ]);
     }
 
     if (mood === "sad") {
-      return "💙 Everything okay? I'm here if you need help.";
+      return pick([
+        "💙 Everything okay? I'm here if you need help.",
+        "🫂 Don't worry, we'll figure it out together.",
+        "💙 It's okay to have a rough day. Take it one step at a time.",
+        "🤝 I'm here. Want to talk about what's bothering you?",
+      ]);
     }
 
     if (mood === "excited") {
-      return "🔥 I see the energy! Let's cook!";
+      return pick([
+        "🔥 I see the energy! Let's cook!",
+        "YOOOO! 🚀🔥 Let's go!",
+        "😤🔥 Now THAT'S the energy!",
+        "🚀 We're locked in! Let's do this!",
+      ]);
     }
 
     if (mood === "confused") {
-      return "🧠 No worries. Let's break it down step by step.";
+      return pick([
+        "🧠 No worries. Let's break it down step by step.",
+        "🤔 That's okay! Let's simplify it together.",
+        "💡 Don't stress. I'll explain it in a simpler way.",
+        "🧠 One step at a time. We'll get it!",
+      ]);
     }
 
-    return "😊";
+    return pick(["😊 Nice!", "😎 I see you!", "👍 Got you!", "🔥 Good vibes!"]);
   };
-
-  /* =========================================
-     SEND TEXT MESSAGE
-  ========================================= */
 
   const sendMessage = (e) => {
     e.preventDefault();
@@ -266,17 +390,9 @@ function AIHelp() {
     }, 800);
   };
 
-  /* =========================================
-     QUICK OPTION
-  ========================================= */
-
   const useQuickOption = (text) => {
     setMessage(text);
   };
-
-  /* =========================================
-     SEND GIF
-  ========================================= */
 
   const sendGif = (gif) => {
     const reaction = getGifReaction(gif.mood);
@@ -299,10 +415,6 @@ function AIHelp() {
     setShowGifs(false);
   };
 
-  /* =========================================
-     SEND STICKER
-  ========================================= */
-
   const sendSticker = (sticker) => {
     setMessages((oldMessages) => [
       ...oldMessages,
@@ -320,28 +432,18 @@ function AIHelp() {
     setShowStickers(false);
   };
 
-  /* =========================================
-     EMOJI
-  ========================================= */
-
   const addEmoji = () => {
     setMessage((oldMessage) => oldMessage + " 😀");
   };
 
   return (
     <main className="ai-page">
-      {/* =====================================
-          AI HEADER
-      ===================================== */}
-
       <section className="ai-hero">
         <div className="ai-icon">🤖</div>
 
         <div>
           <p className="ai-label">RICHFIELD CONNECT</p>
-
           <h1>Richfield AI</h1>
-
           <p>Your study and coding assistant</p>
         </div>
 
@@ -350,10 +452,6 @@ function AIHelp() {
           Online
         </div>
       </section>
-
-      {/* =====================================
-          QUICK OPTIONS
-      ===================================== */}
 
       <section className="ai-options">
         <h2>What would you like help with?</h2>
@@ -369,17 +467,12 @@ function AIHelp() {
 
               <span>
                 <strong>{option.title}</strong>
-
                 <small>Get help with this</small>
               </span>
             </button>
           ))}
         </div>
       </section>
-
-      {/* =====================================
-          AI CHAT
-      ===================================== */}
 
       <section className="ai-chat">
         <div className="ai-chat-header">
@@ -388,15 +481,12 @@ function AIHelp() {
 
             <div>
               <strong>Richfield AI</strong>
-
               <span>Study Assistant</span>
             </div>
           </div>
 
           <span className="ai-online">● Online</span>
         </div>
-
-        {/* MESSAGES */}
 
         <div className="ai-messages">
           {messages.map((msg, index) => (
@@ -424,10 +514,6 @@ function AIHelp() {
           )}
         </div>
 
-        {/* =================================
-            GIF PICKER
-        ================================= */}
-
         {showGifs && (
           <div className="ai-picker">
             <div className="picker-header">
@@ -447,17 +533,12 @@ function AIHelp() {
                   onClick={() => sendGif(gif)}
                 >
                   <img src={gif.url} alt={gif.name} />
-
                   <span>{gif.name}</span>
                 </button>
               ))}
             </div>
           </div>
         )}
-
-        {/* =================================
-            STICKER PICKER
-        ================================= */}
 
         {showStickers && (
           <div className="ai-picker sticker-picker">
@@ -482,10 +563,6 @@ function AIHelp() {
             </div>
           </div>
         )}
-
-        {/* =================================
-            INPUT
-        ================================= */}
 
         <form className="ai-input" onSubmit={sendMessage}>
           <input
