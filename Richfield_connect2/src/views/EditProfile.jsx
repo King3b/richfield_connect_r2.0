@@ -413,23 +413,43 @@ function EditProfile() {
             <div className="form-group">
               <label>Academic Year</label>
 
-              <input
+              <select
                 name="year"
                 value={formData.year}
                 onChange={handleChange}
                 placeholder="e.g. 2nd Year"
-              />
+              >
+                <option value="">Select Year</option>
+                <option value="HCIT">HCIT</option>
+                <option value="DIT">DIT</option>
+                <option value="DIT 2nd">DIT 2nd</option>
+                <option value="BScIT">BScIT</option>
+                <option value="BScIT 2nd">BScIT 2nd</option>
+                <option value="BScIT 3rd">BScIT 3rd</option>
+              </select>
             </div>
 
             <div className="form-group">
               <label>Campus</label>
 
-              <input
+              <select
                 name="campus"
                 value={formData.campus}
                 onChange={handleChange}
                 placeholder="Your campus"
-              />
+              >
+                <option value="">Select Campus</option>
+                <option value="Bryanston">Bryanston Campus</option>
+                <option value="Cape Town">Cape Town Campus</option>
+                <option value="Centurion">Centurion Campus</option>
+                <option value="Durban">Durban Campus</option>
+                <option value="Musgrave">Musgrave Campus</option>
+                <option value="Newtown Junction">
+                  Newtown Junction Campus
+                </option>
+                <option value="Polokwane">Polokwane Campus</option>
+                <option value="Pretoria">Pretoria Campus</option>
+              </select>
             </div>
 
             <div className="form-group full-width">

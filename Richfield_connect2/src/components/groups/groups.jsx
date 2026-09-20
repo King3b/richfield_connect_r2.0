@@ -1,4 +1,4 @@
-import "../groups/groups.css";
+import "./groups.css";
 
 function GroupsLink(props) {
   return (

@@ -1,4 +1,4 @@
-import "../main_components/Cards.css";
+import "../Cards/Cards.css";
 
 function Card(props) {
   return (
@@ -8,9 +8,7 @@ function Card(props) {
           <div className="card-icon">
             <span className="material-symbols-rounded ">{props.icon}</span>
           </div>
-
           <h3>{props.header}</h3>
-
           <p>{props.info}</p>
         </div>
       </section>

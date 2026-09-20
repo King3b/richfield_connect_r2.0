@@ -1,4 +1,4 @@
-import "./reasons.css";
+import "../components/reasons/reasons.css";
 function Values() {
   return (
     <section className="signup-reasons">

@@ -1,20 +1,21 @@
+import { useState } from "react";
 import "../styles/ProfilePreview.css";
 
 function ProfileView(props) {
+  const [showPassword, setShowPassword] = useState(false);
+
   return (
     <form id="signupForm" onSubmit={props.submit}>
       <div className="preview-avatar">
         <span className="material-symbols-rounded">person</span>
       </div>
+
       <h3>{props.title}</h3>
-
       <p>{props.info}</p>
-
       <br />
 
       {/* NAME */}
       <label htmlFor="name">Name</label>
-
       <input
         type="text"
         id="name"
@@ -25,12 +26,11 @@ function ProfileView(props) {
         placeholder="Name"
         required
       />
-
+      {props.errors?.name && <p className="error">{props.errors.name}</p>}
       <br />
 
       {/* SURNAME */}
       <label htmlFor="surname">Surname</label>
-
       <input
         type="text"
         id="surname"
@@ -41,12 +41,11 @@ function ProfileView(props) {
         placeholder="Surname"
         required
       />
-
+      {props.errors?.surName && <p className="error">{props.errors.surName}</p>}
       <br />
 
       {/* EMAIL */}
       <label htmlFor="email">Email</label>
-
       <input
         type="email"
         id="email"
@@ -57,12 +56,11 @@ function ProfileView(props) {
         placeholder="Email"
         required
       />
-
+      {props.errors?.email && <p className="error">{props.errors.email}</p>}
       <br />
 
       {/* USERNAME */}
       <label htmlFor="username">Username</label>
-
       <input
         type="text"
         id="username"
@@ -73,16 +71,18 @@ function ProfileView(props) {
         placeholder="@username"
       />
 
+      {props.errors?.userName && (
+        <p className="error">{props.errors.userName}</p>
+      )}
+
       <div className="username-preview">
         Suggested username:
-        <span id="generatedUsername">@{props.userName}</span>
+        <span id="generatedUsername">@{props.name}</span>
       </div>
-
       <br />
 
       {/* CAMPUS */}
       <label htmlFor="campus">Campus</label>
-
       <select
         name="campus"
         id="campus"
@@ -102,11 +102,11 @@ function ProfileView(props) {
         <option value="Pretoria">Pretoria Campus</option>
       </select>
 
+      {props.errors?.campus && <p className="error">{props.errors.campus}</p>}
       <br />
 
       {/* YEAR */}
       <label htmlFor="year">Year of Study</label>
-
       <select
         name="year"
         id="year"
@@ -124,11 +124,11 @@ function ProfileView(props) {
         <option value="BScIT 3rd">BScIT 3rd</option>
       </select>
 
+      {props.errors?.year && <p className="error">{props.errors.year}</p>}
       <br />
 
       {/* GENDER */}
       <label htmlFor="gender">Gender</label>
-
       <select
         name="gender"
         id="gender"
@@ -143,11 +143,11 @@ function ProfileView(props) {
         <option value="other">Other</option>
       </select>
 
+      {props.errors?.gender && <p className="error">{props.errors.gender}</p>}
       <br />
 
       {/* STUDENT ID */}
       <label htmlFor="student_id">Student ID</label>
-
       <input
         type="text"
         id="student_id"
@@ -161,6 +161,9 @@ function ProfileView(props) {
         required
       />
 
+      {props.errors?.studentID && (
+        <p className="error">{props.errors.studentID}</p>
+      )}
       <br />
 
       {/* PASSWORD */}
@@ -168,7 +171,7 @@ function ProfileView(props) {
 
       <div className="password-box">
         <input
-          type="password"
+          type={showPassword ? "text" : "password"}
           id="password"
           name="password"
           value={props.password}
@@ -178,8 +181,23 @@ function ProfileView(props) {
           required
         />
 
-        <span className="material-symbols-rounded eye">visibility</span>
+        <br />
+
+        <button
+          type="button"
+          className={`password-eye ${showPassword ? "show" : ""}`}
+          onClick={() => setShowPassword(!showPassword)}
+          aria-label={showPassword ? "Hide password" : "Show password"}
+        >
+          <span className="material-symbols-rounded">
+            {showPassword ? "visibility" : "visibility_off"}
+          </span>
+        </button>
       </div>
+
+      {props.errors?.password && (
+        <p className="error">{props.errors.password}</p>
+      )}
 
       <div className="password-progress">
         <div
@@ -217,7 +235,7 @@ function ProfileView(props) {
             </p>
 
             <p className={/[^A-Za-z0-9]/.test(props.password) ? "valid" : ""}>
-              {/[^A-Za-z0-9]/.test(props.password) ? "✓" : "○"} One special
+              {/[^^A-Za-z0-9]/.test(props.password) ? "✓" : "○"} One special
               character
             </p>
           </div>
@@ -240,12 +258,11 @@ function ProfileView(props) {
           placeholder="Confirm Password"
           required
         />
-
-        {props.errors.password && (
-          <p className="error"> {props.errors.password} </p>
-        )}
-        <span className="material-symbols-rounded eye">visibility</span>
       </div>
+
+      {props.errors?.confirmPassword && (
+        <p className="error">{props.errors.confirmPassword}</p>
+      )}
 
       <p className="password-match"></p>
 

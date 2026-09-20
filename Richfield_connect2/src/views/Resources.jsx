@@ -1,5 +1,4 @@
 import "../styles/resources.css";
-import SideLinks from "../components/side link/sideLinks";
 
 function Resources() {
   return (

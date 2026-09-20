@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 
 import { AppContext } from "../../context/AppContext";
 
-import "../../styles/Post.css";
+import "../posts/Post.css";
 
 function Post({ post }) {
   const { state, dispatch } = useContext(AppContext);
@@ -21,6 +21,8 @@ function Post({ post }) {
 
   const isPostOwner = state.currentUser?.studentID === post.userId;
 
+  const isLiked = post.likedBy?.includes(state.currentUser?.studentID);
+
   const handleLike = () => {
     if (!state.currentUser) {
       return;
@@ -28,7 +30,10 @@ function Post({ post }) {
 
     dispatch({
       type: "TOGGLE_LIKE",
-      payload: post.id,
+      payload: {
+        postId: post.id,
+        studentID: state.currentUser.studentID,
+      },
     });
   };
 
@@ -107,7 +112,7 @@ function Post({ post }) {
 
       <div className="react-buttons">
         <button type="button" onClick={handleLike}>
-          {post.liked ? "💙" : "🤍"} {post.likes}
+          {isLiked ? "❤️" : "🤍"} {post.likedBy?.length || 0}
         </button>
 
         <button type="button" onClick={() => setShowComments(!showComments)}>

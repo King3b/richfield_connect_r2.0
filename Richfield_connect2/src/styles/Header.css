@@ -133,7 +133,7 @@ nav ul li a:hover::after {
   padding: 8px 12px;
   border: none;
   background: transparent;
-  color: var(--header-nav-color);
+  color: var(--header-link);
   font-family: inherit;
   font-size: 14px;
   font-weight: 500;

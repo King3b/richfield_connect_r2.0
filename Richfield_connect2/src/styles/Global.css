@@ -25,7 +25,7 @@
   --header-dropdown-shadow: 0 10px 30px rgba(0, 48, 135, 0.12);
 
   /* ---------- Header ---------- */
-  --header-background: #212121;
+  --header-background: #001b44;
   --header-text: #076aff;
   --header-link: #ffffff;
   --header-link-hover: #3b84f3;
@@ -335,7 +335,7 @@
   --home-button: #172033;
   --home-button-text: #58a6ff;
   --home-headings: #58a6ff;
-  --home-gradient: linear-gradient(135deg, #071b3d, #0d346b, #1454a3);
+  --home-gradient: linear-gradient(135deg, #113b83, #185ab6, #1a99d4);
   --home-button-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   --home-glow: 0 0 30px rgba(59, 130, 246, 0.15);
   --header-dropdown-background: #172033;
@@ -348,16 +348,28 @@
   --header-dropdown-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 
   /* ---------- Header ---------- */
-  --header-background: #0f1724;
+  --header-background: linear-gradient(
+    135deg,
+    #001b4d,
+    #003087,
+    #0563c0,
+    #2c8aee
+  );
   --header-text: #58a6ff;
-  --header-link: #f1f5f9;
-  --header-link-hover: #58a6ff;
-  --header-underline: #3b82f6;
+  --header-link: #ffffff;
+  --header-link-hover: #fc0202;
+  --header-underline: #fc0202;
   --header-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
   --header-glow: 0 0 20px rgba(59, 130, 246, 0.12);
 
   /* ---------- Footer ---------- */
-  --footer-background: #0b1220;
+  --footer-background: linear-gradient(
+    135deg,
+    #001b4d,
+    #003087,
+    #0563c0,
+    #2c8aee
+  );
   --footer-text: #ffffff;
   --footer-title: #ffffff;
   --footer-muted: #aeb9c8;

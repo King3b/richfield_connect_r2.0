@@ -1,5 +1,4 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import { Link } from "react-router-dom";
 import "../styles/Profile.css";
@@ -18,6 +17,15 @@ function Profile() {
       </div>
     );
   }
+
+  const commentCount =
+    state.posts?.reduce((total, post) => {
+      return (
+        total +
+        (post.comments?.filter((comment) => comment.userId === user.studentID)
+          .length || 0)
+      );
+    }, 0) || 0;
 
   // Profile completion
   const fields = [
@@ -276,13 +284,16 @@ function Profile() {
 
           <div className="activity-card">
             <h3>❤️ Liked</h3>
-
-            <p>{state.posts?.filter((post) => post.liked).length || 0}</p>
+            <p>
+              {state.posts?.filter((post) =>
+                post.likedBy?.includes(user.studentID),
+              ).length || 0}
+            </p>
           </div>
 
           <div className="activity-card">
             <h3>💬 Comments</h3>
-            <p>0</p>
+            <p>{commentCount}</p>
           </div>
         </div>
       </section>

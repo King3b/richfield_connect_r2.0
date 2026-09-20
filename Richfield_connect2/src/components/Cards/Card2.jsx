@@ -1,4 +1,4 @@
-import "../components/reasons.css";
+import "../reasons/reasons.css";
 function Card2(props) {
   return (
     <div className="signup-reason-box">

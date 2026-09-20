@@ -1,10 +1,9 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { AppContext } from "../context/AppContext";
 
-import Post from "../components/post_elements/Post";
-import GroupsLink from "../components/groups/groups.jsx";
+import Post from "../components/posts/Post.jsx";
+import GroupsLink from "../components/Groups/groups.jsx";
 import CreatePost from "../components/posts/CreatePost.jsx";
 
 import "../styles/Feed.css";

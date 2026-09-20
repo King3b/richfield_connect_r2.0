@@ -1,6 +1,6 @@
 import "../styles/Home.css";
 import { Link } from "react-router-dom";
-import Card from "../main_components/Cards";
+import Card from "../components/Cards/Cards";
 
 function Home() {
   return (

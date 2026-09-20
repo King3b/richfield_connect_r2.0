@@ -1,13 +1,10 @@
 import "../styles/SignUp.css";
-
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { AppContext } from "../context/AppContext";
-
-import Preview from "../main_components/Preview";
+import Preview from "../components/preview/Preview";
 import ProfileView from "../components/ProfilePreview";
-import Reasons from "../components/reasons";
+import Reasons from "../components/reasons/Reasons";
 
 function SignUp() {
   const { state, dispatch } = useContext(AppContext);
@@ -24,13 +21,53 @@ function SignUp() {
     studentID: "",
     password: "",
     confirmPassword: "",
+    bio: "",
+    interests: [],
   });
 
   const [profileImage, setProfileImage] = useState("");
-
   const [errors, setErrors] = useState({});
-
   const [passwordStrength, setPasswordStrength] = useState(0);
+
+  const checkExistingUser = (field, value) => {
+    const users = state.users || [];
+
+    if (!value.trim()) {
+      return "";
+    }
+
+    if (field === "studentID") {
+      const exists = users.some(
+        (user) => user.studentID?.trim() === value.trim(),
+      );
+
+      if (exists) {
+        return "An account with this Student ID already exists.";
+      }
+    }
+
+    if (field === "userName") {
+      const exists = users.some(
+        (user) => user.userName?.toLowerCase() === value.trim().toLowerCase(),
+      );
+
+      if (exists) {
+        return "This username is already taken.";
+      }
+    }
+
+    if (field === "email") {
+      const exists = users.some(
+        (user) => user.email?.toLowerCase() === value.trim().toLowerCase(),
+      );
+
+      if (exists) {
+        return "An account with this email already exists.";
+      }
+    }
+
+    return "";
+  };
 
   const handleProfileImage = (e) => {
     const file = e.target.files[0];
@@ -225,11 +262,22 @@ function SignUp() {
   const handleBlur = (e) => {
     const { name, value } = e.target;
 
-    const error = validateField(name, value);
+    const validationError = validateField(name, value);
+
+    if (validationError) {
+      setErrors((previousErrors) => ({
+        ...previousErrors,
+        [name]: validationError,
+      }));
+
+      return;
+    }
+
+    const existingUserError = checkExistingUser(name, value);
 
     setErrors((previousErrors) => ({
       ...previousErrors,
-      [name]: error,
+      [name]: existingUserError,
     }));
   };
 
@@ -246,35 +294,26 @@ function SignUp() {
       }
     });
 
-    const studentExists = state.users.some(
-      (user) => user.studentID === formData.studentID.trim(),
-    );
+    const studentError = checkExistingUser("studentID", formData.studentID);
 
-    if (studentExists) {
-      newErrors.studentID = "An account with this Student ID already exists.";
+    if (studentError) {
+      newErrors.studentID = studentError;
     }
 
-    const usernameExists = state.users.some(
-      (user) =>
-        user.userName.toLowerCase() === formData.userName.trim().toLowerCase(),
-    );
+    const usernameError = checkExistingUser("userName", formData.userName);
 
-    if (usernameExists) {
-      newErrors.userName = "This username is already taken.";
+    if (usernameError) {
+      newErrors.userName = usernameError;
     }
 
-    const emailExists = state.users.some(
-      (user) =>
-        user.email.toLowerCase() === formData.email.trim().toLowerCase(),
-    );
+    const emailError = checkExistingUser("email", formData.email);
 
-    if (emailExists) {
-      newErrors.email = "An account with this email already exists.";
+    if (emailError) {
+      newErrors.email = emailError;
     }
-
-    setErrors(newErrors);
 
     if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
       return;
     }
 
@@ -288,39 +327,22 @@ function SignUp() {
 
     const userData = {
       id: Date.now(),
-
       name: formData.name.trim(),
-
       userName: formData.userName.trim(),
-
       surName: formData.surName.trim(),
-
       email: formData.email.trim(),
-
       campus: formData.campus,
-
       year: formData.year,
-
       gender: formData.gender,
-
       studentID: formData.studentID.trim(),
-
       password: formData.password,
-
       profileImage: profileImage,
-
       backgroundImage: "",
-
       bio: "",
-
       interests: [],
-
       hobbies: [],
-
       skills: [],
-
       goals: [],
-
       achievements: [],
     };
 

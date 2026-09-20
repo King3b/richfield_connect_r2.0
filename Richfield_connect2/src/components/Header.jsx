@@ -36,7 +36,6 @@ function Header() {
 
       <nav>
         <ul>
-          {/* DARK MODE */}
           <button
             type="button"
             className={`theme-toggle ${state.darkMode ? "dark" : ""}`}
@@ -53,8 +52,6 @@ function Header() {
 
             <span className="toggle-circle"></span>
           </button>
-
-          {/* ALWAYS VISIBLE */}
 
           <li>
             <Link to="/">Home</Link>

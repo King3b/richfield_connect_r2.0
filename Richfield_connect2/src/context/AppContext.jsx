@@ -23,12 +23,22 @@ function reducer(state, action) {
         posts: action.payload,
       };
 
-    case "REGISTER_USER":
+    case "REGISTER_USER": {
+      const updatedUsers = [...state.users, action.payload];
+
+      localStorage.setItem("richfieldUsers", JSON.stringify(updatedUsers));
+
+      localStorage.setItem(
+        "richfieldCurrentUser",
+        JSON.stringify(action.payload),
+      );
+
       return {
         ...state,
-        users: [...state.users, action.payload],
+        users: updatedUsers,
         currentUser: action.payload,
       };
+    }
 
     case "LOGIN_USER":
       return {
@@ -65,21 +75,27 @@ function reducer(state, action) {
         posts: [action.payload, ...state.posts],
       };
 
-    case "TOGGLE_LIKE":
+    case "TOGGLE_LIKE": {
+      const { postId, studentID } = action.payload;
+
       return {
         ...state,
         posts: state.posts.map((post) => {
-          if (post.id === action.payload) {
-            return {
-              ...post,
-              liked: !post.liked,
-              likes: post.liked ? post.likes - 1 : post.likes + 1,
-            };
-          }
+          if (post.id !== postId) return post;
 
-          return post;
+          const likedBy = post.likedBy || [];
+
+          const alreadyLiked = likedBy.includes(studentID);
+
+          return {
+            ...post,
+            likedBy: alreadyLiked
+              ? likedBy.filter((id) => id !== studentID)
+              : [...likedBy, studentID],
+          };
         }),
       };
+    }
 
     case "DELETE_POST":
       return {

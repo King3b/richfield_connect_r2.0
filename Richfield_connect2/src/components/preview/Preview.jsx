@@ -1,4 +1,4 @@
-import "../main_components/Preview.css";
+import "../preview/Preview.css";
 
 function Preview(props) {
   return (

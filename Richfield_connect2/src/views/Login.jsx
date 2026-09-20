@@ -5,8 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { AppContext } from "../context/AppContext";
 
-import Card from "../main_components/Cards";
-import Reasons from "../components/reasons";
+import Card from "../components/Cards/Cards";
+import Reasons from "../components/reasons/Reasons";
 
 function LogIn() {
   const { state, dispatch } = useContext(AppContext);

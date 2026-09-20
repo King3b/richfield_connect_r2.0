@@ -49,6 +49,21 @@
   flex-direction: column;
   gap: 22px;
 }
+.edit-profile-form select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid #d6e4ff;
+  border-radius: 11px;
+  background: #f8faff;
+  color: #1f2937;
+  font-size: 14px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
 
 /* =========================================
    PROFILE MEDIA EDITOR
